@@ -1,4 +1,4 @@
-package com.cc.skillapp;
+package com.cc.skillapp.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.cc.skillapp.R;
 import com.google.gson.Gson;
 
 import java.io.IOException;

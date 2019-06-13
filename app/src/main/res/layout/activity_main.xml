@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.cc.skillapp.MainActivity">
+    tools:context="com.cc.skillapp.activity.MainActivity">
 
     <TextView
         android:id="@+id/tv_first_function"
@@ -28,5 +28,14 @@
         android:text="Third Function"
         app:layout_constraintTop_toBottomOf="@+id/tv_second_funciton"
         app:layout_constraintLeft_toLeftOf="@+id/tv_second_funciton"/>
+
+    <TextView
+        android:id="@+id/tv_calendar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Calendar"
+        app:layout_constraintTop_toBottomOf="@+id/tv_third_function"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_third_function"/>
 
 </android.support.constraint.ConstraintLayout>
