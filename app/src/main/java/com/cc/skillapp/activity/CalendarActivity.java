@@ -2,6 +2,7 @@ package com.cc.skillapp.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -176,13 +177,28 @@ public class CalendarActivity extends AppCompatActivity {
 
         //将原有的calendar复制
         Calendar calendars = (Calendar) calendar.clone();
+
+        //将日期改为最后一天
+        int maxMonthDays = calendars.getActualMaximum(Calendar.DATE);
+        calendars.set(Calendar.DAY_OF_MONTH,maxMonthDays);
+        Log.i("cuican","当月最大天数："+maxMonthDays);
+
+        int endWeekday = calendars.get(Calendar.DAY_OF_WEEK)-1;
+        Log.i("cuican","当月最后一天星期几："+endWeekday);
+
         //将日改为1号，以用来确定1号为星期几
         calendars.set(Calendar.DAY_OF_MONTH, 1);
         //获得1号的星期
         int weekday = calendars.get(Calendar.DAY_OF_WEEK) - 1;
+        Log.i("cuican","当月第一天星期几："+weekday);
         //偏移calendas
         calendars.add(Calendar.DAY_OF_MONTH, -weekday);
-        int maxNumber = 6 * 7;
+
+        //下月补充天数
+        endWeekday = 7- (endWeekday+1);
+        //一共需要展示的天数： 上月补充天数+当月天数+下月补充天数
+        int maxNumber = weekday+maxMonthDays+endWeekday;
+        Log.i("cuican","上月几天："+weekday+" 当月："+maxMonthDays+" 下月："+endWeekday);
         while (mListDate.size() < maxNumber) {
             int yaer = calendars.get(Calendar.YEAR);
             int month = calendars.get(Calendar.MONTH);
