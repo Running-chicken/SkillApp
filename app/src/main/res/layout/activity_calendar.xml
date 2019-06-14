@@ -63,12 +63,12 @@
         android:layout_width="match_parent"
         android:layout_height="40dp">
 
-        <TextView
-            android:id="@+id/tv_previous"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/iv_previous"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
             android:layout_centerVertical="true"
-            android:text="上月"
+            android:src="@drawable/ic_previous"
             android:layout_toLeftOf="@+id/tv_date"
             android:layout_marginRight="30dp"/>
 
@@ -77,19 +77,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text=""
+            android:text="2019/7"
             android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="@color/black_363e48"/>
 
-        <TextView
-            android:id="@+id/tv_next"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/iv_next"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/tv_date"
             android:layout_marginLeft="30dp"
-            android:text="下月" />
+            android:src="@drawable/ic_next" />
 
     </RelativeLayout>
 
@@ -102,6 +102,76 @@
         android:listSelector="#00000000"
         android:scrollbars="none"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <View
+            android:layout_width="5dp"
+            android:layout_height="5dp"
+            android:background="@drawable/shape_circle_6c82f7"
+            android:layout_marginRight="3dp"/>
+        <TextView
+            android:id="@+id/tv_calendar_first"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="大咖讲坛"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:textColor="@color/black_363e48"
+            android:drawableLeft="@drawable/shape_circle_6c82f7"/>
+        <View
+            android:layout_width="5dp"
+            android:layout_height="5dp"
+            android:background="@drawable/shape_circle_ffab09"
+            android:layout_marginLeft="22dp"
+            android:layout_marginRight="3dp"/>
+        <TextView
+            android:id="@+id/tv_calendar_second"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="待拍地块"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:textColor="@color/black_363e48"
+            android:drawableLeft="@drawable/shape_circle_6c82f7"/>
+        <View
+            android:layout_width="5dp"
+            android:layout_height="5dp"
+            android:background="@drawable/shape_circle_fd7125"
+            android:layout_marginLeft="22dp"
+            android:layout_marginRight="3dp"/>
+        <TextView
+            android:id="@+id/tv_calendar_third"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="土地推荐"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:textColor="@color/black_363e48"
+            android:drawableLeft="@drawable/shape_circle_6c82f7"/>
+        <View
+            android:id="@+id/view_calendar_fourth"
+            android:layout_width="5dp"
+            android:layout_height="5dp"
+            android:background="@drawable/shape_circle_9098a3"
+            android:layout_marginLeft="22dp"
+            android:layout_marginRight="3dp"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/tv_calendar_fourth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="流拍"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:textColor="@color/black_363e48"
+            android:drawableLeft="@drawable/shape_circle_6c82f7"
+            android:visibility="gone"/>
+
+    </LinearLayout>
 
 
 </LinearLayout>

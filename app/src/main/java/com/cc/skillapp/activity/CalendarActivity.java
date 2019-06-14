@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cc.skillapp.R;
@@ -20,7 +21,8 @@ import java.util.List;
 public class CalendarActivity extends AppCompatActivity {
 
     private GridView gvDate;
-    private TextView tvPrevious,tvNext,tvDate;
+    private ImageView ivPrevious,ivNext;
+    private TextView tvDate;
     private List<CalendarDateBean> mListDate = new ArrayList<>();
     private CalendarAdapter mAdapter;
     private Calendar calendar = Calendar.getInstance();
@@ -28,6 +30,8 @@ public class CalendarActivity extends AppCompatActivity {
     private int nowYear;
     private int nowMonth;
     private int nowDay;
+    private TextView tvCalendarFirst,tvCalendarSecond,tvCalendarThird,tvCalendarFourth;
+    private View vfourTh;
 
 
     @Override
@@ -41,16 +45,21 @@ public class CalendarActivity extends AppCompatActivity {
     }
 
     private void registerListener() {
-        tvPrevious.setOnClickListener(mOnClick);
-        tvNext.setOnClickListener(mOnClick);
+        ivPrevious.setOnClickListener(mOnClick);
+        ivNext.setOnClickListener(mOnClick);
     }
 
 
     private void initView() {
         tvDate = findViewById(R.id.tv_date);
-        tvNext = findViewById(R.id.tv_next);
-        tvPrevious = findViewById(R.id.tv_previous);
+        ivNext = findViewById(R.id.iv_next);
+        ivPrevious = findViewById(R.id.iv_previous);
         gvDate = findViewById(R.id.gv_date);
+        tvCalendarFirst = findViewById(R.id.tv_calendar_first);
+        tvCalendarSecond = findViewById(R.id.tv_calendar_second);
+        tvCalendarThird = findViewById(R.id.tv_calendar_third);
+        tvCalendarFourth = findViewById(R.id.tv_calendar_fourth);
+        vfourTh = findViewById(R.id.view_calendar_fourth);
     }
 
     private void initData() {
@@ -71,10 +80,10 @@ public class CalendarActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             switch (view.getId()){
-                case R.id.tv_previous:
+                case R.id.iv_previous:
                     lastMonth();
                     break;
-                case R.id.tv_next:
+                case R.id.iv_next:
                     nextMonth();
                     break;
             }
@@ -121,7 +130,7 @@ public class CalendarActivity extends AppCompatActivity {
 
             if(bean.year==nowYear && bean.month==nowMonth && bean.day==nowDay){
                 holder.tvDate.setTextColor(getResources().getColor(R.color.white));
-                holder.tvDate.setBackground(getResources().getDrawable(R.drawable.shape_circlr_blue_3295f6));
+                holder.tvDate.setBackground(getResources().getDrawable(R.drawable.shape_circle_blue_3295f6));
             }else{
                 holder.tvDate.setTextColor(getResources().getColor(R.color.black_363e48));
                 holder.tvDate.setBackground(null);
