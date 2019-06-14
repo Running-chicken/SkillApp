@@ -51,5 +51,9 @@ public class CalendarEntity {
         public boolean hasCompletetion;
         public boolean hasPassIn;
         public int passInCount;
+
+        public int year;
+        public int month;
+        public int day;
     }
 }
