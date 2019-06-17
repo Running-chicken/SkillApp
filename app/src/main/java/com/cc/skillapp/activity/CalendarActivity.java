@@ -57,6 +57,8 @@ public class CalendarActivity extends AppCompatActivity {
     private View viewTPRL,viewZBRL;
     /**土拍：0  直播：1*/
     private int type;
+    private String startTime = "";
+    private String endTime = "";
 
 
     @Override
@@ -187,14 +189,13 @@ public class CalendarActivity extends AppCompatActivity {
     }
 
     private void updateZbMsg(){
-        requestMonth = dateFormatMonth.format(calendar.getTime());
         OkHttpClient okHttpClient = new OkHttpClient();
         FormBody.Builder formBody = new FormBody.Builder();
         final Map<String,String> map = new HashMap<>();
         map.put("categoryNames","土地直播");
         map.put("cityName","北京");
-        map.put("startTime","2019-05-01");
-        map.put("endTime","2019-05-31");
+        map.put("startTime",startTime);
+        map.put("endTime",endTime);
         String json  = new Gson().toJson(map);
 
         formBody.add("json",json);
@@ -441,18 +442,22 @@ public class CalendarActivity extends AppCompatActivity {
 
         //将日期改为最后一天
         int maxMonthDays = calendars.getActualMaximum(Calendar.DATE);
-        calendars.set(Calendar.DAY_OF_MONTH,maxMonthDays);
         Log.i("cuican","当月最大天数："+maxMonthDays);
 
+        //设置到最后一天
+        calendars.set(Calendar.DAY_OF_MONTH,maxMonthDays);
+        endTime = dateFormat.format(calendars.getTime());
         int endWeekday = calendars.get(Calendar.DAY_OF_WEEK)-1;
         Log.i("cuican","当月最后一天星期几："+endWeekday);
 
         //将日改为1号，以用来确定1号为星期几
         calendars.set(Calendar.DAY_OF_MONTH, 1);
+        startTime = dateFormat.format(calendars.getTime());
         //获得1号的星期
         int weekday = calendars.get(Calendar.DAY_OF_WEEK) - 1;
         Log.i("cuican","当月第一天星期几："+weekday);
-        //偏移calendas
+
+        //偏移calendas，获取日历第一天位置
         calendars.add(Calendar.DAY_OF_MONTH, -weekday);
 
         //下月补充天数
@@ -460,6 +465,7 @@ public class CalendarActivity extends AppCompatActivity {
         //一共需要展示的天数： 上月补充天数+当月天数+下月补充天数
         int maxNumber = weekday+maxMonthDays+endWeekday;
         Log.i("cuican","上月几天："+weekday+" 当月："+maxMonthDays+" 下月："+endWeekday);
+
         while (mListMonthDate.size() < maxNumber) {
             String date = dateFormat.format(calendars.getTime());
             int yaer = calendars.get(Calendar.YEAR);
@@ -474,6 +480,8 @@ public class CalendarActivity extends AppCompatActivity {
             calendars.add(Calendar.DAY_OF_MONTH, 1);
 
         }
+
+        mAdapter.notifyDataSetChanged();
 
         if(type==0){
             updateMsg();
