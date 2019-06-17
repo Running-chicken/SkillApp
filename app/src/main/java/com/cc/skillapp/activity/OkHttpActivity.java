@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.cc.skillapp.R;
-import com.cc.skillapp.entity.CalendarEntity;
 import com.google.gson.Gson;
 
 import java.io.IOException;

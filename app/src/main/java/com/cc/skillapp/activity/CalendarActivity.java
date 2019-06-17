@@ -15,7 +15,8 @@ import android.widget.TextView;
 
 import com.cc.skillapp.R;
 import com.cc.skillapp.entity.CalendarEntity;
-import com.cc.skillapp.entity.CalendarEntity.CalendarDateBean;
+import com.cc.skillapp.entity.TuPaiCalendarEntity;
+import com.cc.skillapp.entity.TuPaiCalendarEntity.CalendarDateBean;
 import com.cc.skillapp.entity.LiveCalendarEntity;
 import com.cc.skillapp.entity.LiveCalendarEntity.LiveCalendarBean;
 import com.google.gson.Gson;
@@ -43,27 +44,34 @@ public class CalendarActivity extends AppCompatActivity {
     private GridView gvDate;
     private ImageView ivPrevious,ivNext;
     private TextView tvDate;
-    private List<CalendarDateBean> mListMonthDate = new ArrayList<>();
-    private CalendarAdapter mAdapter;
+    /**当月日期集合*/
+    private List<CalendarEntity> mListMonthDate = new ArrayList<>();
+    /**日历适配器*/
+    private CalendarAdapter mCalendarAdapter;
+    /**日历模板*/
     private Calendar mCalendar = Calendar.getInstance();
-    private Calendar nowCalendar = Calendar.getInstance();
-    private int nowYear;
-    private int nowMonth;
-    private int nowDay;
     private TextView tvCalendarFirst,tvCalendarSecond,tvCalendarThird,tvCalendarFourth;
     private View vfourTh;
+    /**日历格式*/
     private SimpleDateFormat dateFormat;
     private SimpleDateFormat dateFormatMonth;
-    private Map<String,CalendarDateBean> mMapMsg = new HashMap<>();
+    /**土拍数据*/
+    private Map<String,CalendarDateBean> mMapTuPaiMsg = new HashMap<>();
+    /**直播数据*/
     private Map<String, LiveCalendarBean> mMapLiveMsg = new HashMap<>();
+    /**当前月份 格式yyyy-MM*/
     private String requestMonth;
     private TextView tvTPRL,tvZBRL;
     private View viewTPRL,viewZBRL;
     /**土拍：0  直播：1*/
     private int type;
+    /**月初日期*/
     private String startTime = "";
+    /**月末日期*/
     private String endTime = "";
     private TextView tvMonth;
+    /**今天*/
+    private String today;
 
 
     @Override
@@ -110,19 +118,14 @@ public class CalendarActivity extends AppCompatActivity {
         tvCalendarThird.setText("截止");
         dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         dateFormatMonth = new SimpleDateFormat("yyyy-MM");
-        nowYear = nowCalendar.get(Calendar.YEAR);
-        nowMonth = nowCalendar.get(Calendar.MONTH);
-        nowDay = nowCalendar.get(Calendar.DAY_OF_MONTH);
-
+        today = dateFormat.format(mCalendar.getTime());
         int year = mCalendar.get(Calendar.YEAR);
         int month = mCalendar.get(Calendar.MONTH) + 1;
         tvDate.setText(year + "年" + month+"月");
         tvMonth.setText(month+"");
 
-        requestMonth = dateFormatMonth.format(mCalendar.getTime());
-
-        mAdapter = new CalendarAdapter(mListMonthDate);
-        gvDate.setAdapter(mAdapter);
+        mCalendarAdapter = new CalendarAdapter(mListMonthDate);
+        gvDate.setAdapter(mCalendarAdapter);
         refreshCaledar();
     }
 
@@ -169,17 +172,17 @@ public class CalendarActivity extends AppCompatActivity {
                 if(response.isSuccessful()){
                     String jsonStr = response.body().string();
 
-                    CalendarEntity entity = null;
+                    TuPaiCalendarEntity entity = null;
                     try {
-                        entity = new Gson().fromJson(jsonStr, CalendarEntity.class);
+                        entity = new Gson().fromJson(jsonStr, TuPaiCalendarEntity.class);
                     } catch (JsonSyntaxException e) {
                         e.printStackTrace();
                     }
 
-                    mMapMsg.clear();
+                    mMapTuPaiMsg.clear();
                     if(entity!=null && entity.data!=null && entity.data.size()>0){
                         for(int i=0;i<entity.data.size();i++){
-                            mMapMsg.put(entity.data.get(i).date,entity.data.get(i));
+                            mMapTuPaiMsg.put(entity.data.get(i).date,entity.data.get(i));
                         }
 
                     }
@@ -190,7 +193,7 @@ public class CalendarActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        mAdapter.notifyDataSetChanged();
+                        mCalendarAdapter.notifyDataSetChanged();
                     }
                 });
             }
@@ -241,7 +244,7 @@ public class CalendarActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        mAdapter.notifyDataSetChanged();
+                        mCalendarAdapter.notifyDataSetChanged();
                     }
                 });
             }
@@ -329,9 +332,9 @@ public class CalendarActivity extends AppCompatActivity {
 
     public class CalendarAdapter extends BaseAdapter{
 
-        List<CalendarDateBean> list;
+        List<CalendarEntity> list;
         int months;
-        public CalendarAdapter(List<CalendarDateBean> mListDate){
+        public CalendarAdapter(List<CalendarEntity> mListDate){
             this.list = mListDate;
         }
 
@@ -366,10 +369,10 @@ public class CalendarActivity extends AppCompatActivity {
                 holder = (ViewHolder) convertView.getTag();
             }
 
-            CalendarDateBean bean = list.get(i);
+            CalendarEntity bean = list.get(i);
             months = mCalendar.get(Calendar.MONTH);
 
-            if(bean.year==nowYear && bean.month==nowMonth && bean.day==nowDay){
+            if(bean.date.equals(today)){
                 holder.tvDate.setTextColor(getResources().getColor(R.color.white));
                 holder.tvDate.setBackground(getResources().getDrawable(R.drawable.shape_circle_blue_3295f6));
             }else{
@@ -383,8 +386,8 @@ public class CalendarActivity extends AppCompatActivity {
             holder.tvDate.setText(list.get(i).day+"");
 
             if(type==0){
-                if(mMapMsg.containsKey(bean.date)){
-                    CalendarDateBean dateBean = mMapMsg.get(bean.date);
+                if(mMapTuPaiMsg.containsKey(bean.date)){
+                    CalendarDateBean dateBean = mMapTuPaiMsg.get(bean.date);
                     if(dateBean.hasClosing){
                         holder.viewFirst.setVisibility(View.VISIBLE);
                     }else{
@@ -521,8 +524,7 @@ public class CalendarActivity extends AppCompatActivity {
             int yaer = calendars.get(Calendar.YEAR);
             int month = calendars.get(Calendar.MONTH);
             int day = calendars.get(Calendar.DAY_OF_MONTH);
-            CalendarDateBean bean = new CalendarDateBean();
-            bean.year = yaer;
+            CalendarEntity bean = new CalendarEntity();
             bean.month = month;
             bean.day = day;
             bean.date = date;
@@ -531,12 +533,12 @@ public class CalendarActivity extends AppCompatActivity {
 
         }
 
-        mAdapter.notifyDataSetChanged();
+        mCalendarAdapter.notifyDataSetChanged();
 
         if(type==0){
-            updateMsg();
+            updateMsg(); //土拍日历
         }else{
-            updateZbMsg();
+            updateZbMsg(); //直播日历
         }
     }
 }
