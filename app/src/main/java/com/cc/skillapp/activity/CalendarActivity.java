@@ -1,5 +1,6 @@
 package com.cc.skillapp.activity;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -7,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.DatePicker;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,9 +22,11 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,7 +45,7 @@ public class CalendarActivity extends AppCompatActivity {
     private TextView tvDate;
     private List<CalendarDateBean> mListMonthDate = new ArrayList<>();
     private CalendarAdapter mAdapter;
-    private Calendar calendar = Calendar.getInstance();
+    private Calendar mCalendar = Calendar.getInstance();
     private Calendar nowCalendar = Calendar.getInstance();
     private int nowYear;
     private int nowMonth;
@@ -59,6 +63,7 @@ public class CalendarActivity extends AppCompatActivity {
     private int type;
     private String startTime = "";
     private String endTime = "";
+    private TextView tvMonth;
 
 
     @Override
@@ -76,6 +81,7 @@ public class CalendarActivity extends AppCompatActivity {
         ivNext.setOnClickListener(mOnClick);
         tvTPRL.setOnClickListener(mOnClick);
         tvZBRL.setOnClickListener(mOnClick);
+        tvDate.setOnClickListener(mOnClick);
     }
 
 
@@ -93,6 +99,7 @@ public class CalendarActivity extends AppCompatActivity {
         tvZBRL = findViewById(R.id.tv_zbrl);
         viewTPRL = findViewById(R.id.view_tprl);
         viewZBRL = findViewById(R.id.view_zbrl);
+        tvMonth = findViewById(R.id.tv_month);
 
     }
 
@@ -107,10 +114,12 @@ public class CalendarActivity extends AppCompatActivity {
         nowMonth = nowCalendar.get(Calendar.MONTH);
         nowDay = nowCalendar.get(Calendar.DAY_OF_MONTH);
 
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH) + 1;
-        tvDate.setText(String.valueOf(year) + "年" + String.valueOf(month)+"月");
-        requestMonth = dateFormatMonth.format(calendar.getTime());
+        int year = mCalendar.get(Calendar.YEAR);
+        int month = mCalendar.get(Calendar.MONTH) + 1;
+        tvDate.setText(year + "年" + month+"月");
+        tvMonth.setText(month+"");
+
+        requestMonth = dateFormatMonth.format(mCalendar.getTime());
 
         mAdapter = new CalendarAdapter(mListMonthDate);
         gvDate.setAdapter(mAdapter);
@@ -118,7 +127,7 @@ public class CalendarActivity extends AppCompatActivity {
     }
 
     private void updateMsg(){
-        requestMonth = dateFormatMonth.format(calendar.getTime());
+        requestMonth = dateFormatMonth.format(mCalendar.getTime());
         OkHttpClient okHttpClient = new OkHttpClient();
         FormBody.Builder formBody = new FormBody.Builder();
         final Map<String,String> map = new HashMap<>();
@@ -270,10 +279,49 @@ public class CalendarActivity extends AppCompatActivity {
                     type=1;
                     tvCalendarFirst.setText("大咖讲堂");
                     tvCalendarSecond.setText("待拍地块");
-                    tvCalendarThird.setText("土地推荐");
+                    tvCalendarThird.setText("土地推介");
                     tvCalendarFourth.setVisibility(View.GONE);
                     vfourTh.setVisibility(View.GONE);
                     refreshCaledar();
+                    break;
+                case R.id.tv_date:
+                    DatePickerDialog datePickerDialog = new DatePickerDialog(CalendarActivity.this, DatePickerDialog.THEME_HOLO_LIGHT, new DatePickerDialog.OnDateSetListener() {
+
+                        @Override
+                        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                            String monStr;
+                            String dayStr;
+                            if (monthOfYear + 1 < 10) {
+                                monStr = "0" + (monthOfYear + 1);
+                            } else {
+                                monStr = "" + (monthOfYear + 1);
+                            }
+
+                            tvDate.setText(year+"年"+(monthOfYear + 1)+"月");
+                            tvMonth.setText((monthOfYear + 1)+"");
+
+                            try {
+                                Date date = dateFormatMonth.parse(year+"-"+monStr);
+                                mCalendar.setTime(date);
+                                refreshCaledar();
+
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    },mCalendar.get(Calendar.YEAR) , mCalendar.get(Calendar.MONTH),  mCalendar.get(Calendar.DAY_OF_MONTH));
+                    datePickerDialog.show();
+                    //隐藏天数
+                    if (datePickerDialog != null) {
+                        int SDKVersion = android.os.Build.VERSION.SDK_INT;;
+                        if (SDKVersion < 11) {
+                            ((ViewGroup) datePickerDialog.getDatePicker().getChildAt(0)).getChildAt(2).setVisibility(View.GONE);
+                        } else if (SDKVersion > 14) {
+                            ((ViewGroup) ((ViewGroup) datePickerDialog.getDatePicker().getChildAt(0)).getChildAt(0)).getChildAt(2).setVisibility(View.GONE);
+                        }
+                    }
+
                     break;
             }
         }
@@ -319,7 +367,7 @@ public class CalendarActivity extends AppCompatActivity {
             }
 
             CalendarDateBean bean = list.get(i);
-            months = calendar.get(Calendar.MONTH);
+            months = mCalendar.get(Calendar.MONTH);
 
             if(bean.year==nowYear && bean.month==nowMonth && bean.day==nowDay){
                 holder.tvDate.setTextColor(getResources().getColor(R.color.white));
@@ -379,7 +427,7 @@ public class CalendarActivity extends AppCompatActivity {
                             if("待拍地块".equals(dateBean.liveBroadDetailInfoList.get(j).tagNames)){
                                 holder.viewSecond.setVisibility(View.VISIBLE);
                             }
-                            if("土地推荐".equals(dateBean.liveBroadDetailInfoList.get(j).tagNames)){
+                            if("土地推介".equals(dateBean.liveBroadDetailInfoList.get(j).tagNames)){
                                 holder.viewThird.setVisibility(View.VISIBLE);
                             }
 
@@ -408,10 +456,11 @@ public class CalendarActivity extends AppCompatActivity {
      * 上一个月
      */
     public void lastMonth() {
-        calendar.add(Calendar.MONTH, -1);
-        int years = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH) + 1;
-        tvDate.setText(String.valueOf(years) + "年" + String.valueOf(month)+"月");
+        mCalendar.add(Calendar.MONTH, -1);
+        int years = mCalendar.get(Calendar.YEAR);
+        int month = mCalendar.get(Calendar.MONTH) + 1;
+        tvDate.setText(years + "年" + month+"月");
+        tvMonth.setText(month+"");
         refreshCaledar();
     }
 
@@ -421,10 +470,11 @@ public class CalendarActivity extends AppCompatActivity {
      * 下一月
      */
     public void nextMonth() {
-        calendar.add(Calendar.MONTH, +1);
-        int years = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH) + 1;
-        tvDate.setText(String.valueOf(years) + "年" + String.valueOf(month)+"月");
+        mCalendar.add(Calendar.MONTH, +1);
+        int years = mCalendar.get(Calendar.YEAR);
+        int month = mCalendar.get(Calendar.MONTH) + 1;
+        tvDate.setText(years + "年" + month+"月");
+        tvMonth.setText(month+"");
         refreshCaledar();
     }
 
@@ -438,7 +488,7 @@ public class CalendarActivity extends AppCompatActivity {
         }
 
         //将原有的calendar复制
-        Calendar calendars = (Calendar) calendar.clone();
+        Calendar calendars = (Calendar) mCalendar.clone();
 
         //将日期改为最后一天
         int maxMonthDays = calendars.getActualMaximum(Calendar.DATE);

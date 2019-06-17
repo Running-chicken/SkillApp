@@ -121,9 +121,14 @@
             android:textSize="12sp"
             android:textColor="@color/gray_a4a7a9"/>
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="#FAFAFA"/>
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp">
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp">
 
         <ImageView
             android:id="@+id/iv_previous"
@@ -154,15 +159,28 @@
             android:src="@drawable/ic_next" />
 
     </RelativeLayout>
-
-    <GridView
-        android:id="@+id/gv_date"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:numColumns="7"
-        android:background="@color/white"
-        android:listSelector="#00000000"
-        android:scrollbars="none"/>
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tv_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="6"
+            android:textColor="#F0F8FF"
+            android:textStyle="bold"
+            android:textSize="166sp"/>
+        <GridView
+            android:id="@+id/gv_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:numColumns="7"
+            android:background="@null"
+            android:listSelector="#00000000"
+            android:scrollbars="none"/>
+    </RelativeLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -208,7 +226,7 @@
             android:id="@+id/tv_calendar_third"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="土地推荐"
+            android:text="土地推介"
             android:textSize="13sp"
             android:textStyle="bold"
             android:textColor="@color/black_363e48"
