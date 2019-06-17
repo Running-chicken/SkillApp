@@ -46,9 +46,13 @@ public class CalendarEntity {
         public int closingCount;
         public int completetionCount;
         public String date;
+        /**公告*/
         public boolean hasAnnouncement;
+        /**成交*/
         public boolean hasClosing;
+        /**截止*/
         public boolean hasCompletetion;
+        /**流拍*/
         public boolean hasPassIn;
         public int passInCount;
 

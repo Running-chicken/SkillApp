@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.cc.skillapp.R;
+import com.cc.skillapp.entity.CalendarEntity;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -92,9 +93,18 @@ public class OkHttpActivity extends AppCompatActivity {
             public void onClick(View v) {
                 OkHttpClient okHttpClient = new OkHttpClient();
                 FormBody.Builder formBody = new FormBody.Builder();
-                formBody.add("username","zhangsan");
+                Map<String,String> map = new HashMap<>();
+                map.put("cityCode","110100");
+                map.put("month","2018-10");
+                map.put("ownerId","standard");
+                map.put("cityName","北京");
+                String json  = new Gson().toJson(map);
+
+                formBody.add("json",json);
+                formBody.add("messagename","tdy_GetCalendarIndexData");
+                formBody.add("wirelesscode","966214B63AD14448D4252C6621C49408");
                 Request request = new Request.Builder()
-                        .url("http://www.baidu.com")
+                        .url("http://124.251.47.220:8021/land/agentservice.jsp?")
                         .post(formBody.build())
                         .build();
                 okHttpClient.newCall(request).enqueue(new Callback() {
