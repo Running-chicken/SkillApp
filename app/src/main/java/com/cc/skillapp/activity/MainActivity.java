@@ -12,6 +12,7 @@ import com.cc.skillapp.R;
 public class MainActivity extends AppCompatActivity {
 
     private TextView tvFuncitonOne;
+    private TextView tvWebView;
     private TextView tvCalendar;
 
 
@@ -26,11 +27,13 @@ public class MainActivity extends AppCompatActivity {
     private void registerListener() {
         tvFuncitonOne.setOnClickListener(mOnClick);
         tvCalendar.setOnClickListener(mOnClick);
+        tvWebView.setOnClickListener(mOnClick);
     }
 
     private void initView() {
         tvFuncitonOne = findViewById(R.id.tv_first_function);
         tvCalendar = findViewById(R.id.tv_calendar);
+        tvWebView = findViewById(R.id.tv_second_funciton);
     }
 
     View.OnClickListener mOnClick  = new View.OnClickListener() {
@@ -39,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
             switch (v.getId()){
                 case R.id.tv_first_function:
                     startActivity(new Intent(MainActivity.this, OkHttpActivity.class));
+                    break;
+                case R.id.tv_second_funciton:
+                    startActivity(new Intent(MainActivity.this,ReportActivity.class));
                     break;
                 case R.id.tv_calendar:
                     startActivity(new Intent(MainActivity.this,CalendarActivity.class));
