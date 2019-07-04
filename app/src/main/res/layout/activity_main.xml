@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Third Function"
+        android:text="使用本地资源"
         app:layout_constraintTop_toBottomOf="@+id/tv_second_funciton"
         app:layout_constraintLeft_toLeftOf="@+id/tv_second_funciton"/>
 
@@ -37,5 +37,14 @@
         android:text="Calendar"
         app:layout_constraintTop_toBottomOf="@+id/tv_third_function"
         app:layout_constraintLeft_toLeftOf="@+id/tv_third_function"/>
+
+    <TextView
+        android:id="@+id/tv_webview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="不使用本地资源"
+        app:layout_constraintTop_toBottomOf="@+id/tv_calendar"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_calendar"/>
 
 </android.support.constraint.ConstraintLayout>
