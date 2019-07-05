@@ -1,14 +1,9 @@
 package com.cc.skillapp.activity;
 
 import android.annotation.TargetApi;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Process;
-import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
-import android.webkit.MimeTypeMap;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
@@ -16,13 +11,9 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.cc.skillapp.R;
-import com.cc.skillapp.util.StringUtils;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -64,8 +55,9 @@ public class LoadLocalWebActivity extends AppCompatActivity {
         mPicList.add("jquery-1.9.1.min.js");
         mPicList.add("loading.gif");
 
+        url = "http://test.d.3fang.com/ndb/static";
 
-        url = "http://test.d.3fang.com/ndb/sharereport?token=b324801e509aa9b386a7c707b5c9c02f6710789cf1f9c5b879a606e01f531da2450f8b4f17de810eb1f5f9ad63f83ec84ebd4a4e83c02f01609fd4f317db1a3aaba527661cf5f17b48e1705254b0fb4f050fb7948c1632404262998152feed2998d8463fae96b9e5030fc55326e51f7d88c8469d2c9649c97acb09e3de5059d33b6af66a186ec6eea3c5939bd6887a75f19a44eb2612b557f33b871b1e1d0c99b6ea318768bed78b90b675b64ab8693a1a5c1b20b54308d087c224dffc107dd2e075b217ad63a24c8d71e8105c14037f";
+//        url = "http://test.d.3fang.com/ndb/sharereport?token=b324801e509aa9b386a7c707b5c9c02f6710789cf1f9c5b879a606e01f531da2450f8b4f17de810eb1f5f9ad63f83ec84ebd4a4e83c02f01609fd4f317db1a3aaba527661cf5f17b48e1705254b0fb4f050fb7948c1632404262998152feed2998d8463fae96b9e5030fc55326e51f7d88c8469d2c9649c97acb09e3de5059d33b6af66a186ec6eea3c5939bd6887a75f19a44eb2612b557f33b871b1e1d0c99b6ea318768bed78b90b675b64ab8693a1a5c1b20b54308d087c224dffc107dd2e075b217ad63a24c8d71e8105c14037f";
     }
 
     private void initView() {

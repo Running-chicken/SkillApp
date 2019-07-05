@@ -4,30 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.cc.skillapp.activity.MainActivity">
+    tools:context="com.cc.skillapp.MainActivity">
 
     <TextView
         android:id="@+id/tv_first_function"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="First Funciton"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/tv_second_funciton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="Second Function"
-        app:layout_constraintTop_toBottomOf="@+id/tv_first_function"
-        app:layout_constraintLeft_toLeftOf="@+id/tv_first_function" />
+        app:layout_constraintLeft_toLeftOf="@+id/tv_first_function"
+        app:layout_constraintTop_toBottomOf="@+id/tv_first_function" />
+
     <TextView
         android:id="@+id/tv_third_function"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="使用本地资源"
-        app:layout_constraintTop_toBottomOf="@+id/tv_second_funciton"
-        app:layout_constraintLeft_toLeftOf="@+id/tv_second_funciton"/>
+        app:layout_constraintLeft_toLeftOf="@+id/tv_second_funciton"
+        app:layout_constraintTop_toBottomOf="@+id/tv_second_funciton" />
 
     <TextView
         android:id="@+id/tv_calendar"
@@ -35,8 +38,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="Calendar"
-        app:layout_constraintTop_toBottomOf="@+id/tv_third_function"
-        app:layout_constraintLeft_toLeftOf="@+id/tv_third_function"/>
+        app:layout_constraintLeft_toLeftOf="@+id/tv_third_function"
+        app:layout_constraintTop_toBottomOf="@+id/tv_third_function" />
 
     <TextView
         android:id="@+id/tv_webview"
@@ -44,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="不使用本地资源"
-        app:layout_constraintTop_toBottomOf="@+id/tv_calendar"
-        app:layout_constraintLeft_toLeftOf="@+id/tv_calendar"/>
+        app:layout_constraintLeft_toLeftOf="@+id/tv_calendar"
+        app:layout_constraintTop_toBottomOf="@+id/tv_calendar" />
 
 </android.support.constraint.ConstraintLayout>

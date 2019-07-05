@@ -1,4 +1,4 @@
-package com.cc.skillapp.util;
+package com.cc.skillapp.utils;
 
 public class StringUtils {
 
