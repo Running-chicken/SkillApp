@@ -69,7 +69,8 @@ public class MainSplashActivity extends BaseActivity {
             }
         }
         if (isAllGranted){//已全部授权
-
+            finish();
+            startActivity(new Intent(mContext,MainActivity.class));
         }else {//有未授权的权限
             PermissionUtils.onRequestPermissionsResult(this,requestCode,permissions,grantResults);
         }
