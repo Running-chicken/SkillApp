@@ -112,23 +112,13 @@ public class LoadLocalWebActivity extends AppCompatActivity {
                     // 步骤4:替换资源
                     WebResourceResponse response = null;
 
+
                     try {
-//                        FileInputStream fis = new FileInputStream(localPath);
-//                        int size = fis.available();
-//                        Log.i("cuican","长度："+size);
-//                        byte[] buffer = new byte[size];
-//                        fis.read(buffer);
-//                        Log.i("cuican","读取内容："+new String(buffer));
-//                        fis.close();
-
-
-
                         response = new WebResourceResponse(mimeType, "utf-8", new FileInputStream(localPath));
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
                     }
+
                     // 参数1：http请求里该图片的Content-Type,此处图片为image/png
 
                     // 参数2：编码类型
@@ -143,40 +133,34 @@ public class LoadLocalWebActivity extends AppCompatActivity {
 
             @Override
             public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
-                // 步骤1:判断拦截资源的条件，即判断url里的图片资源的文件名
-                int lastPathIndex = url.lastIndexOf("/");
-                String lastPath = url.substring(lastPathIndex+1);
+                if(url.contains("app-static")){
+                    int index = url.indexOf("app-static/");
+                    String fileName = url.substring(index+11);
+                    String localPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/soufun/res/app-static/"+fileName;
 
-
-                if(mPicList.contains(lastPath)){
-                    // 假设网页里该图片资源的地址为：http://abc.com/imgage/logo.gif
-                    // 图片的资源文件名为:logo.gif
-                    InputStream is = null;
-                    // 步骤2:创建一个输入流
-                    try {
-                        is =getApplicationContext().getAssets().open("webres/"+lastPath);
-                        // 步骤3:获得需要替换的资源(存放在assets文件夹里)
-                        // a. 先在app/src/main下创建一个assets文件夹
-                        // a. 先在app/src/main下创建一个assets文件夹
-                        // c. 在images文件夹放上需要替换的资源（此处替换的是abc.png图片）
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
 
                     String mimeType = "";
-                    if(lastPath.contains("js")){
+                    if(fileName.contains("js")){
                         mimeType = "application/x-javascript";
-                    }else if(lastPath.contains("css")){
+                    }else if(fileName.contains("css")){
                         mimeType = "text/css";
-                    }else if(lastPath.contains("png")){
+                    }else if(fileName.contains("png")){
                         mimeType = "image/png";
-                    }else if(lastPath.contains("gif")){
+                    }else if(fileName.contains("gif")){
                         mimeType = " image/gif ";
                     }
 
+
                     // 步骤4:替换资源
-                    WebResourceResponse response = new WebResourceResponse(mimeType, "utf-8", is);
+                    WebResourceResponse response = null;
+
+
+                    try {
+                        response = new WebResourceResponse(mimeType, "utf-8", new FileInputStream(localPath));
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+
                     // 参数1：http请求里该图片的Content-Type,此处图片为image/png
 
                     // 参数2：编码类型
@@ -185,7 +169,6 @@ public class LoadLocalWebActivity extends AppCompatActivity {
                     return response;
 
                 }
-
                 return super.shouldInterceptRequest(view, url);
 
             }

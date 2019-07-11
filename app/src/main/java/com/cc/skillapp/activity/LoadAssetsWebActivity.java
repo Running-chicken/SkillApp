@@ -83,17 +83,18 @@ public class LoadAssetsWebActivity extends AppCompatActivity {
             public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
                 // 步骤1:判断拦截资源的条件，即判断url里的图片资源的文件名
                 String path = request.getUrl().toString();
-                int lastPathIndex = path.lastIndexOf("/");
-                String lastPath = path.substring(lastPathIndex+1);
+                if(path.contains("app-static")){
+                    int index = path.indexOf("app-static/");
+                    String fileName = path.substring(index+11);
 
 
-                if(mPicList.contains(lastPath)){
                     // 假设网页里该图片资源的地址为：http://abc.com/imgage/logo.gif
                     // 图片的资源文件名为:logo.gif
+
                     InputStream is = null;
                     // 步骤2:创建一个输入流
                     try {
-                        is =getApplicationContext().getAssets().open("webres/"+lastPath);
+                        is =getApplicationContext().getAssets().open("webres/"+fileName);
                         // 步骤3:获得需要替换的资源(存放在assets文件夹里)
                         // a. 先在app/src/main下创建一个assets文件夹
                         // a. 先在app/src/main下创建一个assets文件夹
@@ -104,13 +105,13 @@ public class LoadAssetsWebActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     String mimeType = "";
-                    if(lastPath.contains("js")){
+                    if(fileName.contains("js")){
                         mimeType = "application/x-javascript";
-                    }else if(lastPath.contains("css")){
+                    }else if(fileName.contains("css")){
                         mimeType = "text/css";
-                    }else if(lastPath.contains("png")){
+                    }else if(fileName.contains("png")){
                         mimeType = "image/png";
-                    }else if(lastPath.contains("gif")){
+                    }else if(fileName.contains("gif")){
                         mimeType = " image/gif ";
                     }
 
@@ -132,36 +133,38 @@ public class LoadAssetsWebActivity extends AppCompatActivity {
             @Override
             public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
                 // 步骤1:判断拦截资源的条件，即判断url里的图片资源的文件名
-                int lastPathIndex = url.lastIndexOf("/");
-                String lastPath = url.substring(lastPathIndex+1);
+                if(url.contains("app-static")){
+                    int index = url.indexOf("app-static/");
+                    String fileName = url.substring(index+11);
 
 
-                if(mPicList.contains(lastPath)){
                     // 假设网页里该图片资源的地址为：http://abc.com/imgage/logo.gif
                     // 图片的资源文件名为:logo.gif
+
                     InputStream is = null;
                     // 步骤2:创建一个输入流
                     try {
-                        is =getApplicationContext().getAssets().open("webres/"+lastPath);
+                        is =getApplicationContext().getAssets().open("webres/"+fileName);
                         // 步骤3:获得需要替换的资源(存放在assets文件夹里)
                         // a. 先在app/src/main下创建一个assets文件夹
                         // a. 先在app/src/main下创建一个assets文件夹
-                        // c. 在images文件夹放上需要替换的资源（此处替换的是abc.png图片）
+                        // c. 在images文件夹
+                        // 放上需要替换的资源（此处替换的是abc.png图片）
 
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-
                     String mimeType = "";
-                    if(lastPath.contains("js")){
+                    if(fileName.contains("js")){
                         mimeType = "application/x-javascript";
-                    }else if(lastPath.contains("css")){
+                    }else if(fileName.contains("css")){
                         mimeType = "text/css";
-                    }else if(lastPath.contains("png")){
+                    }else if(fileName.contains("png")){
                         mimeType = "image/png";
-                    }else if(lastPath.contains("gif")){
+                    }else if(fileName.contains("gif")){
                         mimeType = " image/gif ";
                     }
+
 
                     // 步骤4:替换资源
                     WebResourceResponse response = new WebResourceResponse(mimeType, "utf-8", is);
