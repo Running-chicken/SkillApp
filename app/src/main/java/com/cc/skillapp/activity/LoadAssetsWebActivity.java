@@ -3,9 +3,7 @@ package com.cc.skillapp.activity;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
@@ -14,8 +12,6 @@ import android.webkit.WebViewClient;
 
 import com.cc.skillapp.R;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -23,7 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class LoadLocalWebActivity extends AppCompatActivity {
+public class LoadAssetsWebActivity extends AppCompatActivity {
 
     private WebView wvReport;
     private String url;
@@ -48,7 +44,6 @@ public class LoadLocalWebActivity extends AppCompatActivity {
         mPicList.add("echarts.min.js");
         mPicList.add("jquery-1.9.1.min.js");
         mPicList.add("loading.gif");
-        mPicList.add("vendor.js");
 
         url = "http://test.d.3fang.com/ndb/static";
 
@@ -88,47 +83,40 @@ public class LoadLocalWebActivity extends AppCompatActivity {
             public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
                 // 步骤1:判断拦截资源的条件，即判断url里的图片资源的文件名
                 String path = request.getUrl().toString();
+                int lastPathIndex = path.lastIndexOf("/");
+                String lastPath = path.substring(lastPathIndex+1);
 
 
+                if(mPicList.contains(lastPath)){
+                    // 假设网页里该图片资源的地址为：http://abc.com/imgage/logo.gif
+                    // 图片的资源文件名为:logo.gif
+                    InputStream is = null;
+                    // 步骤2:创建一个输入流
+                    try {
+                        is =getApplicationContext().getAssets().open("webres/"+lastPath);
+                        // 步骤3:获得需要替换的资源(存放在assets文件夹里)
+                        // a. 先在app/src/main下创建一个assets文件夹
+                        // a. 先在app/src/main下创建一个assets文件夹
+                        // c. 在images文件夹
+                        // 放上需要替换的资源（此处替换的是abc.png图片）
 
-                if(path.contains("app-static")){
-                    int index = path.indexOf("app-static/");
-                    String fileName = path.substring(index+11);
-                    String localPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/soufun/res/app-static/"+fileName;
-
-
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     String mimeType = "";
-                    if(fileName.contains("js")){
+                    if(lastPath.contains("js")){
                         mimeType = "application/x-javascript";
-                    }else if(fileName.contains("css")){
+                    }else if(lastPath.contains("css")){
                         mimeType = "text/css";
-                    }else if(fileName.contains("png")){
+                    }else if(lastPath.contains("png")){
                         mimeType = "image/png";
-                    }else if(fileName.contains("gif")){
+                    }else if(lastPath.contains("gif")){
                         mimeType = " image/gif ";
                     }
 
 
                     // 步骤4:替换资源
-                    WebResourceResponse response = null;
-
-                    try {
-//                        FileInputStream fis = new FileInputStream(localPath);
-//                        int size = fis.available();
-//                        Log.i("cuican","长度："+size);
-//                        byte[] buffer = new byte[size];
-//                        fis.read(buffer);
-//                        Log.i("cuican","读取内容："+new String(buffer));
-//                        fis.close();
-
-
-
-                        response = new WebResourceResponse(mimeType, "utf-8", new FileInputStream(localPath));
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    WebResourceResponse response = new WebResourceResponse(mimeType, "utf-8", is);
                     // 参数1：http请求里该图片的Content-Type,此处图片为image/png
 
                     // 参数2：编码类型

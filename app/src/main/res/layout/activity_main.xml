@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="使用本地资源"
+        android:text="日历"
         app:layout_constraintLeft_toLeftOf="@+id/tv_second_funciton"
         app:layout_constraintTop_toBottomOf="@+id/tv_second_funciton" />
 
@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Calendar"
+        android:text="使用本地资源"
         app:layout_constraintLeft_toLeftOf="@+id/tv_third_function"
         app:layout_constraintTop_toBottomOf="@+id/tv_third_function" />
 
