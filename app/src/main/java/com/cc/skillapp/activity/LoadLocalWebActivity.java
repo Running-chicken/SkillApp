@@ -4,11 +4,12 @@ import android.annotation.TargetApi;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Process;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
+import android.webkit.WebStorage;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -16,20 +17,14 @@ import com.cc.skillapp.R;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class LoadLocalWebActivity extends AppCompatActivity {
 
-    private WebView wvReport;
+    private WebView mWebView;
     private String url;
     private Map<String,String> header = new HashMap<>();
-
-    private List<String> mPicList = new ArrayList<>();
 
 
     @Override
@@ -45,10 +40,6 @@ public class LoadLocalWebActivity extends AppCompatActivity {
 
     private void initData() {
 
-        mPicList.add("echarts.min.js");
-        mPicList.add("jquery-1.9.1.min.js");
-        mPicList.add("loading.gif");
-        mPicList.add("vendor.js");
 
         url = "http://test.d.3fang.com/ndb/static";
 
@@ -56,9 +47,9 @@ public class LoadLocalWebActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        wvReport = findViewById(R.id.wv_report);
+        mWebView = findViewById(R.id.wv_report);
 
-        WebSettings webSettings = wvReport.getSettings();
+        WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);// 允许加载javascript
         webSettings.setSupportZoom(true);
         webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
@@ -73,12 +64,12 @@ public class LoadLocalWebActivity extends AppCompatActivity {
         }
 
 
-        wvReport.loadUrl(url);
+        mWebView.loadUrl(url);
 
-        wvReport.setWebViewClient(new WebViewClient(){
+        mWebView.setWebViewClient(new WebViewClient(){
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                wvReport.loadUrl(url);
+                mWebView.loadUrl(url);
                 return true;
             }
 
@@ -181,10 +172,12 @@ public class LoadLocalWebActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-
-        wvReport.stopLoading();
-        wvReport.removeAllViews();
-        wvReport.destroy();
+        WebStorage.getInstance().deleteAllData();
+        mWebView.clearCache(true);
+        mWebView.stopLoading();
+        mWebView.removeAllViews();
+        mWebView.destroy();
         finish();
+        Process.killProcess(Process.myPid());
     }
 }

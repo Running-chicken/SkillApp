@@ -2,6 +2,7 @@ package com.cc.skillapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.widget.TextView;
 
@@ -10,6 +11,8 @@ import com.cc.skillapp.activity.LoadLocalWebActivity;
 import com.cc.skillapp.activity.LoadWebActivity;
 import com.cc.skillapp.activity.OkHttpActivity;
 import com.cc.skillapp.activity.ReportActivity;
+
+import java.io.File;
 
 public class MainActivity extends BaseActivity {
 
@@ -30,18 +33,24 @@ public class MainActivity extends BaseActivity {
 
     private void registerListener() {
         tvFuncitonOne.setOnClickListener(mOnClick);
-        tvCalendar.setOnClickListener(mOnClick);
         tvWebView.setOnClickListener(mOnClick);
+        tvCalendar.setOnClickListener(mOnClick);
         tvLocalResource.setOnClickListener(mOnClick);
         tvWv.setOnClickListener(mOnClick);
     }
 
     private void initView() {
         tvFuncitonOne = findViewById(R.id.tv_first_function);
-        tvCalendar = findViewById(R.id.tv_calendar);
         tvWebView = findViewById(R.id.tv_second_funciton);
-        tvLocalResource  =findViewById(R.id.tv_third_function);
+        tvCalendar = findViewById(R.id.tv_calendar);
+        tvLocalResource  =findViewById(R.id.tv_wv_local);
         tvWv =findViewById(R.id.tv_webview);
+
+        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/soufun/res/app-static");
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+
     }
 
     View.OnClickListener mOnClick  = new View.OnClickListener() {
@@ -57,9 +66,10 @@ public class MainActivity extends BaseActivity {
                 case R.id.tv_calendar:
                     startActivity(new Intent(MainActivity.this, CalendarActivity.class));
                     break;
-                case R.id.tv_third_function:
+                case R.id.tv_wv_local:
                     startActivity(new Intent(MainActivity.this, LoadLocalWebActivity.class));
                     break;
+
                 case R.id.tv_webview:
                     startActivity(new Intent(MainActivity.this, LoadWebActivity.class));
                     break;
