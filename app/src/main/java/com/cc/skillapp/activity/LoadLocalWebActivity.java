@@ -178,6 +178,5 @@ public class LoadLocalWebActivity extends AppCompatActivity {
         mWebView.removeAllViews();
         mWebView.destroy();
         finish();
-        Process.killProcess(Process.myPid());
     }
 }
