@@ -10,6 +10,7 @@ import com.cc.skillapp.activity.CalendarActivity;
 import com.cc.skillapp.activity.LoadLocalWebActivity;
 import com.cc.skillapp.activity.LoadWebActivity;
 import com.cc.skillapp.activity.OkHttpActivity;
+import com.cc.skillapp.activity.RecyclerViewActivity;
 import com.cc.skillapp.activity.ReportActivity;
 
 import java.io.File;
@@ -21,6 +22,7 @@ public class MainActivity extends BaseActivity {
     private TextView tvCalendar;
     private TextView tvLocalResource;
     private TextView tvWv;
+    private TextView tvRecyclerview;
 
 
     @Override
@@ -37,6 +39,7 @@ public class MainActivity extends BaseActivity {
         tvCalendar.setOnClickListener(mOnClick);
         tvLocalResource.setOnClickListener(mOnClick);
         tvWv.setOnClickListener(mOnClick);
+        tvRecyclerview.setOnClickListener(mOnClick);
     }
 
     private void initView() {
@@ -45,6 +48,7 @@ public class MainActivity extends BaseActivity {
         tvCalendar = findViewById(R.id.tv_calendar);
         tvLocalResource  =findViewById(R.id.tv_wv_local);
         tvWv =findViewById(R.id.tv_webview);
+        tvRecyclerview = findViewById(R.id.tv_recyclerview);
 
         File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/soufun/res/app-static");
         if (!file.exists()) {
@@ -72,6 +76,9 @@ public class MainActivity extends BaseActivity {
 
                 case R.id.tv_webview:
                     startActivity(new Intent(MainActivity.this, LoadWebActivity.class));
+                    break;
+                case R.id.tv_recyclerview:
+                    startActivity(new Intent(mContext, RecyclerViewActivity.class));
                     break;
             }
         }

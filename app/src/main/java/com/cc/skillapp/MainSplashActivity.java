@@ -1,20 +1,11 @@
 package com.cc.skillapp;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.telephony.TelephonyManager;
-import android.view.View;
-import android.widget.TextView;
 
-import com.cc.skillapp.activity.CalendarActivity;
-import com.cc.skillapp.activity.LoadLocalWebActivity;
-import com.cc.skillapp.activity.LoadWebActivity;
-import com.cc.skillapp.activity.OkHttpActivity;
-import com.cc.skillapp.activity.ReportActivity;
 import com.cc.skillapp.utils.DangerousPermissions;
 import com.cc.skillapp.utils.PermissionUtils;
 
