@@ -2,7 +2,6 @@ package com.cc.skillapp.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
@@ -56,6 +55,7 @@ public class MyRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         if(holder instanceof MyViewHolder){
             ((MyViewHolder) holder).tvTitle.setText(list.get(position).author);
             ((MyViewHolder) holder).tvContent.setText(list.get(position).title);
+            ((MyViewHolder) holder).tvTime.setText(list.get(position).date);
         }else if(holder instanceof FooterViewHolder){
             switch (loadState){
                 case LOADING:
@@ -110,11 +110,13 @@ public class MyRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         TextView tvTitle;
         TextView tvContent;
+        TextView tvTime;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tv_title);
             tvContent = itemView.findViewById(R.id.tv_content);
+            tvTime = itemView.findViewById(R.id.tv_time);
         }
     }
 

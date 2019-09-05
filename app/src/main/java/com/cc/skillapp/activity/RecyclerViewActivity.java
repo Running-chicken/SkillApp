@@ -130,6 +130,13 @@ public class RecyclerViewActivity extends BaseActivity {
             @Override
             public void onFailure(Call call, IOException e) {
                 isLoading = false;
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        toRefreshLayout.refreshComplete();
+
+                    }
+                });
             }
 
             @Override
@@ -141,21 +148,20 @@ public class RecyclerViewActivity extends BaseActivity {
                     Log.i("ccan","resultStr:"+xmlStr);
                     Query<AllDataEntity> result = XmlParserManager.getQuery(xmlStr,AllDataEntity.class,"hit",AllDataEntity.class,"hits");
                     mList.addAll(result.getList());
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            toRefreshLayout.refreshComplete();
-                            if(mList.size()>=totalCount){
-                                myRvAdapter.setLoadState(myRvAdapter.LOADING_END);
-                            }else{
-                                myRvAdapter.setLoadState(myRvAdapter.LOADING_COMPLETED);
-                            }
-                        }
-                    });
-
-
 
                 }
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        toRefreshLayout.refreshComplete();
+                        if(mList.size()>=totalCount){
+                            myRvAdapter.setLoadState(myRvAdapter.LOADING_END);
+                        }else{
+                            myRvAdapter.setLoadState(myRvAdapter.LOADING_COMPLETED);
+                        }
+                    }
+                });
             }
         });
 
