@@ -1,6 +1,8 @@
 package com.cc.skillapp.activity;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
@@ -42,6 +44,19 @@ public class RecyclerViewActivity extends BaseActivity {
     private StaggeredGridLayoutManager staggeredGridLayoutManager;
     /**是否正在加载*/
     private boolean isLoading;
+    private int totalCount;
+
+    Handler mHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if(msg.what==100){
+                pageIndex++;
+                getLiveData();
+            }
+        }
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,11 +96,10 @@ public class RecyclerViewActivity extends BaseActivity {
                     firstVisibleItems = staggeredGridLayoutManager.findFirstVisibleItemPositions(firstVisibleItems);
                     int firstVisibleItem = firstVisibleItems[0];
 
-                    if(!isLoading && (firstVisibleItem+visibleItemCount)>=totalItemCount){
+                    if(!isLoading && (firstVisibleItem+visibleItemCount)>=totalItemCount && mList.size()<totalCount){
                         isLoading =true;
-                        pageIndex++;
-                        getLiveData();
-//                        Toast.makeText(mContext, "到底啦", Toast.LENGTH_SHORT).show();
+                        myRvAdapter.setLoadState(myRvAdapter.LOADING);
+                        mHandler.sendEmptyMessageDelayed(100,1000);
                     }
 
                 }
@@ -99,6 +113,7 @@ public class RecyclerViewActivity extends BaseActivity {
     }
 
     private void initData() {
+        totalCount = 50;
         isLoading = false;
         getLiveData();
     }
@@ -130,7 +145,11 @@ public class RecyclerViewActivity extends BaseActivity {
                         @Override
                         public void run() {
                             toRefreshLayout.refreshComplete();
-                            myRvAdapter.notifyDataSetChanged();
+                            if(mList.size()>=totalCount){
+                                myRvAdapter.setLoadState(myRvAdapter.LOADING_END);
+                            }else{
+                                myRvAdapter.setLoadState(myRvAdapter.LOADING_COMPLETED);
+                            }
                         }
                     });
 
