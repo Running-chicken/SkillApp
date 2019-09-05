@@ -1,7 +1,6 @@
 package com.cc.skillapp.adapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +9,6 @@ import android.widget.TextView;
 
 import com.cc.skillapp.R;
 import com.cc.skillapp.entity.AllDataEntity;
-import com.cc.skillapp.entity.TestRvItemEntity;
 
 import java.util.List;
 

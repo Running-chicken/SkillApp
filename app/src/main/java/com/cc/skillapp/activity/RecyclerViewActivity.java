@@ -33,11 +33,15 @@ public class RecyclerViewActivity extends BaseActivity {
     private RecyclerView mRv;
     private List<AllDataEntity> mList;
     private MyRvAdapter myRvAdapter;
-    //下拉刷新头布局
+    //下拉刷新控件
     private PtrClassicFrameLayout toRefreshLayout;
-    private final static String KEY_SharedPreferences = "cube_ptr_classic_last_update";
+    /**页码*/
     private int pageIndex;
     private int pageSize;
+    /**瀑布流manager*/
+    private StaggeredGridLayoutManager staggeredGridLayoutManager;
+    /**是否正在加载*/
+    private boolean isLoading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,15 +51,47 @@ public class RecyclerViewActivity extends BaseActivity {
         initRefreshView();
 
 
-        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
-        staggeredGridLayoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
+        staggeredGridLayoutManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL); //初始化瀑布流manager
+        staggeredGridLayoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE); //防止瀑布流上滑时item变换位置
         mList = new ArrayList<>();
         myRvAdapter = new MyRvAdapter(mContext,mList);
         mRv.addItemDecoration(new SpaceItemDecoratiion(50));
         mRv.setLayoutManager(staggeredGridLayoutManager);
         mRv.setAdapter(myRvAdapter);
-
         initData();
+
+        registerListener();
+    }
+
+    private void registerListener() {
+        mRv.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                staggeredGridLayoutManager.invalidateSpanAssignments();
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if(dy>0){
+                    int visibleItemCount = staggeredGridLayoutManager.getChildCount(); //得到显示屏幕内的item
+                    int totalItemCount = staggeredGridLayoutManager.getItemCount(); //得到item总数
+                    int firstVisibleItems[] = null;
+                    firstVisibleItems = staggeredGridLayoutManager.findFirstVisibleItemPositions(firstVisibleItems);
+                    int firstVisibleItem = firstVisibleItems[0];
+
+                    if(!isLoading && (firstVisibleItem+visibleItemCount)>=totalItemCount){
+                        isLoading =true;
+                        pageIndex++;
+                        getLiveData();
+//                        Toast.makeText(mContext, "到底啦", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            }
+        });
+
     }
 
     private void initView() {
@@ -63,7 +99,7 @@ public class RecyclerViewActivity extends BaseActivity {
     }
 
     private void initData() {
-
+        isLoading = false;
         getLiveData();
     }
 
@@ -75,13 +111,15 @@ public class RecyclerViewActivity extends BaseActivity {
                 .url(url)
                 .build();
         okHttpClient.newCall(request).enqueue(new Callback() {
+
             @Override
             public void onFailure(Call call, IOException e) {
-
+                isLoading = false;
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+                isLoading =false;
 
                 if(response.isSuccessful()){
                     String xmlStr = response.body().string();

@@ -6,6 +6,10 @@ import android.view.View;
 
 public class SpaceItemDecoratiion extends RecyclerView.ItemDecoration {
 
+    /**
+     * 设置recyclerview分割线，可自定义设置边距
+     */
+
     private int space;
 
     public SpaceItemDecoratiion(int space){
