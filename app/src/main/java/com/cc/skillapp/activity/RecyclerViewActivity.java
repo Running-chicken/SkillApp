@@ -10,9 +10,11 @@ import android.view.View;
 
 import com.cc.skillapp.BaseActivity;
 import com.cc.skillapp.R;
+import com.cc.skillapp.adapter.LiveAdapter;
 import com.cc.skillapp.adapter.MyRvAdapter;
 import com.cc.skillapp.entity.AllDataEntity;
 import com.cc.skillapp.entity.Query;
+import com.cc.skillapp.utils.LoadMoreWrapper;
 import com.cc.skillapp.utils.XmlParserManager;
 import com.cc.skillapp.view.SpaceItemDecoratiion;
 
@@ -34,7 +36,7 @@ public class RecyclerViewActivity extends BaseActivity {
 
     private RecyclerView mRv;
     private List<AllDataEntity> mList;
-    private MyRvAdapter myRvAdapter;
+    private LoadMoreWrapper loadMoreWrapper;
     //下拉刷新控件
     private PtrClassicFrameLayout toRefreshLayout;
     /**页码*/
@@ -69,10 +71,11 @@ public class RecyclerViewActivity extends BaseActivity {
         staggeredGridLayoutManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL); //初始化瀑布流manager
         staggeredGridLayoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE); //防止瀑布流上滑时item变换位置
         mList = new ArrayList<>();
-        myRvAdapter = new MyRvAdapter(mContext,mList);
+        LiveAdapter liveAdapter = new LiveAdapter(mList);
+        loadMoreWrapper = new LoadMoreWrapper(liveAdapter);
         mRv.addItemDecoration(new SpaceItemDecoratiion(50));
         mRv.setLayoutManager(staggeredGridLayoutManager);
-        mRv.setAdapter(myRvAdapter);
+        mRv.setAdapter(loadMoreWrapper);
         initData();
 
         registerListener();
@@ -98,7 +101,7 @@ public class RecyclerViewActivity extends BaseActivity {
 
                     if(!isLoading && (firstVisibleItem+visibleItemCount)>=totalItemCount && mList.size()<totalCount){
                         isLoading =true;
-                        myRvAdapter.setLoadState(myRvAdapter.LOADING);
+                        loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING);
                         mHandler.sendEmptyMessageDelayed(100,1000);
                     }
 
@@ -113,7 +116,7 @@ public class RecyclerViewActivity extends BaseActivity {
     }
 
     private void initData() {
-        totalCount = 50;
+        totalCount = 0;
         isLoading = false;
         getLiveData();
     }
@@ -147,6 +150,8 @@ public class RecyclerViewActivity extends BaseActivity {
                     String xmlStr = response.body().string();
                     Log.i("ccan","resultStr:"+xmlStr);
                     Query<AllDataEntity> result = XmlParserManager.getQuery(xmlStr,AllDataEntity.class,"hit",AllDataEntity.class,"hits");
+                    AllDataEntity allDataEntity = (AllDataEntity) result.getBean();
+                    totalCount = Integer.parseInt(allDataEntity.total);
                     mList.addAll(result.getList());
 
                 }
@@ -156,9 +161,9 @@ public class RecyclerViewActivity extends BaseActivity {
                     public void run() {
                         toRefreshLayout.refreshComplete();
                         if(mList.size()>=totalCount){
-                            myRvAdapter.setLoadState(myRvAdapter.LOADING_END);
+                            loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING_END);
                         }else{
-                            myRvAdapter.setLoadState(myRvAdapter.LOADING_COMPLETED);
+                            loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING_COMPLETE);
                         }
                     }
                 });
