@@ -63,4 +63,14 @@
         app:layout_constraintLeft_toLeftOf="@+id/tv_webview"
         app:layout_constraintTop_toBottomOf="@+id/tv_webview" />
 
+    <TextView
+        android:id="@+id/tv_swiperefreshlayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="swiperefreshlayout"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_recyclerview"
+        app:layout_constraintTop_toBottomOf="@+id/tv_recyclerview" />
+
 </android.support.constraint.ConstraintLayout>

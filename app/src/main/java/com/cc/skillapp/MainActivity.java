@@ -3,6 +3,7 @@ package com.cc.skillapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.TextView;
 
@@ -12,6 +13,7 @@ import com.cc.skillapp.activity.LoadWebActivity;
 import com.cc.skillapp.activity.OkHttpActivity;
 import com.cc.skillapp.activity.RecyclerViewActivity;
 import com.cc.skillapp.activity.ReportActivity;
+import com.cc.skillapp.activity.SwipeRefreshLayoutActivity;
 
 import java.io.File;
 
@@ -23,6 +25,7 @@ public class MainActivity extends BaseActivity {
     private TextView tvLocalResource;
     private TextView tvWv;
     private TextView tvRecyclerview;
+    private TextView tvSwipeRefreshLayout;
 
 
     @Override
@@ -40,6 +43,7 @@ public class MainActivity extends BaseActivity {
         tvLocalResource.setOnClickListener(mOnClick);
         tvWv.setOnClickListener(mOnClick);
         tvRecyclerview.setOnClickListener(mOnClick);
+        tvSwipeRefreshLayout.setOnClickListener(mOnClick);
     }
 
     private void initView() {
@@ -49,6 +53,7 @@ public class MainActivity extends BaseActivity {
         tvLocalResource  =findViewById(R.id.tv_wv_local);
         tvWv =findViewById(R.id.tv_webview);
         tvRecyclerview = findViewById(R.id.tv_recyclerview);
+        tvSwipeRefreshLayout = findViewById(R.id.tv_swiperefreshlayout);
 
         File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/soufun/res/app-static");
         if (!file.exists()) {
@@ -79,6 +84,9 @@ public class MainActivity extends BaseActivity {
                     break;
                 case R.id.tv_recyclerview:
                     startActivity(new Intent(mContext, RecyclerViewActivity.class));
+                    break;
+                case R.id.tv_swiperefreshlayout:
+                    startActivity(new Intent(mContext, SwipeRefreshLayoutActivity.class));
                     break;
             }
         }
