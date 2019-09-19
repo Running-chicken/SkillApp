@@ -16,6 +16,7 @@ import com.cc.skillapp.entity.Query;
 import com.cc.skillapp.manager.MyStaggeredGridLayoutManager;
 import com.cc.skillapp.utils.LoadMoreWrapper;
 import com.cc.skillapp.utils.XmlParserManager;
+import com.cc.skillapp.view.MyRefreshHeader;
 import com.cc.skillapp.view.SpaceItemDecoratiion;
 
 import java.io.IOException;
@@ -173,9 +174,16 @@ public class RecyclerViewActivity extends BaseActivity {
     }
 
     private void initRefreshView() {
+        MyRefreshHeader myRefreshHeader = new MyRefreshHeader(mContext);
+
+
         toRefreshLayout = findViewById(R.id.pull_to_refresh);
         toRefreshLayout.setLastUpdateTimeRelateObject(this);
         toRefreshLayout.disableWhenHorizontalMove(true);
+
+        toRefreshLayout.setHeaderView(myRefreshHeader);
+        toRefreshLayout.addPtrUIHandler(myRefreshHeader);
+
         toRefreshLayout.setPtrHandler(new PtrHandler() {
             @Override
             public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
