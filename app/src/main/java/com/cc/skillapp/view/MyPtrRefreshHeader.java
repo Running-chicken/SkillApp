@@ -16,12 +16,12 @@ import in.srain.cube.views.ptr.indicator.PtrIndicator;
  * 自定义header
  */
 
-public class MyRefreshHeader extends FrameLayout implements PtrUIHandler {
+public class MyPtrRefreshHeader extends FrameLayout implements PtrUIHandler {
 
     private View view;
     private TextView tvRefresh;
 
-    public MyRefreshHeader(Context context) {
+    public MyPtrRefreshHeader(Context context) {
         super(context);
         init();
     }
