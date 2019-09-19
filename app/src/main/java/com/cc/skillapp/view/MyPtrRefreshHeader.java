@@ -12,13 +12,13 @@ import in.srain.cube.views.ptr.PtrFrameLayout;
 import in.srain.cube.views.ptr.PtrUIHandler;
 import in.srain.cube.views.ptr.indicator.PtrIndicator;
 
+
 /**
  * 自定义header
  */
 
 public class MyPtrRefreshHeader extends FrameLayout implements PtrUIHandler {
 
-    private View view;
     private TextView tvRefresh;
 
     public MyPtrRefreshHeader(Context context) {
@@ -28,9 +28,8 @@ public class MyPtrRefreshHeader extends FrameLayout implements PtrUIHandler {
 
 
     private void init() {
-        view = LayoutInflater.from(getContext()).inflate(R.layout.layout_ptrrefresh_header,this,false);
-        tvRefresh = (TextView) view.findViewById(R.id.ptr_classic_header_rotate_view_header_title);
-        addView(view);
+        View header = LayoutInflater.from(getContext()).inflate(R.layout.layout_ptrrefresh_header,this);
+        tvRefresh = (TextView) header.findViewById(R.id.ptr_classic_header_rotate_view_header_title);
     }
 
 
@@ -73,4 +72,5 @@ public class MyPtrRefreshHeader extends FrameLayout implements PtrUIHandler {
         }
 
     }
+
 }
