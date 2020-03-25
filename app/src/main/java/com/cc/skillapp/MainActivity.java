@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.cc.skillapp.activity.CalendarActivity;
+import com.cc.skillapp.activity.ImageAvatarActivity;
 import com.cc.skillapp.activity.LoadLocalWebActivity;
 import com.cc.skillapp.activity.LoadWebActivity;
 import com.cc.skillapp.activity.OkHttpActivity;
@@ -26,6 +27,7 @@ public class MainActivity extends BaseActivity {
     private TextView tvWv;
     private TextView tvRecyclerview;
     private TextView tvSwipeRefreshLayout;
+    private TextView tvImageDiejia;
 
 
     @Override
@@ -44,6 +46,7 @@ public class MainActivity extends BaseActivity {
         tvWv.setOnClickListener(mOnClick);
         tvRecyclerview.setOnClickListener(mOnClick);
         tvSwipeRefreshLayout.setOnClickListener(mOnClick);
+        tvImageDiejia.setOnClickListener(mOnClick);
     }
 
     private void initView() {
@@ -54,6 +57,7 @@ public class MainActivity extends BaseActivity {
         tvWv =findViewById(R.id.tv_webview);
         tvRecyclerview = findViewById(R.id.tv_recyclerview);
         tvSwipeRefreshLayout = findViewById(R.id.tv_swiperefreshlayout);
+        tvImageDiejia = findViewById(R.id.tv_image_diejia);
 
         File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/soufun/res/app-static");
         if (!file.exists()) {
@@ -87,6 +91,9 @@ public class MainActivity extends BaseActivity {
                     break;
                 case R.id.tv_swiperefreshlayout:
                     startActivity(new Intent(mContext, SwipeRefreshLayoutActivity.class));
+                    break;
+                case R.id.tv_image_diejia:
+                    startActivity(new Intent(mContext, ImageAvatarActivity.class));
                     break;
             }
         }

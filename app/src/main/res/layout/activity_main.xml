@@ -73,4 +73,14 @@
         app:layout_constraintLeft_toLeftOf="@+id/tv_recyclerview"
         app:layout_constraintTop_toBottomOf="@+id/tv_recyclerview" />
 
+    <TextView
+        android:id="@+id/tv_image_diejia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="image_diejia"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_swiperefreshlayout"
+        app:layout_constraintTop_toBottomOf="@+id/tv_swiperefreshlayout" />
+
 </android.support.constraint.ConstraintLayout>
