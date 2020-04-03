@@ -28,7 +28,7 @@ public class SDAvatarListLayout extends HorizontalScrollView {
     /**
      * 默认图片大小
      */
-    private int imageSize = Math.round(50);
+    private int imageSize = Math.round(100);
     /**
      * 默认图片数量
      */
@@ -69,8 +69,8 @@ public class SDAvatarListLayout extends HorizontalScrollView {
 //            imageView.setBorderColor(Color.WHITE);
 //            imageView.setBorderWidth(Math.round(SDTransitionUtil.dp2px(1)));
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(imageSize, imageSize);
-            params.addRule(ALIGN_PARENT_LEFT);
-            params.setMargins((imageMaxCount - i - 1) * offset, 0, 0, 0);
+//            params.addRule(ALIGN_PARENT_LEFT);
+            params.setMargins(i * offset, 0, 0, 0);
             relativeLayout.addView(imageView, params);
             imageViewList.add(imageView);
         }
@@ -88,15 +88,13 @@ public class SDAvatarListLayout extends HorizontalScrollView {
         if (drawableList == null) {
             return;
         }
-        hideAllImageView();
-        int i = imageMaxCount - 1;
-        for (int url : drawableList) {
-            imageViewList.get(i).setImageResource(url);
-            imageViewList.get(i).setVisibility(VISIBLE);
-            if (i == 0) {
-                break;
-            }
-            --i;
+
+        if(drawableList.size()<imageMaxCount){
+            imageMaxCount = drawableList.size();
+        }
+
+        for(int i=0;i<imageMaxCount;i++){
+            imageViewList.get(i).setImageResource(drawableList.get(i));
         }
     }
 

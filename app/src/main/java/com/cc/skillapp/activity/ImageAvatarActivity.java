@@ -22,8 +22,8 @@ public class ImageAvatarActivity extends AppCompatActivity {
 
         final List<Integer> imageDatas = new ArrayList<>();
         imageDatas.add(R.drawable.ic_default_portrait_circle);
-        imageDatas.add(R.drawable.ic_default_portrait_circle);
-        imageDatas.add(R.drawable.ic_default_portrait_circle);
+        imageDatas.add(R.drawable.home_product_ad);
+        imageDatas.add(R.drawable.home_product_hdyxgj);
         //加载本地资源
         sdAvatarListLayout.setAvatarListListener(imageDatas);
 //        //顺序加载图片使用任意框架加载

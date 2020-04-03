@@ -9,6 +9,7 @@
     <com.cc.skillapp.view.SDAvatarListLayout
         android:id="@+id/sd_image_avatar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:padding="20dp"/>
 
 </LinearLayout>
