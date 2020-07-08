@@ -28,6 +28,7 @@ public class MainActivity extends BaseActivity {
     private TextView tvRecyclerview;
     private TextView tvSwipeRefreshLayout;
     private TextView tvImageDiejia;
+    private TextView tvViewPager;
 
 
     @Override
@@ -47,6 +48,7 @@ public class MainActivity extends BaseActivity {
         tvRecyclerview.setOnClickListener(mOnClick);
         tvSwipeRefreshLayout.setOnClickListener(mOnClick);
         tvImageDiejia.setOnClickListener(mOnClick);
+        tvViewPager.setOnClickListener(mOnClick);
     }
 
     private void initView() {
@@ -58,6 +60,7 @@ public class MainActivity extends BaseActivity {
         tvRecyclerview = findViewById(R.id.tv_recyclerview);
         tvSwipeRefreshLayout = findViewById(R.id.tv_swiperefreshlayout);
         tvImageDiejia = findViewById(R.id.tv_image_diejia);
+        tvViewPager = findViewById(R.id.tv_viewpager);
 
         File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/soufun/res/app-static");
         if (!file.exists()) {
@@ -94,6 +97,9 @@ public class MainActivity extends BaseActivity {
                     break;
                 case R.id.tv_image_diejia:
                     startActivity(new Intent(mContext, ImageAvatarActivity.class));
+                    break;
+                case R.id.tv_viewpager:
+
                     break;
             }
         }
