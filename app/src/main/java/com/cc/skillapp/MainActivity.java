@@ -14,6 +14,7 @@ import com.cc.skillapp.activity.LoadWebActivity;
 import com.cc.skillapp.activity.OkHttpActivity;
 import com.cc.skillapp.activity.RecyclerViewActivity;
 import com.cc.skillapp.activity.ReportActivity;
+import com.cc.skillapp.activity.RvSuspensionActivity;
 import com.cc.skillapp.activity.SwipeRefreshLayoutActivity;
 
 import java.io.File;
@@ -29,6 +30,7 @@ public class MainActivity extends BaseActivity {
     private TextView tvSwipeRefreshLayout;
     private TextView tvImageDiejia;
     private TextView tvViewPager;
+    private TextView tvXf;
 
 
     @Override
@@ -49,6 +51,7 @@ public class MainActivity extends BaseActivity {
         tvSwipeRefreshLayout.setOnClickListener(mOnClick);
         tvImageDiejia.setOnClickListener(mOnClick);
         tvViewPager.setOnClickListener(mOnClick);
+        tvXf.setOnClickListener(mOnClick);
     }
 
     private void initView() {
@@ -61,6 +64,7 @@ public class MainActivity extends BaseActivity {
         tvSwipeRefreshLayout = findViewById(R.id.tv_swiperefreshlayout);
         tvImageDiejia = findViewById(R.id.tv_image_diejia);
         tvViewPager = findViewById(R.id.tv_viewpager);
+        tvXf = findViewById(R.id.tv_rv_xf);
 
         File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/soufun/res/app-static");
         if (!file.exists()) {
@@ -100,6 +104,9 @@ public class MainActivity extends BaseActivity {
                     break;
                 case R.id.tv_viewpager:
 
+                    break;
+                case R.id.tv_rv_xf:
+                    startActivity(new Intent(mContext, RvSuspensionActivity.class));
                     break;
             }
         }

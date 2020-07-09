@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.cc.skillapp.view.MyScrollView
+        android:id="@+id/sv_xf"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/gray_a4a7a9"/>
+
+            <LinearLayout
+                android:id="@+id/ll_xf"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center">
+                <TextView
+                    android:id="@+id/tv_xf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="悬浮框"/>
+            </LinearLayout>
+
+            <com.cc.skillapp.view.MaxHeightRecyclerView
+                android:id="@+id/rv_xf"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+    </com.cc.skillapp.view.MyScrollView>
+
+    <LinearLayout
+        android:id="@+id/ll_external"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:orientation="vertical" />
+</FrameLayout>
