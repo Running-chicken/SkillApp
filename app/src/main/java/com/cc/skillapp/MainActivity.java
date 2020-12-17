@@ -16,6 +16,7 @@ import com.cc.skillapp.activity.RecyclerViewActivity;
 import com.cc.skillapp.activity.ReportActivity;
 import com.cc.skillapp.activity.RvSuspensionActivity;
 import com.cc.skillapp.activity.SwipeRefreshLayoutActivity;
+import com.cc.skillapp.activity.ViewPagerActivity;
 
 import java.io.File;
 
@@ -103,6 +104,8 @@ public class MainActivity extends BaseActivity {
                     startActivity(new Intent(mContext, ImageAvatarActivity.class));
                     break;
                 case R.id.tv_viewpager:
+                    startActivity(new Intent(mContext, ViewPagerActivity.class));
+
 
                     break;
                 case R.id.tv_rv_xf:
