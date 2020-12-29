@@ -9,5 +9,11 @@
         <!--要叠加的ImageView偏移量-->
         <attr name="image_offset" format="float" />
     </declare-styleable>
+    
+    
+    <declare-styleable name="MyShowViewLayout">
+        <attr name="right_text"/>
+        
+    </declare-styleable>
 
 </resources>

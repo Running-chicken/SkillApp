@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.cc.skillapp.activity.CalendarActivity;
+import com.cc.skillapp.activity.CustomControlActivity;
 import com.cc.skillapp.activity.ImageAvatarActivity;
 import com.cc.skillapp.activity.LoadLocalWebActivity;
 import com.cc.skillapp.activity.LoadWebActivity;
@@ -17,6 +18,7 @@ import com.cc.skillapp.activity.ReportActivity;
 import com.cc.skillapp.activity.RvSuspensionActivity;
 import com.cc.skillapp.activity.SwipeRefreshLayoutActivity;
 import com.cc.skillapp.activity.ViewPagerActivity;
+import com.cc.skillapp.view.MyShowViewLayout;
 
 import java.io.File;
 
@@ -32,6 +34,7 @@ public class MainActivity extends BaseActivity {
     private TextView tvImageDiejia;
     private TextView tvViewPager;
     private TextView tvXf;
+    private TextView tvCustomContral;
 
 
     @Override
@@ -53,6 +56,7 @@ public class MainActivity extends BaseActivity {
         tvImageDiejia.setOnClickListener(mOnClick);
         tvViewPager.setOnClickListener(mOnClick);
         tvXf.setOnClickListener(mOnClick);
+        tvCustomContral.setOnClickListener(mOnClick);
     }
 
     private void initView() {
@@ -66,6 +70,7 @@ public class MainActivity extends BaseActivity {
         tvImageDiejia = findViewById(R.id.tv_image_diejia);
         tvViewPager = findViewById(R.id.tv_viewpager);
         tvXf = findViewById(R.id.tv_rv_xf);
+        tvCustomContral = findViewById(R.id.tv_custom_control);
 
         File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/soufun/res/app-static");
         if (!file.exists()) {
@@ -110,6 +115,9 @@ public class MainActivity extends BaseActivity {
                     break;
                 case R.id.tv_rv_xf:
                     startActivity(new Intent(mContext, RvSuspensionActivity.class));
+                    break;
+                case R.id.tv_custom_control:
+                    startActivity(new Intent(mContext, CustomControlActivity.class));
                     break;
             }
         }
