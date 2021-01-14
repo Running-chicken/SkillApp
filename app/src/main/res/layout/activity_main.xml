@@ -112,4 +112,14 @@
         android:text="Custom Control"
         android:textSize="20sp"
         android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/tv_organizational"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_custom_control"
+        app:layout_constraintTop_toBottomOf="@+id/tv_custom_control"
+        android:text="组织架构"
+        android:textSize="20sp"
+        android:layout_marginTop="20dp"/>
 </android.support.constraint.ConstraintLayout>

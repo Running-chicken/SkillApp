@@ -13,6 +13,7 @@ import com.cc.skillapp.activity.ImageAvatarActivity;
 import com.cc.skillapp.activity.LoadLocalWebActivity;
 import com.cc.skillapp.activity.LoadWebActivity;
 import com.cc.skillapp.activity.OkHttpActivity;
+import com.cc.skillapp.activity.OrganizationalStructureActivity;
 import com.cc.skillapp.activity.RecyclerViewActivity;
 import com.cc.skillapp.activity.ReportActivity;
 import com.cc.skillapp.activity.RvSuspensionActivity;
@@ -35,6 +36,7 @@ public class MainActivity extends BaseActivity {
     private TextView tvViewPager;
     private TextView tvXf;
     private TextView tvCustomContral;
+    private TextView tvOrgizational;
 
 
     @Override
@@ -57,6 +59,7 @@ public class MainActivity extends BaseActivity {
         tvViewPager.setOnClickListener(mOnClick);
         tvXf.setOnClickListener(mOnClick);
         tvCustomContral.setOnClickListener(mOnClick);
+        tvOrgizational.setOnClickListener(mOnClick);
     }
 
     private void initView() {
@@ -71,6 +74,7 @@ public class MainActivity extends BaseActivity {
         tvViewPager = findViewById(R.id.tv_viewpager);
         tvXf = findViewById(R.id.tv_rv_xf);
         tvCustomContral = findViewById(R.id.tv_custom_control);
+        tvOrgizational = findViewById(R.id.tv_organizational);
 
         File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/soufun/res/app-static");
         if (!file.exists()) {
@@ -118,6 +122,9 @@ public class MainActivity extends BaseActivity {
                     break;
                 case R.id.tv_custom_control:
                     startActivity(new Intent(mContext, CustomControlActivity.class));
+                    break;
+                case R.id.tv_organizational:
+                    startActivity(new Intent(mContext, OrganizationalStructureActivity.class));
                     break;
             }
         }

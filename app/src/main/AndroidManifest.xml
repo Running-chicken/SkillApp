@@ -34,6 +34,7 @@
         <activity android:name=".activity.LoadWebActivity" />
         <activity android:name=".activity.LoadAssetsWebActivity" />
         <activity android:name=".activity.RvSuspensionActivity" />
+        <activity android:name=".activity.OrganizationalStructureActivity" />
         <activity
             android:name=".activity.ReportActivity"
             android:process=":webview" />
