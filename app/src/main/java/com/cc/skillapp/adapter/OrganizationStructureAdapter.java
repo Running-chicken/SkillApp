@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.cc.skillapp.R;
@@ -13,7 +14,7 @@ import com.cc.skillapp.entity.DeptEntity.DeptItemEntity;
 
 import java.util.List;
 
-public class OrganizationAdapter extends RecyclerView.Adapter {
+public class OrganizationStructureAdapter extends RecyclerView.Adapter {
     private Context context;
     private List<DeptItemEntity> clueList;
     private OnItemOperationListener onItemOperationListener;
@@ -21,7 +22,7 @@ public class OrganizationAdapter extends RecyclerView.Adapter {
     private boolean isLastItemShow = false;
 
 
-    public OrganizationAdapter(Context context, List<DeptItemEntity> clueList, OnItemOperationListener onItemOperationListener) {
+    public OrganizationStructureAdapter(Context context, List<DeptItemEntity> clueList, OnItemOperationListener onItemOperationListener) {
         this.context = context;
         this.clueList = clueList;
         this.onItemOperationListener = onItemOperationListener;
@@ -35,7 +36,7 @@ public class OrganizationAdapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(inflater.inflate(R.layout.item_dept,parent,false));
+        return new ViewHolder(inflater.inflate(R.layout.item_org_bottom,parent,false));
     }
 
     @Override
@@ -47,7 +48,7 @@ public class OrganizationAdapter extends RecyclerView.Adapter {
 
         viewHolder.tvDeptName.setText(entity.deptName);
 
-        viewHolder.tvDeptName.setOnClickListener(new View.OnClickListener() {
+        viewHolder.rlRoot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onItemOperationListener.onItemClick(entity,position);
@@ -64,12 +65,12 @@ public class OrganizationAdapter extends RecyclerView.Adapter {
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
         private TextView tvDeptName;
+        private RelativeLayout rlRoot;
 
 
         public ViewHolder(View itemView) {
             super(itemView);
-
-
+            rlRoot = (RelativeLayout)itemView.findViewById(R.id.rl_org_bottom_root);
             tvDeptName = (TextView)itemView.findViewById(R.id.tv_dept_name);
         }
     }

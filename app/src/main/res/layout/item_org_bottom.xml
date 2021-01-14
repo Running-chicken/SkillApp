@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_org_bottom_root"
+    android:layout_width="match_parent"
+    android:layout_height="58dp"
+    android:paddingRight="20dp"
+    android:paddingLeft="20dp">
+
+    <TextView
+        android:id="@+id/tv_dept_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:textSize="16sp"
+        android:textColor="@color/black_0e131a"
+        android:text="部门"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_org"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#EEEEEE"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>

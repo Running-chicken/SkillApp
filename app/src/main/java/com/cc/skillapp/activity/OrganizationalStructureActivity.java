@@ -10,24 +10,25 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.cc.skillapp.BaseActivity;
 import com.cc.skillapp.R;
-import com.cc.skillapp.adapter.OrganizationAdapter;
+import com.cc.skillapp.adapter.OrganizationStructureAdapter;
 import com.cc.skillapp.entity.DeptEntity;
 import com.cc.skillapp.entity.DeptEntity.DeptItemEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrganizationalStructureActivity extends BaseActivity implements OrganizationAdapter.OnItemOperationListener {
+public class OrganizationalStructureActivity extends BaseActivity implements OrganizationStructureAdapter.OnItemOperationListener {
 
 
     private HorizontalScrollView hsvOrg;
 
-    private OrganizationAdapter orgAdapter;
+    private OrganizationStructureAdapter orgAdapter;
 
     private RecyclerView rvOrg;
     private LinearLayoutManager mLayoutManager;
@@ -46,6 +47,12 @@ public class OrganizationalStructureActivity extends BaseActivity implements Org
     /**当前展示列表的部门id*/
     private String selectId;
 
+    private TextView tvAddDept;
+    private TextView tvDeptSet;
+    private TextView tvDept;
+    private TextView tvStaff;
+    private View vDeptLine;
+    private View vStaffLine;
 
 
     @Override
@@ -55,6 +62,45 @@ public class OrganizationalStructureActivity extends BaseActivity implements Org
 
         initView();
         initData();
+        registerListener();
+    }
+
+    private void registerListener() {
+        tvStaff.setOnClickListener(mOnClick);
+        tvDept.setOnClickListener(mOnClick);
+        tvDeptSet.setOnClickListener(mOnClick);
+        tvAddDept.setOnClickListener(mOnClick);
+
+    }
+
+    View.OnClickListener mOnClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()){
+                case R.id.tv_org_dept:
+                    vDeptLine.setVisibility(View.VISIBLE);
+                    vStaffLine.setVisibility(View.GONE);
+                    tvDept.setTextColor(Color.parseColor("#297EFF"));
+                    tvStaff.setTextColor(Color.parseColor("#83868F"));
+                    break;
+                case R.id.tv_org_staff:
+                    vDeptLine.setVisibility(View.GONE);
+                    vStaffLine.setVisibility(View.VISIBLE);
+                    tvDept.setTextColor(Color.parseColor("#83868F"));
+                    tvStaff.setTextColor(Color.parseColor("#297EFF"));
+                    break;
+                case R.id.tv_add_dept:
+                    break;
+                case R.id.tv_dept_set:
+                    break;
+            }
+        }
+    };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        new DeptListTask(selectId).execute();
     }
 
     private void initData() {
@@ -82,17 +128,22 @@ public class OrganizationalStructureActivity extends BaseActivity implements Org
         typeList.add(new DeptItemEntity("pc技术开发部","100"));
 
 
-
+        selectId = "5";
         setHorizontalScrollView(list);
+
     }
 
     private void initView() {
         hsvOrg = (HorizontalScrollView)findViewById(R.id.hsv_orginazational);
-
         rvOrg = (RecyclerView)findViewById(R.id.rv_organizational);
+        tvAddDept = (TextView)findViewById(R.id.tv_add_dept);
+        tvDeptSet = (TextView)findViewById(R.id.tv_dept_set);
+        tvDept = (TextView)findViewById(R.id.tv_org_dept);
+        tvStaff = (TextView)findViewById(R.id.tv_org_staff);
+        vDeptLine = findViewById(R.id.v_line_dept);
+        vStaffLine = findViewById(R.id.v_line_staff);
 
-
-        orgAdapter = new OrganizationAdapter(mContext, bottomList,this);
+        orgAdapter = new OrganizationStructureAdapter(mContext, bottomList,this);
 
         mLayoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
 
@@ -116,17 +167,21 @@ public class OrganizationalStructureActivity extends BaseActivity implements Org
         llayout.setFocusableInTouchMode(true);
         for (int i = 0; i < list.size(); i++) {
             final int selectNum=i;
-            View view = LayoutInflater.from(this).inflate(R.layout.item_organizational, null);
+            View view = LayoutInflater.from(this).inflate(R.layout.item_org_top, null);
 
-            TextView tv_branch_name = (TextView) view.findViewById(R.id.tv_branch_name);
-            tv_branch_name.setText(list.get(i).deptName);
+            TextView tvName = (TextView) view.findViewById(R.id.tv_org_top_name);
+            tvName.setText(list.get(i).deptName);
+
+            ImageView ivArrow = (ImageView)view.findViewById(R.id.iv_org_arrow);
             if(i==(list.size()-1)){
-                tv_branch_name.setTextColor(Color.parseColor("#394043"));
+                tvName.setTextColor(Color.parseColor("#83868F"));
+                ivArrow.setVisibility(View.GONE);
             }else{
-                tv_branch_name.setTextColor(Color.parseColor("#008aff"));
+                tvName.setTextColor(Color.parseColor("#297EFF"));
+                ivArrow.setVisibility(View.VISIBLE);
             }
             llayout.addView(view);
-            tv_branch_name.setOnClickListener(new View.OnClickListener() {
+            tvName.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     hsvOrg.removeAllViews();
@@ -216,7 +271,7 @@ public class OrganizationalStructureActivity extends BaseActivity implements Org
                 orgAdapter.notifyDataSetChanged();
 
             }else{
-                rvOrg.setVisibility(View.GONE);
+                rvOrg.setVisibility(View.INVISIBLE);
             }
 
         }
