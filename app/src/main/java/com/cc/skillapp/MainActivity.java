@@ -3,7 +3,6 @@ package com.cc.skillapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
 import android.widget.TextView;
 
@@ -12,6 +11,7 @@ import com.cc.skillapp.activity.CustomControlActivity;
 import com.cc.skillapp.activity.ImageAvatarActivity;
 import com.cc.skillapp.activity.LoadLocalWebActivity;
 import com.cc.skillapp.activity.LoadWebActivity;
+import com.cc.skillapp.activity.LocationActivity;
 import com.cc.skillapp.activity.OkHttpActivity;
 import com.cc.skillapp.activity.OrganizationalStructureActivity;
 import com.cc.skillapp.activity.RecyclerViewActivity;
@@ -19,7 +19,6 @@ import com.cc.skillapp.activity.ReportActivity;
 import com.cc.skillapp.activity.RvSuspensionActivity;
 import com.cc.skillapp.activity.SwipeRefreshLayoutActivity;
 import com.cc.skillapp.activity.ViewPagerActivity;
-import com.cc.skillapp.view.MyShowViewLayout;
 
 import java.io.File;
 
@@ -37,6 +36,7 @@ public class MainActivity extends BaseActivity {
     private TextView tvXf;
     private TextView tvCustomContral;
     private TextView tvOrgizational;
+    private TextView tvLocation;
 
 
     @Override
@@ -60,6 +60,7 @@ public class MainActivity extends BaseActivity {
         tvXf.setOnClickListener(mOnClick);
         tvCustomContral.setOnClickListener(mOnClick);
         tvOrgizational.setOnClickListener(mOnClick);
+        tvLocation.setOnClickListener(mOnClick);
     }
 
     private void initView() {
@@ -75,6 +76,7 @@ public class MainActivity extends BaseActivity {
         tvXf = findViewById(R.id.tv_rv_xf);
         tvCustomContral = findViewById(R.id.tv_custom_control);
         tvOrgizational = findViewById(R.id.tv_organizational);
+        tvLocation = findViewById(R.id.tv_location);
 
         File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/soufun/res/app-static");
         if (!file.exists()) {
@@ -125,6 +127,10 @@ public class MainActivity extends BaseActivity {
                     break;
                 case R.id.tv_organizational:
                     startActivity(new Intent(mContext, OrganizationalStructureActivity.class));
+                    break;
+                case R.id.tv_location:
+                    startActivity(new Intent(mContext, LocationActivity.class));
+
                     break;
             }
         }
