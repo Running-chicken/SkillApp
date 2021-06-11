@@ -12,12 +12,14 @@ import com.cc.skillapp.activity.ImageAvatarActivity;
 import com.cc.skillapp.activity.LoadLocalWebActivity;
 import com.cc.skillapp.activity.LoadWebActivity;
 import com.cc.skillapp.activity.LocationActivity;
+import com.cc.skillapp.activity.MediaPlayerActivity;
 import com.cc.skillapp.activity.OkHttpActivity;
 import com.cc.skillapp.activity.OrganizationalStructureActivity;
 import com.cc.skillapp.activity.RecyclerViewActivity;
 import com.cc.skillapp.activity.ReportActivity;
 import com.cc.skillapp.activity.RvSuspensionActivity;
 import com.cc.skillapp.activity.SwipeRefreshLayoutActivity;
+import com.cc.skillapp.activity.VideoPlayerActivity;
 import com.cc.skillapp.activity.ViewPagerActivity;
 
 import java.io.File;
@@ -37,6 +39,7 @@ public class MainActivity extends BaseActivity {
     private TextView tvCustomContral;
     private TextView tvOrgizational;
     private TextView tvLocation;
+    private TextView tvVideo;
 
 
     @Override
@@ -61,6 +64,7 @@ public class MainActivity extends BaseActivity {
         tvCustomContral.setOnClickListener(mOnClick);
         tvOrgizational.setOnClickListener(mOnClick);
         tvLocation.setOnClickListener(mOnClick);
+        tvVideo.setOnClickListener(mOnClick);
     }
 
     private void initView() {
@@ -77,6 +81,7 @@ public class MainActivity extends BaseActivity {
         tvCustomContral = findViewById(R.id.tv_custom_control);
         tvOrgizational = findViewById(R.id.tv_organizational);
         tvLocation = findViewById(R.id.tv_location);
+        tvVideo = findViewById(R.id.tv_video);
 
         File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/soufun/res/app-static");
         if (!file.exists()) {
@@ -130,6 +135,9 @@ public class MainActivity extends BaseActivity {
                     break;
                 case R.id.tv_location:
                     startActivity(new Intent(mContext, LocationActivity.class));
+                    break;
+                case R.id.tv_video:
+                    startActivity(new Intent(mContext, MediaPlayerActivity.class));
 
                     break;
             }
