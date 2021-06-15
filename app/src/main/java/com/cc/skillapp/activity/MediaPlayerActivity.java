@@ -1,32 +1,45 @@
 package com.cc.skillapp.activity;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 import android.widget.ImageView;
-import android.widget.MediaController;
-import android.widget.VideoView;
+import android.widget.LinearLayout;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.cc.skillapp.BaseActivity;
 import com.cc.skillapp.R;
-import com.cc.skillapp.utils.StringUtils;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Timer;
 
-import static android.net.ConnectivityManager.TYPE_WIFI;
+import static android.media.MediaPlayer.SEEK_CLOSEST;
 
 public class MediaPlayerActivity extends BaseActivity {
     private static final String TAG = MediaPlayerActivity.class.getSimpleName();
-    SurfaceView mVideoPlaySurfaceview;
+    SurfaceView mSurfaceview;
     MediaPlayer mMediaPlayer;
     SurfaceHolder mSurfaceHolder;
-    private ImageView mStartAndStop;
+    private ImageView ivPlay;
     private boolean isInitFinish = false;
+
+    private SeekBar seekBar;
+    private Timer timer;
+    private LinearLayout llControl;
+
+    Handler mHandler = new Handler();
+    private TextView tvCurrentTime;
+    private TextView tvTotalTime;
 
 
     @Override
@@ -37,27 +50,131 @@ public class MediaPlayerActivity extends BaseActivity {
 
         initMediaPalyer();
         initSurfaceviewStateListener();
+        registerListener();
+    }
+
+
+
+    private Runnable updateRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if(mMediaPlayer!=null){
+                seekBar.setProgress(mMediaPlayer.getCurrentPosition());
+                tvCurrentTime.setText(formatTime(mMediaPlayer.getCurrentPosition()));
+                mHandler.postDelayed(this,100);
+            }
+        }
+    };
+
+
+    private void registerListener() {
+        mSurfaceview.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                switch (motionEvent.getAction()){
+                    //按下
+                    case MotionEvent.ACTION_DOWN:
+                        if(llControl.getVisibility()==View.VISIBLE){
+                            llControl.setVisibility(View.GONE);
+                            ivPlay.setVisibility(View.GONE);
+                        }else{
+                            llControl.setVisibility(View.VISIBLE);
+                            ivPlay.setVisibility(View.VISIBLE);
+                        }
+
+                        break;
+                }
+
+                return true;
+            }
+        });
+
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if(fromUser){
+                    tvCurrentTime.setText(formatTime(progress));
+                }
+            }
+
+            // 在手指正在拖动seekBar，而手指未离开屏幕触发的方法
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                mHandler.removeCallbacks(updateRunnable);
+            }
+
+            // 表示手指拖动seekbar完毕，手指离开屏幕会触发以下方法
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    mMediaPlayer.seekTo(seekBar.getProgress(),SEEK_CLOSEST);
+                    mHandler.post(updateRunnable);
+                }else{
+                    mMediaPlayer.seekTo(seekBar.getProgress());
+                    mHandler.postDelayed(updateRunnable,2000);
+                }
+            }
+        });
+
+
+        ivPlay.setOnClickListener(mOnClick);
+    }
+
+    View.OnClickListener mOnClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()){
+                case R.id.iv_control:
+                    if(mMediaPlayer.isPlaying()){
+                        mMediaPlayer.pause();
+                        ivPlay.setImageResource(R.drawable.iv_play);
+                    }else{
+                        mMediaPlayer.start();
+                        ivPlay.setImageResource(R.drawable.iv_pause);
+                    }
+                    break;
+
+            }
+        }
+    };
+
+    private String formatTime(long time) {
+        SimpleDateFormat formatter = new SimpleDateFormat("mm:ss");
+        return formatter.format(new Date(time));
     }
 
     private void initView() {
-        mVideoPlaySurfaceview = findViewById(R.id.sv_video);
-        mStartAndStop = findViewById(R.id.iv_control);
+        mSurfaceview = findViewById(R.id.sv_video);
+        ivPlay = findViewById(R.id.iv_control);
+        seekBar = findViewById(R.id.seekbar_video);
+        llControl = findViewById(R.id.ll_control);
+        tvCurrentTime =findViewById(R.id.tv_current_time);
+        tvTotalTime = findViewById(R.id.tv_total_time);
     }
 
+
+    private void showOrHiddenController(){
+        if(llControl.getVisibility() == View.VISIBLE){
+            llControl.setVisibility(View.GONE);
+        }else{
+            llControl.setVisibility(View.VISIBLE);
+        }
+
+    };
 
 
 
     Uri uri;
     private void initMediaPalyer() {
 
-        uri = Uri.parse("http://hi1grvrcg7xin1ne6w8.exp.bcevod.com/mda-keipcv6wknym8z1m/mda-keipcv6wknym8z1m.mp4");
+        uri = Uri.parse("http://hi1grvrcg7xin1ne6w8.exp.bcevod.com/mda-mfan39qdty7adn99/mda-mfan39qdty7adn99.mp4");
         mMediaPlayer = new MediaPlayer();
 
     }
 
 
     private void initSurfaceviewStateListener() {
-        mSurfaceHolder = mVideoPlaySurfaceview.getHolder();
+        mSurfaceHolder = mSurfaceview.getHolder();
         mSurfaceHolder.addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
@@ -89,13 +206,25 @@ public class MediaPlayerActivity extends BaseActivity {
                 @Override
                 public void onPrepared(MediaPlayer mp) {
                     isInitFinish = true;
+                    seekBar.setMax(mMediaPlayer.getDuration());
+                    tvTotalTime.setText(formatTime(mMediaPlayer.getDuration()));
+                    mHandler.postDelayed(updateRunnable,100);
                     mp.start();
+                }
+            });
+
+            mMediaPlayer.setOnSeekCompleteListener(new MediaPlayer.OnSeekCompleteListener() {
+                @Override
+                public void onSeekComplete(MediaPlayer mediaPlayer) {
+
                 }
             });
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+
 
     private void startPlay(){
         if (!mMediaPlayer.isPlaying()){
@@ -129,6 +258,10 @@ public class MediaPlayerActivity extends BaseActivity {
             }
             mMediaPlayer.release();
             mMediaPlayer = null;
+        }
+
+        if(timer!=null){
+            timer.cancel();
         }
     }
 
