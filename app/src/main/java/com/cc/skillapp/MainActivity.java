@@ -6,6 +6,7 @@ import android.os.Environment;
 import android.view.View;
 import android.widget.TextView;
 
+import com.cc.skillapp.activity.AllApplicationActivity;
 import com.cc.skillapp.activity.CalendarActivity;
 import com.cc.skillapp.activity.CustomControlActivity;
 import com.cc.skillapp.activity.ImageAvatarActivity;
@@ -40,6 +41,7 @@ public class MainActivity extends BaseActivity {
     private TextView tvOrgizational;
     private TextView tvLocation;
     private TextView tvVideo;
+    private TextView tvAllApp;
 
 
     @Override
@@ -65,6 +67,7 @@ public class MainActivity extends BaseActivity {
         tvOrgizational.setOnClickListener(mOnClick);
         tvLocation.setOnClickListener(mOnClick);
         tvVideo.setOnClickListener(mOnClick);
+        tvAllApp.setOnClickListener(mOnClick);
     }
 
     private void initView() {
@@ -82,6 +85,7 @@ public class MainActivity extends BaseActivity {
         tvOrgizational = findViewById(R.id.tv_organizational);
         tvLocation = findViewById(R.id.tv_location);
         tvVideo = findViewById(R.id.tv_video);
+        tvAllApp = findViewById(R.id.tv_all_app);
 
         File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/soufun/res/app-static");
         if (!file.exists()) {
@@ -138,7 +142,9 @@ public class MainActivity extends BaseActivity {
                     break;
                 case R.id.tv_video:
                     startActivity(new Intent(mContext, MediaPlayerActivity.class));
-
+                    break;
+                case R.id.tv_all_app:
+                    startActivity(new Intent(mContext, AllApplicationActivity.class));
                     break;
             }
         }

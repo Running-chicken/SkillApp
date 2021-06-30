@@ -1,7 +1,8 @@
 package com.cc.skillapp.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.cc.skillapp.R;
 import com.cc.skillapp.view.SDAvatarListLayout;

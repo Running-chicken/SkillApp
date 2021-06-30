@@ -2,7 +2,6 @@ package com.cc.skillapp.activity;
 
 import android.content.Context;
 import android.location.LocationManager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;

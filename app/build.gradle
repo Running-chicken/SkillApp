@@ -1,7 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "com.cc.skillapp"
         minSdkVersion 18
@@ -34,4 +35,6 @@ dependencies {
     implementation 'in.srain.cube:ultra-ptr:1.0.11'
 
     api 'com.github.bumptech.glide:glide:3.6.0'
+    api 'com.google.android.material:material:1.1.0'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
 }

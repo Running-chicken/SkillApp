@@ -3,10 +3,11 @@ package com.cc.skillapp.activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.View;
+
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.cc.skillapp.BaseActivity;
 import com.cc.skillapp.R;
@@ -69,7 +70,7 @@ public class RecyclerViewActivity extends BaseActivity {
         initRefreshView();
 
 
-        staggeredGridLayoutManager = new MyStaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL); //初始化瀑布流manager
+        staggeredGridLayoutManager = new MyStaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL); //初始化瀑布流manager
         staggeredGridLayoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE); //防止瀑布流上滑时item变换位置
         mList = new ArrayList<>();
         LiveAdapter liveAdapter = new LiveAdapter(mList);

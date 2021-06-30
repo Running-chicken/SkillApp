@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.cc.skillapp.activity.OkHttpActivity">
+    tools:context="com.cc.skillapp.activity.OkHttpActivity"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/tv_test_get"
@@ -35,4 +36,4 @@
         android:layout_marginTop="10dp"
         app:layout_constraintTop_toBottomOf="@+id/tv_test_post_async"/>
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

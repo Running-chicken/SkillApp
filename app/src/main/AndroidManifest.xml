@@ -39,6 +39,7 @@
         <activity android:name=".activity.OrganizationalStructureActivity" />
         <activity android:name=".activity.VideoPlayerActivity"/>
         <activity android:name=".activity.MediaPlayerActivity"/>
+        <activity android:name=".activity.AllApplicationActivity"/>
         <activity
             android:name=".activity.ReportActivity"
             android:process=":webview" />
