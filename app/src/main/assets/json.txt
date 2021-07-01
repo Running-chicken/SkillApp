@@ -7,11 +7,11 @@
 			"reponame": "任务",
 			"logo": "ic_menu_renwu",
 			"sort": 4,
-			"blacklogo": "https://static.soufunimg.com/esf/customerclould/cunfang/icon_1/2003_black.png"
+			"blacklogo": ""
 		}],
 		"allAppMenu": [{
 			"bindingtype": 0,
-			"functionid": 001,
+			"functionid": 100,
 			"reponame": "系统管理",
 			"submenu": [{
 				"bindingtype": 0,
@@ -19,13 +19,13 @@
 				"reponame": "公告",
 				"submenu": [],
 				"iscanedit": 1,
-				"wapurl": "http://interface.jrpt.test.fang.com/esfds/AgentManageService/ToCunFangHome",
+				"wapurl": "",
 				"authcheck": 1,
 				"logincheck": 1,
 				"drivertype": 1,
 				"logo": "ic_menu_gonggao",
 				"sort": 10,
-				"blacklogo": "https://static.soufunimg.com/esf/customerclould/cunfang/icon_1/1007_black.png"
+				"blacklogo": ""
 			}, {
 				"bindingtype": 0,
 				"functionid": 2,
@@ -38,7 +38,7 @@
 				"drivertype": 0,
 				"logo": "ic_menu_renwu",
 				"sort": 20,
-				"blacklogo": "https://static.soufunimg.com/esf/customerclould/cunfang/icon_1/1002_black.png"
+				"blacklogo": ""
 			}],
 			"iscanedit": 0,
 			"wapurl": "",
@@ -49,7 +49,7 @@
 			"sort": 1000
 		}, {
 			"bindingtype": 0,
-			"functionid": 002,
+			"functionid": 200,
 			"reponame": "生产管理",
 			"submenu": [{
 				"bindingtype": 0,
@@ -63,7 +63,7 @@
 				"drivertype": 0,
 				"logo": "ic_menu_tingsongdian",
 				"sort": 40,
-				"blacklogo": "https://static.soufunimg.com/esf/customerclould/cunfang/icon_1/2004_black.png"
+				"blacklogo": ""
 			}, {
 				"bindingtype": 0,
 				"functionid": 4,
@@ -76,7 +76,7 @@
 				"drivertype": 0,
 				"logo": "ic_menu_jiaojieban",
 				"sort": 200,
-				"blacklogo": "https://static.soufunimg.com/esf/customerclould/cunfang/icon_1/2000_black.png"
+				"blacklogo": ""
 			}, {
 				"bindingtype": 0,
 				"functionid": 5,
@@ -89,7 +89,7 @@
 				"drivertype": 0,
 				"logo": "ic_menu_diaodurizhi",
 				"sort": 210,
-				"blacklogo": "https://static.soufunimg.com/esf/customerclould/cunfang/icon_1/2001_black.png"
+				"blacklogo": ""
 			}, {
 				"bindingtype": 0,
 				"functionid": 6,
@@ -102,20 +102,20 @@
 				"drivertype": 0,
 				"logo": "ic_menu_yibansanxun",
 				"sort": 240,
-				"blacklogo": "https://static.soufunimg.com/esf/customerclould/cunfang/icon_1/2003_black.png"
+				"blacklogo": ""
 			}, {
 				"bindingtype": 0,
 				"functionid": 7,
 				"reponame": "问题提报",
 				"submenu": [],
 				"iscanedit": 1,
-				"wapurl": "https://testagentdata.cunfang.com/price/index",
+				"wapurl": "",
 				"authcheck": 1,
 				"logincheck": 1,
 				"drivertype": 1,
 				"logo": "ic_menu_wentitibao",
 				"sort": 260,
-				"blacklogo": "https://static.soufunimg.com/esf/customerclould/cunfang/icon_1/519_black.png"
+				"blacklogo": ""
 			}, {
 				"bindingtype": 0,
 				"functionid": 8,
@@ -204,7 +204,7 @@
 			"sort": 2000
 		}, {
 			"bindingtype": 0,
-			"functionid": 003,
+			"functionid": 300,
 			"reponame": "综合管理",
 			"submenu": [{
 				"bindingtype": 0,
@@ -212,39 +212,39 @@
 				"reponame": "人员调整",
 				"submenu": [],
 				"iscanedit": 1,
-				"wapurl": "https://livetestnew.fang.com/liveshow/index/cf/liveforappstart",
+				"wapurl": "",
 				"authcheck": 1,
 				"logincheck": 1,
 				"drivertype": 2,
 				"logo": "ic_menu_renyuantiaozheng",
 				"sort": 10,
-				"blacklogo": "https://static.soufunimg.com/esf/customerclould/cunfang/icon_1/20008_black.png"
+				"blacklogo": ""
 			}, {
 				"bindingtype": 0,
 				"functionid": 15,
 				"reponame": "人员奖惩",
 				"submenu": [],
 				"iscanedit": 1,
-				"wapurl": "http://daxue.test.fang.com/daxuem",
+				"wapurl": "",
 				"authcheck": 1,
 				"logincheck": 1,
 				"drivertype": 2,
 				"logo": "ic_menu_renyuanjiangcheng",
 				"sort": 70,
-				"blacklogo": "https://static.soufunimg.com/esf/customerclould/cunfang/icon_1/3001_black.png"
+				"blacklogo": ""
 			}, {
 				"bindingtype": 0,
 				"functionid": 16,
 				"reponame": "知识库",
 				"submenu": [],
 				"iscanedit": 1,
-				"wapurl": "http://m.test.fang.com/tools/?src=client5",
+				"wapurl": "",
 				"authcheck": 1,
 				"logincheck": 1,
 				"drivertype": 1,
 				"logo": "ic_menu_zhishiku",
 				"sort": 80,
-				"blacklogo": "https://static.soufunimg.com/esf/customerclould/cunfang/icon_1/3002_black.png"
+				"blacklogo": ""
 			}],
 			"iscanedit": 0,
 			"wapurl": "",

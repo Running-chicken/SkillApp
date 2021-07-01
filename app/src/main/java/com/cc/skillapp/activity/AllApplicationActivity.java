@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -98,7 +99,7 @@ public class AllApplicationActivity extends BaseActivity implements ToolAddedAda
 
     private TextView tvTitle;
     private TextView tvRight;
-    private TextView tvLeft;
+    private ImageView ivLeft;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,6 +121,22 @@ public class AllApplicationActivity extends BaseActivity implements ToolAddedAda
         }.getType();
         BaseRootEntity<AllApplicationEntity> result = gson.fromJson(jsonStr, type);
         setAllDataRefresh(result.data);
+
+        String selectedMenu = Utils.readLocalText("selectedmenu.txt");
+        if(!StringUtils.isNullOrEmpty(selectedMenu)){
+            CommitEntity entity = new Gson().fromJson(selectedMenu,CommitEntity.class);
+            mAddedList.clear();
+            mAddedList.addAll(entity.menuvos);
+        }else{
+            AllApplicationEntity.Submenu bean = new AllApplicationEntity.Submenu();
+            bean.functionid = "2";
+            bean.reponame = "任务";
+            bean.logo = "ic_menu_renwu";
+            mAddedList.clear();
+            mAddedList.add(bean);
+        }
+        addEmptyData();
+        mToolAddedAdapter.notifyDataSetChanged();
     }
 
     private void registerListener() {
@@ -129,7 +146,7 @@ public class AllApplicationActivity extends BaseActivity implements ToolAddedAda
                 mRvAllApplication.scrollToPosition(0);
                 if (mIsEditing){
                     //调取提交接口
-//                    new ApplicationCommitAsyncTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                    getCommitJsonStr();
                 }else {
                     mIsEditing = true;
                     setRight1("完成");
@@ -141,7 +158,7 @@ public class AllApplicationActivity extends BaseActivity implements ToolAddedAda
             }
         });
 
-        tvLeft.setOnClickListener(new View.OnClickListener() {
+        ivLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (mIsEditing){
@@ -202,7 +219,7 @@ public class AllApplicationActivity extends BaseActivity implements ToolAddedAda
         mRvAllTitle = findViewById(R.id.rv_all_title);
         mRvAllApplication = findViewById(R.id.rv_all_application);
         tvRight = findViewById(R.id.tv_right);
-        tvLeft = findViewById(R.id.tv_left);
+        ivLeft = findViewById(R.id.iv_menu_left);
     }
 
     private void initData() {
@@ -359,12 +376,6 @@ public class AllApplicationActivity extends BaseActivity implements ToolAddedAda
      * 刷新所有数据
      */
     private void setAllDataRefresh(AllApplicationEntity bean){
-        if (bean.defaultMenu != null){
-            mAddedList.clear();
-            mAddedList.addAll(bean.defaultMenu);
-            addEmptyData();
-            mToolAddedAdapter.notifyDataSetChanged();
-        }
         if (bean.allAppMenu != null){
             mAllList.clear();
             mAllList.addAll(bean.allAppMenu);
@@ -501,36 +512,22 @@ public class AllApplicationActivity extends BaseActivity implements ToolAddedAda
     /**
      * 获取提交的保存信息
      */
-    private String getCommitJsonStr() {
+    private void getCommitJsonStr() {
         String jsonStr = "";
         CommitEntity entity = new CommitEntity();
-        List<Submenu> commitList = new ArrayList<>();
+        List<AllApplicationEntity.Submenu> commitList = new ArrayList<>();
         for (int i = 0;i < mAddedList.size();i++){
             if (!StringUtils.isNullOrEmpty(mAddedList.get(i).functionid)){
-                Submenu bean = new Submenu();
-                bean.functionid = mAddedList.get(i).functionid;
-                bean.reponame = mAddedList.get(i).reponame;
-                bean.sort = i + "";
-                commitList.add(bean);
+                commitList.add(mAddedList.get(i));
             }
         }
         entity.menuvos = commitList;
         jsonStr = new Gson().toJson(entity);
-        return jsonStr;
+        Utils.saveToSDCard(AllApplicationActivity.this,"selectedmenu.txt",jsonStr);
     }
 
     private class CommitEntity implements Serializable {
-        private List<Submenu> menuvos;
+        private List<AllApplicationEntity.Submenu> menuvos;
     }
-    public static class Submenu implements Serializable {
-        public String blacklogo;
-        public String functionid;
-        public String iscanedit;//是否可编辑 1-可以 0-不可以 ,
-        public String logo;
-        public String reponame;
-        public String sort;
-    }
-
-
 
 }
