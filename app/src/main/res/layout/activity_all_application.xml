@@ -40,54 +40,6 @@
             android:layout_height="wrap_content"
             android:background="#F5F5F5"
             app:elevation="0dp">
-            <!-- 固定应用模块 -->
-            <LinearLayout
-                android:id="@+id/ll_constant"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@color/white"
-                android:visibility="gone">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="2dp">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="10dp"
-                        android:text="我的应用"
-                        android:textSize="17sp"
-                        android:textColor="@color/black_0e131a"
-                        android:textStyle="bold"/>
-                    <com.cc.skillapp.view.MyGridView
-                        android:id="@+id/gv_constant"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:listSelector="@color/transparent"
-                        android:verticalSpacing="5dp"
-                        android:numColumns="5"
-                        android:scrollbars="none"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="17dp"
-                        android:text="默认"
-                        android:textSize="15sp"
-                        android:textColor="@color/black_subtitle02"/>
-                </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:background="#F5F5F5"/>
-            </LinearLayout>
             <!-- 选中应用模块 -->
             <LinearLayout
                 android:id="@+id/ll_added"

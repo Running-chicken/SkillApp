@@ -1,10 +1,6 @@
 package com.cc.skillapp.activity;
 
 import android.app.Dialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Color;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -23,7 +19,6 @@ import com.cc.skillapp.R;
 import com.cc.skillapp.adapter.AllApplicationAdapter;
 import com.cc.skillapp.adapter.AllTitleAdapter;
 import com.cc.skillapp.adapter.ToolAddedAdapter;
-import com.cc.skillapp.adapter.ToolConstantAdapter;
 import com.cc.skillapp.entity.AllApplicationEntity;
 import com.cc.skillapp.entity.BaseRootEntity;
 import com.cc.skillapp.entity.MenuListEntity;
@@ -32,7 +27,6 @@ import com.cc.skillapp.utils.MenuIntentHandleUtil;
 import com.cc.skillapp.utils.StringUtils;
 import com.cc.skillapp.utils.Utils;
 import com.cc.skillapp.view.DragedRecycleView.HomeToolTouchHelperCallback;
-import com.cc.skillapp.view.MyGridView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -51,18 +45,12 @@ import java.util.List;
 public class AllApplicationActivity extends BaseActivity implements ToolAddedAdapter.OnAddedItemListener, AllTitleAdapter.OnTitleItemListener, AllApplicationAdapter.OnAllApplicationItemClickListener, ToolAddedAdapter.OnAddedItemLongListener {
 
     //<editor-fold desc="变量">
-    private LinearLayout mLlConstant;
-    private MyGridView mGvConstant;
     private LinearLayout mLlAdded;
     private RecyclerView mRvAdded;
     private RecyclerView mRvAllTitle;
     private RecyclerView mRvAllApplication;
 
-    /**
-     * 默认应用数据
-     */
-    private List<AllApplicationEntity.Submenu> mConstantList = new ArrayList<>();
-    private ToolConstantAdapter mToolConstantAdapter;
+
     /**
      * 我的应用数据
      */
@@ -103,7 +91,7 @@ public class AllApplicationActivity extends BaseActivity implements ToolAddedAda
     /**
      * 可添加最大数
      */
-    private int mAddedMaxNum = 9;
+    private int mAddedMaxNum = 7;
 
     private String mResultCode = "1";
     //</editor-fold>
@@ -209,8 +197,6 @@ public class AllApplicationActivity extends BaseActivity implements ToolAddedAda
 
     //<editor-fold desc="初始化">
     private void initView() {
-        mLlConstant = findViewById(R.id.ll_constant);
-        mGvConstant = findViewById(R.id.gv_constant);
         mLlAdded = findViewById(R.id.ll_added);
         mRvAdded = findViewById(R.id.rv_added);
         mRvAllTitle = findViewById(R.id.rv_all_title);
@@ -220,7 +206,6 @@ public class AllApplicationActivity extends BaseActivity implements ToolAddedAda
     }
 
     private void initData() {
-        initConstantData();
         initAddedData();
         initAllTitleData();
         initAllApplicationData();
@@ -228,18 +213,10 @@ public class AllApplicationActivity extends BaseActivity implements ToolAddedAda
     }
 
     /**
-     * 初始化默认应用
-     */
-    private void initConstantData(){
-        mToolConstantAdapter = new ToolConstantAdapter(mContext,mConstantList);
-        mGvConstant.setAdapter(mToolConstantAdapter);
-    }
-
-    /**
      * 初始化我的应用
      */
     private void initAddedData(){
-        GridLayoutManager layoutManager = new GridLayoutManager(mContext,5);
+        GridLayoutManager layoutManager = new GridLayoutManager(mContext,4);
         mToolAddedAdapter = new ToolAddedAdapter(mContext,mAddedList);
         mRvAdded.setLayoutManager(layoutManager);
         mRvAdded.setAdapter(mToolAddedAdapter);
@@ -349,20 +326,22 @@ public class AllApplicationActivity extends BaseActivity implements ToolAddedAda
     @Override
     public void onAllApplicationItemListener(AllApplicationEntity.Submenu bean, int position, int index, View view) {
         if (mIsEditing){
-            //全部应用的点击事件
-            if (mAllList.get(position).submenu.get(index).isAddOrRemove){
-                //将item从被选中列表中移除
-                mAllList.get(position).submenu.get(index).isAddOrRemove = false;
-                mAllApplicationAdapter.notifyItemChanged(position,index);
-                removeApplicationToAdded(bean);
-            }else {
-                //将item添加到被选中列表
-                if (getAddedDataSize() < mAddedMaxNum){
-                    mAllList.get(position).submenu.get(index).isAddOrRemove = true;
+            if("1".equals(mAllList.get(position).submenu.get(index).iscanedit)){
+                //全部应用的点击事件
+                if (mAllList.get(position).submenu.get(index).isAddOrRemove){
+                    //将item从被选中列表中移除
+                    mAllList.get(position).submenu.get(index).isAddOrRemove = false;
                     mAllApplicationAdapter.notifyItemChanged(position,index);
-                    addApplicationToAdded(bean);
+                    removeApplicationToAdded(bean);
                 }else {
-                    Utils.toast(mContext,"最多选择9个");
+                    //将item添加到被选中列表
+                    if (getAddedDataSize() < mAddedMaxNum){
+                        mAllList.get(position).submenu.get(index).isAddOrRemove = true;
+                        mAllApplicationAdapter.notifyItemChanged(position,index);
+                        addApplicationToAdded(bean);
+                    }else {
+                        Utils.toast(mContext,"最多选择7个");
+                    }
                 }
             }
         }else {
@@ -380,18 +359,6 @@ public class AllApplicationActivity extends BaseActivity implements ToolAddedAda
      * 刷新所有数据
      */
     private void setAllDataRefresh(AllApplicationEntity bean){
-        if (bean.myMenu != null){
-            mConstantList.clear();
-            mConstantList.addAll(bean.myMenu);
-            if (mConstantList.size() > 0){
-                mToolConstantAdapter.notifyDataSetChanged();
-                mLlConstant.setVisibility(View.VISIBLE);
-            }else {
-                mLlConstant.setVisibility(View.GONE);
-            }
-        }else {
-            mLlConstant.setVisibility(View.GONE);
-        }
         if (bean.defaultMenu != null){
             mAddedList.clear();
             mAddedList.addAll(bean.defaultMenu);
@@ -482,7 +449,7 @@ public class AllApplicationActivity extends BaseActivity implements ToolAddedAda
      */
     private void addEmptyData() {
         if (mAddedList.size() < mAddedMaxNum) {
-            int emptyCount = 9 - mAddedList.size();
+            int emptyCount = 7 - mAddedList.size();
             for (int i = 0; i < emptyCount; i++) {
                 AllApplicationEntity.Submenu addedBean = new AllApplicationEntity.Submenu();
                 mAddedList.add(addedBean);

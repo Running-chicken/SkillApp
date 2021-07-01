@@ -41,4 +41,8 @@ public class Utils {
         }
         return stringBuilder.toString();
     }
+
+    public static int getImageId(Context context,String imageName) {
+        return context.getResources().getIdentifier("drawable/" + imageName,null,context.getPackageName());
+    }
 }

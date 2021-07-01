@@ -121,7 +121,7 @@ public class AllApplicationAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             mLlRoot = itemView.findViewById(R.id.ll_root);
             mTvTitle = itemView.findViewById(R.id.tv_title);
             mRvApplication = itemView.findViewById(R.id.rv_application);
-            GridLayoutManager manager = new GridLayoutManager(itemView.getContext(),5);
+            GridLayoutManager manager = new GridLayoutManager(itemView.getContext(),4);
             mRvApplication.setLayoutManager(manager);
             //用来占位，最后一条显示，避免刷新item时导致布局移动问题
             mViewEmpty = itemView.findViewById(R.id.view_empty);

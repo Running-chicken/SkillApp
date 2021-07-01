@@ -11,11 +11,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.cc.skillapp.R;
 import com.cc.skillapp.entity.AllApplicationEntity;
 import com.cc.skillapp.utils.StringUtils;
+import com.cc.skillapp.utils.Utils;
 import com.cc.skillapp.view.DragedRecycleView.ItemTouchHelperAdapter;
 import com.cc.skillapp.view.DragedRecycleView.ItemTouchHelperViewHolder;
 
@@ -42,27 +41,26 @@ public class ToolAddedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, final int position) {
         if (holder instanceof ViewHolder){
             final AllApplicationEntity.Submenu bean = mList.get(position);
             if (!StringUtils.isNullOrEmpty(bean.functionid)){
-                Glide.with(mContext)
-                        .load(bean.logo)
-                        .error(R.drawable.application_default)
-                        .fallback(R.drawable.application_default)
-                        .centerCrop()
-                        .diskCacheStrategy(DiskCacheStrategy.ALL).into(((ViewHolder) holder).mIvAddedIcon);
+                ((ViewHolder) holder).mIvAddedIcon.setImageResource(Utils.getImageId(mContext,bean.logo));
                 if (!StringUtils.isNullOrEmpty(bean.reponame)){
                     ((ViewHolder) holder).mTvAddedTitle.setVisibility(View.VISIBLE);
                     ((ViewHolder) holder).mTvAddedTitle.setText(bean.reponame);
                 }else {
                     ((ViewHolder) holder).mTvAddedTitle.setVisibility(View.GONE);
                 }
-                ((ViewHolder) holder).mIvAddedDelete.setVisibility(View.VISIBLE);
+                if(!"2".equals(bean.functionid)){
+                    ((ViewHolder) holder).mIvAddedDelete.setVisibility(View.VISIBLE);
+                }else{
+                    ((ViewHolder) holder).mIvAddedDelete.setVisibility(View.INVISIBLE);
+                }
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (mOnAddedItemListener != null){
+                        if (mOnAddedItemListener != null && !"2".equals(bean.functionid)){ //暂时确定任务不可点击
                             mOnAddedItemListener.onAddedItemListener(bean);
                         }
                     }
@@ -70,7 +68,7 @@ public class ToolAddedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View v) {
-                        if (mOnAddedItemLongListener != null){
+                        if (mOnAddedItemLongListener != null && !"2".equals(bean.functionid)){
                             mOnAddedItemLongListener.onDragStarted(holder);
                         }
                         return true;
@@ -92,7 +90,7 @@ public class ToolAddedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     @Override
     public void onItemMove(int fromPosition, int toPosition) {
         try {
-            if (!StringUtils.isNullOrEmpty(mList.get(toPosition).functionid)){
+            if (!StringUtils.isNullOrEmpty(mList.get(toPosition).functionid) && !"2".equals(mList.get(toPosition).functionid)){
                 AllApplicationEntity.Submenu bean = mList.remove(fromPosition);
                 mList.add(toPosition > fromPosition ? toPosition  : toPosition, bean);
                 notifyItemMoved(fromPosition, toPosition);

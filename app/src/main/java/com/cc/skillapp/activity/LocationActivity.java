@@ -5,14 +5,17 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cc.skillapp.BaseActivity;
 import com.cc.skillapp.R;
+import com.cc.skillapp.utils.Utils;
 
 public class LocationActivity extends BaseActivity {
 
     private TextView tvLocationMode;
+    private ImageView ivTest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,11 @@ public class LocationActivity extends BaseActivity {
             }
         });
 
+
+        ivTest = findViewById(R.id.iv_test_drawable);
+        String imgPath = "ic_default_portrait_circle";
+        int imageResouce = Utils.getImageId(mContext,imgPath);
+        ivTest.setImageResource(imageResouce);
 
     }
 }

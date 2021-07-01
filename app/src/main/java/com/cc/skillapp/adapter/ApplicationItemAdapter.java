@@ -10,11 +10,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.cc.skillapp.R;
 import com.cc.skillapp.entity.AllApplicationEntity;
 import com.cc.skillapp.utils.StringUtils;
+import com.cc.skillapp.utils.Utils;
 
 import java.util.List;
 
@@ -42,12 +41,7 @@ public class ApplicationItemAdapter extends RecyclerView.Adapter<RecyclerView.Vi
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof Holder){
             AllApplicationEntity.Submenu bean = mList.get(position);
-            Glide.with(mContext)
-                    .load(bean.logo)
-                    .error(R.drawable.application_default)
-                    .fallback(R.drawable.application_default)
-                    .centerCrop()
-                    .diskCacheStrategy(DiskCacheStrategy.ALL).into(((Holder) holder).mIvApplicationIcon);
+            ((Holder) holder).mIvApplicationIcon.setImageResource(Utils.getImageId(mContext,bean.logo));
             if (!StringUtils.isNullOrEmpty(bean.reponame)){
                 ((Holder) holder).mTvApplicationTitle.setText(bean.reponame);
             }
