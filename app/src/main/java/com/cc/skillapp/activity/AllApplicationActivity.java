@@ -113,14 +113,6 @@ public class AllApplicationActivity extends BaseActivity implements ToolAddedAda
     }
 
     private void setData(){
-        String jsonStr = Utils.getJson("json.txt",mContext);
-        Log.i("cuican",jsonStr);
-
-        Gson gson = new Gson();
-        Type type = new TypeToken<BaseRootEntity<AllApplicationEntity>>() {
-        }.getType();
-        BaseRootEntity<AllApplicationEntity> result = gson.fromJson(jsonStr, type);
-        setAllDataRefresh(result.data);
 
         String selectedMenu = Utils.readLocalText("selectedmenu.txt");
         if(!StringUtils.isNullOrEmpty(selectedMenu)){
@@ -137,6 +129,15 @@ public class AllApplicationActivity extends BaseActivity implements ToolAddedAda
         }
         addEmptyData();
         mToolAddedAdapter.notifyDataSetChanged();
+
+        String jsonStr = Utils.getJson("json.txt",mContext);
+        Log.i("cuican",jsonStr);
+
+        Gson gson = new Gson();
+        Type type = new TypeToken<BaseRootEntity<AllApplicationEntity>>() {
+        }.getType();
+        BaseRootEntity<AllApplicationEntity> result = gson.fromJson(jsonStr, type);
+        setAllDataRefresh(result.data);
     }
 
     private void registerListener() {
