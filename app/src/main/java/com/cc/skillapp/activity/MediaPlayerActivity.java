@@ -1,5 +1,6 @@
 package com.cc.skillapp.activity;
 
+import android.content.pm.ActivityInfo;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
@@ -12,6 +13,7 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -41,6 +43,8 @@ public class MediaPlayerActivity extends BaseActivity {
     private TextView tvCurrentTime;
     private TextView tvTotalTime;
 
+    private RelativeLayout rlMediaPlayer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +72,7 @@ public class MediaPlayerActivity extends BaseActivity {
 
 
     private void registerListener() {
-        mSurfaceview.setOnTouchListener(new View.OnTouchListener() {
+        rlMediaPlayer.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 switch (motionEvent.getAction()){
@@ -150,6 +154,7 @@ public class MediaPlayerActivity extends BaseActivity {
         llControl = findViewById(R.id.ll_control);
         tvCurrentTime =findViewById(R.id.tv_current_time);
         tvTotalTime = findViewById(R.id.tv_total_time);
+        rlMediaPlayer = findViewById(R.id.rl_mediaplayer);
     }
 
 
@@ -219,11 +224,42 @@ public class MediaPlayerActivity extends BaseActivity {
 
                 }
             });
+
+            mMediaPlayer.setOnVideoSizeChangedListener(new MediaPlayer.OnVideoSizeChangedListener() {
+                @Override
+                public void onVideoSizeChanged(MediaPlayer mp, int width, int height) {
+                    changeVideoSize();
+                }
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    /**根据视频分辨率设置surfaceview宽高*/
+    public void changeVideoSize() {
+        int videoWidth = mMediaPlayer.getVideoWidth();
+        int videoHeight = mMediaPlayer.getVideoHeight();
+        int rlWidth = rlMediaPlayer.getWidth();
+        int rlHeight = rlMediaPlayer.getHeight();
+
+        //根据视频尺寸去计算->视频可以在sufaceView中放大的最大倍数。
+        float max;
+        if (getResources().getConfiguration().orientation== ActivityInfo.SCREEN_ORIENTATION_PORTRAIT) {
+            //竖屏模式下按视频宽度计算放大倍数值
+            max = Math.max((float) videoWidth / (float) rlWidth,(float) videoHeight / (float) rlHeight);
+        } else{
+            //横屏模式下按视频高度计算放大倍数值
+            max = Math.max(((float) videoWidth/(float) rlWidth),(float) videoHeight/(float) rlHeight);
+        }
+
+        //视频宽高分别/最大倍数值 计算出放大后的视频尺寸
+        videoWidth = (int) Math.ceil((float) videoWidth / max);
+        videoHeight = (int) Math.ceil((float) videoHeight / max);
+
+        //无法直接设置视频尺寸，将计算出的视频尺寸设置到surfaceView 让视频自动填充。
+        mSurfaceview.setLayoutParams(new RelativeLayout.LayoutParams(videoWidth, videoHeight));
+    }
 
 
     private void startPlay(){
