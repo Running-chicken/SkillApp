@@ -1,6 +1,9 @@
 package com.cc.skillapp;
 
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
@@ -8,6 +11,7 @@ import android.widget.TextView;
 
 import com.cc.skillapp.activity.AllApplicationActivity;
 import com.cc.skillapp.activity.CalendarActivity;
+import com.cc.skillapp.activity.ChangeIconActivity;
 import com.cc.skillapp.activity.CustomControlActivity;
 import com.cc.skillapp.activity.ImageAvatarActivity;
 import com.cc.skillapp.activity.LoadLocalWebActivity;
@@ -20,7 +24,6 @@ import com.cc.skillapp.activity.RecyclerViewActivity;
 import com.cc.skillapp.activity.ReportActivity;
 import com.cc.skillapp.activity.RvSuspensionActivity;
 import com.cc.skillapp.activity.SwipeRefreshLayoutActivity;
-import com.cc.skillapp.activity.VideoPlayerActivity;
 import com.cc.skillapp.activity.ViewPagerActivity;
 
 import java.io.File;
@@ -42,6 +45,7 @@ public class MainActivity extends BaseActivity {
     private TextView tvLocation;
     private TextView tvVideo;
     private TextView tvAllApp;
+    TextView tvChangeIcon;
 
 
     @Override
@@ -68,6 +72,7 @@ public class MainActivity extends BaseActivity {
         tvLocation.setOnClickListener(mOnClick);
         tvVideo.setOnClickListener(mOnClick);
         tvAllApp.setOnClickListener(mOnClick);
+        tvChangeIcon.setOnClickListener(mOnClick);
     }
 
     private void initView() {
@@ -86,6 +91,7 @@ public class MainActivity extends BaseActivity {
         tvLocation = findViewById(R.id.tv_location);
         tvVideo = findViewById(R.id.tv_video);
         tvAllApp = findViewById(R.id.tv_all_app);
+        tvChangeIcon = findViewById(R.id.tv_change_icon);
 
         File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/soufun/res/app-static");
         if (!file.exists()) {
@@ -146,7 +152,52 @@ public class MainActivity extends BaseActivity {
                 case R.id.tv_all_app:
                     startActivity(new Intent(mContext, AllApplicationActivity.class));
                     break;
+                case R.id.tv_change_icon:
+                    startActivity(new Intent(mContext, ChangeIconActivity.class));
+                    break;
             }
         }
     };
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        checkIconSP();
+    }
+
+    private void checkIconSP() {
+        SharedPreferences changeIconSP = getSharedPreferences("changeIcon",MODE_PRIVATE);
+        String iconLabel = changeIconSP.getString("iconLabel","default");
+
+        if(iconLabel.equals("default")){
+            setDefaultIcon();
+        }else{
+            setRoundIcon();
+        }
+    }
+
+
+    private void setRoundIcon() {
+        PackageManager packageManager = getPackageManager();
+        packageManager.setComponentEnabledSetting(new ComponentName(this,
+                        getPackageName() + ".MainSplashActivity"),
+                PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                PackageManager.DONT_KILL_APP);
+        packageManager.setComponentEnabledSetting(new ComponentName(this,
+                        getPackageName()+".SecondIconActivity"),
+                PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                PackageManager.DONT_KILL_APP);
+    }
+
+    private void setDefaultIcon(){
+        PackageManager packageManager = getPackageManager();
+        packageManager.setComponentEnabledSetting(new ComponentName(this, getPackageName()+".MainSplashActivity"),
+                PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                packageManager.DONT_KILL_APP);
+        packageManager.setComponentEnabledSetting(new ComponentName(this,getPackageName()+".SecondIconActivity"),
+                PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                PackageManager.DONT_KILL_APP);
+    }
+
 }

@@ -29,6 +29,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity-alias
+            android:name="SecondIconActivity"
+            android:enabled="false"
+            android:icon="@mipmap/home_product_ad"
+            android:targetActivity=".MainSplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity-alias>
+
         <activity android:name=".MainActivity" />
         <activity android:name=".activity.OkHttpActivity" />
         <activity android:name=".activity.CalendarActivity" />
@@ -43,6 +55,7 @@
         <activity
             android:name=".activity.ReportActivity"
             android:process=":webview" />
+        <activity android:name=".activity.ChangeIconActivity"/>
     </application>
 
 </manifest>
