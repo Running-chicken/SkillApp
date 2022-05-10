@@ -163,7 +163,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        checkIconSP();
+//        checkIconSP();
     }
 
     private void checkIconSP() {
