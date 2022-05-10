@@ -1,13 +1,18 @@
 package com.cc.skillapp.activity;
 
 import android.os.Bundle;
-import android.util.Log;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
-import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import com.cc.skillapp.R;
+import com.cc.skillapp.databinding.ActivityOkHttpBinding;
+import com.cc.skillapp.utils.SSLFactory;
+import com.cc.skillapp.utils.TokenInterceptor;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -25,22 +30,25 @@ import okhttp3.Response;
 
 public class OkHttpActivity extends AppCompatActivity {
 
-    private TextView tv_test_get;
-    private TextView tv_test_get_async;
-    private TextView tv_test_post_async;
-    private TextView tv_test_post_json;
+    ActivityOkHttpBinding mBinding;
+
+    Handler mHandler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(@NonNull Message message) {
+            if(message.what==1) mBinding.tvOkhttpResult.setText((String) message.obj);
+            return false;
+        }
+    });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ok_http);
-
-        initView();
+        mBinding = DataBindingUtil.setContentView(this,R.layout.activity_ok_http);
         registerListener();
     }
 
     private void registerListener() {
-        tv_test_get.setOnClickListener(new View.OnClickListener() {
+        mBinding.tvTestGet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new Thread(new Runnable() {
@@ -52,9 +60,15 @@ public class OkHttpActivity extends AppCompatActivity {
                         try {
                             response = okHttpClient.newCall(request).execute();
                             if(response.isSuccessful()){
-                                Log.i("cc","code："+response.code());
-                                Log.i("cc","message："+response.message());
-                                Log.i("cc","body："+response.body().string());
+                                StringBuilder stringBuilder = new StringBuilder();
+                                stringBuilder.append("code:")
+                                        .append(response.code())
+                                        .append(" body:")
+                                        .append(response.body());
+                                Message message = new Message();
+                                message.obj = stringBuilder.toString();
+                                message.what = 1;
+                                mHandler.sendMessage(message);
                             }
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -64,7 +78,7 @@ public class OkHttpActivity extends AppCompatActivity {
             }
         });
 
-        tv_test_get_async.setOnClickListener(new View.OnClickListener() {
+        mBinding.tvTestGetAsync.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 OkHttpClient okHttpClient = new OkHttpClient();
@@ -78,9 +92,15 @@ public class OkHttpActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
                         if(response.isSuccessful()){
-                            Log.i("cc","code："+response.code());
-                            Log.i("cc","请求数据成功:"+response.message());
-                            Log.i("cc","body："+response.body().string());
+                            StringBuilder stringBuilder = new StringBuilder();
+                            stringBuilder.append("code:")
+                                    .append(response.code())
+                                    .append(" body:")
+                                    .append(response.body());
+                            Message message = new Message();
+                            message.obj = stringBuilder.toString();
+                            message.what = 1;
+                            mHandler.sendMessage(message);
                         }
                     }
                 });
@@ -88,7 +108,7 @@ public class OkHttpActivity extends AppCompatActivity {
         });
 
 
-        tv_test_post_async.setOnClickListener(new View.OnClickListener() {
+        mBinding.tvTestPostAsync.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 OkHttpClient okHttpClient = new OkHttpClient();
@@ -115,24 +135,44 @@ public class OkHttpActivity extends AppCompatActivity {
 
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
-                        Log.i("cc","code："+response.code());
-                        Log.i("cc","message:"+response.message());
-                        Log.i("cc","body："+response.body().string());
+                        StringBuilder stringBuilder = new StringBuilder();
+                        stringBuilder.append("code:")
+                                .append(response.code())
+                                .append(" body:")
+                                .append(response.body());
+                        Message message = new Message();
+                        message.obj = stringBuilder.toString();
+                        message.what = 1;
+                        mHandler.sendMessage(message);
                     }
                 });
             }
         });
 
-        tv_test_post_json.setOnClickListener(new View.OnClickListener() {
+        mBinding.tvTestPostJson.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                OkHttpClient okHttpClient = new OkHttpClient();
+
+                OkHttpClient.Builder builder = new OkHttpClient.Builder();
+                //配置拦截机
+                builder.addInterceptor(new TokenInterceptor());
+                // 配置ssl
+                SSLFactory.SSLParams sslParams = SSLFactory.getSslSocketFactory();
+                builder.sslSocketFactory(sslParams.sSLSocketFactory, sslParams.trustManager);
+
+                //初始化okhttp
+                OkHttpClient okHttpClient = builder.build();
+
+
                 MediaType JSON = MediaType.parse("application/json; charset=utf-8");
                 Map<String,String> map = new HashMap<>();
-                map.put("username","lisi");
-                map.put("nickname","李四");
-                String jsonStr = new Gson().toJson(map);                RequestBody requestBody = RequestBody.create(JSON,jsonStr);
-                Request request= new Request.Builder().url("http://www.baidu.com").post(requestBody).build();
+                map.put("platform","1");
+                map.put("parentId","0");
+                String jsonStr = new Gson().toJson(map);
+                RequestBody requestBody = RequestBody.create(JSON,jsonStr);
+                Request request= new Request.Builder()
+                        .url("https://api-beta.yjzf.com/yjyz.web.api/v1/menuIcon")
+                        .post(requestBody).build();
                 okHttpClient.newCall(request).enqueue(new Callback() {
                     @Override
                     public void onFailure(Call call, IOException e) {
@@ -141,9 +181,15 @@ public class OkHttpActivity extends AppCompatActivity {
 
                     @Override
                     public void onResponse(Call call, Response response) throws IOException {
-                        Log.i("cc","code："+response.code());
-                        Log.i("cc","message:"+response.message());
-                        Log.i("cc","body："+response.body().string());
+                        StringBuilder stringBuilder = new StringBuilder();
+                        stringBuilder.append("code:")
+                                .append(response.code())
+                                .append(" body:")
+                                .append(response.body());
+                        Message message = new Message();
+                        message.obj = stringBuilder.toString();
+                        message.what = 1;
+                        mHandler.sendMessage(message);
                     }
                 });
 
@@ -151,10 +197,4 @@ public class OkHttpActivity extends AppCompatActivity {
         });
     }
 
-    private void initView() {
-        tv_test_get = findViewById(R.id.tv_test_get);
-        tv_test_get_async = findViewById(R.id.tv_test_get_async);
-        tv_test_post_async = findViewById(R.id.tv_test_post_async);
-        tv_test_post_json = findViewById(R.id.tv_test_post_json);
-    }
 }

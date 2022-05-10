@@ -41,9 +41,8 @@ public class LoadLocalWebActivity extends AppCompatActivity {
 
     private void initData() {
 
-
-        url = "http://test.d.3fang.com/ndb/static";
-
+        url = "http://www.baidu.com";
+//        url = "http://test.d.3fang.com/ndb/static";
 //        url = "http://test.d.3fang.com/ndb/sharereport?token=b324801e509aa9b386a7c707b5c9c02f6710789cf1f9c5b879a606e01f531da2450f8b4f17de810eb1f5f9ad63f83ec84ebd4a4e83c02f01609fd4f317db1a3aaba527661cf5f17b48e1705254b0fb4f050fb7948c1632404262998152feed2998d8463fae96b9e5030fc55326e51f7d88c8469d2c9649c97acb09e3de5059d33b6af66a186ec6eea3c5939bd6887a75f19a44eb2612b557f33b871b1e1d0c99b6ea318768bed78b90b675b64ab8693a1a5c1b20b54308d087c224dffc107dd2e075b217ad63a24c8d71e8105c14037f";
     }
 
@@ -81,14 +80,14 @@ public class LoadLocalWebActivity extends AppCompatActivity {
                 // 步骤1:判断拦截资源的条件，即判断url里的图片资源的文件名
                 String path = request.getUrl().toString();
 
-
-
+                //步骤2：拦截符合本地配置的资源 加载本地资源
                 if(path.contains("app-static")){
                     int index = path.indexOf("app-static/");
                     String fileName = path.substring(index+11);
                     String localPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/soufun/res/app-static/"+fileName;
 
 
+                    //步骤3：根据类型适配
                     String mimeType = "";
                     if(fileName.contains("js")){
                         mimeType = "application/x-javascript";

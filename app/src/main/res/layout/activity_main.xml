@@ -1,163 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="20dp"
-    tools:context="com.cc.skillapp.MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/tv_first_function"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="First Funciton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-    <TextView
-        android:id="@+id/tv_second_funciton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Second Function"
-        app:layout_constraintLeft_toLeftOf="@+id/tv_first_function"
-        app:layout_constraintTop_toBottomOf="@+id/tv_first_function" />
+    </data>
 
-    <TextView
-        android:id="@+id/tv_calendar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="日历"
-        app:layout_constraintLeft_toLeftOf="@+id/tv_second_funciton"
-        app:layout_constraintTop_toBottomOf="@+id/tv_second_funciton" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp"
+        tools:context="com.cc.skillapp.MainActivity">
 
-    <TextView
-        android:id="@+id/tv_wv_local"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="加载本地"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="@+id/tv_calendar"
-        app:layout_constraintTop_toBottomOf="@+id/tv_calendar" />
-
-    <TextView
-        android:id="@+id/tv_webview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="加载cdn"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="@+id/tv_wv_local"
-        app:layout_constraintTop_toBottomOf="@+id/tv_wv_local" />
-
-    <TextView
-        android:id="@+id/tv_recyclerview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="recyclerview"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="@+id/tv_webview"
-        app:layout_constraintTop_toBottomOf="@+id/tv_webview" />
-
-    <TextView
-        android:id="@+id/tv_swiperefreshlayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="swiperefreshlayout"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="@+id/tv_recyclerview"
-        app:layout_constraintTop_toBottomOf="@+id/tv_recyclerview" />
-
-    <TextView
-        android:id="@+id/tv_image_diejia"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="image_diejia"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="@+id/tv_swiperefreshlayout"
-        app:layout_constraintTop_toBottomOf="@+id/tv_swiperefreshlayout" />
-
-    <TextView
-        android:id="@+id/tv_viewpager"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="@+id/tv_image_diejia"
-        app:layout_constraintTop_toBottomOf="@+id/tv_image_diejia"
-        android:text="viewpager"
-        android:textSize="20sp"
-        android:layout_marginTop="20dp"/>
-
-    <TextView
-        android:id="@+id/tv_rv_xf"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="@+id/tv_viewpager"
-        app:layout_constraintTop_toBottomOf="@+id/tv_viewpager"
-        android:text="xuanfu"
-        android:textSize="20sp"
-        android:layout_marginTop="20dp"/>
-
-    <TextView
-        android:id="@+id/tv_custom_control"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="@+id/tv_rv_xf"
-        app:layout_constraintTop_toBottomOf="@+id/tv_rv_xf"
-        android:text="Custom Control"
-        android:textSize="20sp"
-        android:layout_marginTop="20dp"/>
-
-    <TextView
-        android:id="@+id/tv_organizational"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="@+id/tv_custom_control"
-        app:layout_constraintTop_toBottomOf="@+id/tv_custom_control"
-        android:text="组织架构"
-        android:textSize="20sp"
-        android:layout_marginTop="20dp"/>
-    <TextView
-        android:id="@+id/tv_location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="@+id/tv_organizational"
-        app:layout_constraintTop_toBottomOf="@+id/tv_organizational"
-        android:text="定位"
-        android:textSize="20sp"
-        android:layout_marginTop="20dp"/>
-    <TextView
-        android:id="@+id/tv_video"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="@+id/tv_location"
-        app:layout_constraintTop_toBottomOf="@+id/tv_location"
-        android:text="视频"
-        android:textSize="20sp"
-        android:layout_marginTop="20dp"/>
-    <TextView
-        android:id="@+id/tv_all_app"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="@+id/tv_video"
-        app:layout_constraintTop_toBottomOf="@+id/tv_video"
-        android:text="全部应用"
-        android:textSize="20sp"
-        android:layout_marginTop="20dp"/>
+        <TextView
+            android:id="@+id/tv_ok_http"
+            style="@style/TextStyle"
+            android:text="okhttp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-    <TextView
-        android:id="@+id/tv_change_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="@+id/tv_all_app"
-        app:layout_constraintTop_toBottomOf="@+id/tv_all_app"
-        android:text="更换图标"
-        android:textSize="20sp"
-        android:layout_marginTop="20dp"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_calendar"
+            style="@style/TextStyle"
+            android:text="日历"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_ok_http" />
+
+        <TextView
+            android:id="@+id/tv_wv_local"
+            style="@style/TextStyle"
+            android:text="加载本地"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_calendar" />
+
+
+
+        <TextView
+            android:id="@+id/tv_recyclerview"
+            style="@style/TextStyle"
+            android:text="recyclerview"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_wv_local" />
+
+        <TextView
+            android:id="@+id/tv_swiperefreshlayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="swiperefreshlayout"
+            android:textSize="20sp"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_recyclerview"
+            app:layout_constraintTop_toBottomOf="@+id/tv_recyclerview" />
+
+        <TextView
+            android:id="@+id/tv_image_diejia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="image_diejia"
+            android:textSize="20sp"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_swiperefreshlayout"
+            app:layout_constraintTop_toBottomOf="@+id/tv_swiperefreshlayout" />
+
+        <TextView
+            android:id="@+id/tv_viewpager"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_image_diejia"
+            app:layout_constraintTop_toBottomOf="@+id/tv_image_diejia"
+            android:text="viewpager"
+            android:textSize="20sp"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            android:id="@+id/tv_rv_xf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_viewpager"
+            app:layout_constraintTop_toBottomOf="@+id/tv_viewpager"
+            android:text="xuanfu"
+            android:textSize="20sp"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            android:id="@+id/tv_custom_control"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_rv_xf"
+            app:layout_constraintTop_toBottomOf="@+id/tv_rv_xf"
+            android:text="Custom Control"
+            android:textSize="20sp"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            android:id="@+id/tv_organizational"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_custom_control"
+            app:layout_constraintTop_toBottomOf="@+id/tv_custom_control"
+            android:text="组织架构"
+            android:textSize="20sp"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            android:id="@+id/tv_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_organizational"
+            app:layout_constraintTop_toBottomOf="@+id/tv_organizational"
+            android:text="定位"
+            android:textSize="20sp"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            android:id="@+id/tv_video"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_location"
+            app:layout_constraintTop_toBottomOf="@+id/tv_location"
+            android:text="视频"
+            android:textSize="20sp"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            android:id="@+id/tv_all_app"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_video"
+            app:layout_constraintTop_toBottomOf="@+id/tv_video"
+            android:text="全部应用"
+            android:textSize="20sp"
+            android:layout_marginTop="20dp" />
+
+
+        <TextView
+            android:id="@+id/tv_change_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_all_app"
+            app:layout_constraintTop_toBottomOf="@+id/tv_all_app"
+            android:text="更换图标"
+            android:textSize="20sp"
+            android:layout_marginTop="20dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
