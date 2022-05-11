@@ -3,7 +3,6 @@ package com.cc.skillapp.activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,25 +14,31 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cc.skillapp.BaseActivity;
 import com.cc.skillapp.R;
-import com.cc.skillapp.adapter.LiveAdapter;
-import com.cc.skillapp.entity.AllDataEntity;
-import com.cc.skillapp.entity.Query;
+import com.cc.skillapp.adapter.MenuIconAdapter;
+import com.cc.skillapp.entity.TestLisTEntity;
+import com.cc.skillapp.entity.TestLisTEntity.MenuIcon;
 import com.cc.skillapp.manager.FullyLinearLayoutManager;
-import com.cc.skillapp.manager.MyLinearLayoutManager;
 import com.cc.skillapp.utils.LoadMoreWrapper;
-import com.cc.skillapp.utils.XmlParserManager;
+import com.cc.skillapp.utils.SSLFactory;
+import com.cc.skillapp.utils.TokenInterceptor;
 import com.cc.skillapp.view.MaxHeightRecyclerView;
 import com.cc.skillapp.view.MyScrollView;
 import com.cc.skillapp.view.SpaceItemDecoratiion;
+import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class RvSuspensionActivity extends BaseActivity implements MyScrollView.OnScrollListener {
@@ -43,7 +48,7 @@ public class RvSuspensionActivity extends BaseActivity implements MyScrollView.O
     LinearLayout llExternal,llXf;
     TextView tvXf;
 
-    private List<AllDataEntity> mList;
+    private List<MenuIcon> mList;
     private LoadMoreWrapper loadMoreWrapper;
     /**页码*/
     private int pageIndex;
@@ -69,7 +74,7 @@ public class RvSuspensionActivity extends BaseActivity implements MyScrollView.O
 
         linearLayoutManager = new FullyLinearLayoutManager(mContext); //初始化瀑布流manager
         mList = new ArrayList<>();
-        LiveAdapter liveAdapter = new LiveAdapter(mList);
+        MenuIconAdapter liveAdapter = new MenuIconAdapter(mList);
         loadMoreWrapper = new LoadMoreWrapper(liveAdapter);
         mRv.addItemDecoration(new SpaceItemDecoratiion(50));
         mRv.setLayoutManager(linearLayoutManager);
@@ -243,11 +248,25 @@ public class RvSuspensionActivity extends BaseActivity implements MyScrollView.O
 
 
     private void getLiveData(){
-        //http://search2.fang.com//video/api/v1/videoxml?page=1&pagetype=live&vc=1dfe402f39489e084aa6633aea442f6f&city=北京
-        OkHttpClient okHttpClient = new OkHttpClient();
-        String url = "http://search2.fang.com//video/api/v1/videoxml?page="+pageIndex+"&pagetype=live&vc=1dfe402f39489e084aa6633aea442f6f&city=北京";
+        OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();
+        clientBuilder.addInterceptor(new TokenInterceptor());
+        SSLFactory.SSLParams sslParams = SSLFactory.getSslSocketFactory();
+        clientBuilder.sslSocketFactory(sslParams.sSLSocketFactory,sslParams.trustManager);
+
+        OkHttpClient okHttpClient = clientBuilder.build();
+
+
+        String url = "https://api-beta.yjzf.com/yjyz.web.api/v1/menuIcon";
+
+        Map<String,String> params = new HashMap<>();
+        params.put("platform","1");
+        params.put("parentId","0");
+
+        MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
+        RequestBody requestBody = RequestBody.create(mediaType,new Gson().toJson(params));
+
         final Request request = new Request.Builder()
-                .url(url)
+                .url(url).post(requestBody)
                 .build();
         okHttpClient.newCall(request).enqueue(new Callback() {
 
@@ -266,25 +285,32 @@ public class RvSuspensionActivity extends BaseActivity implements MyScrollView.O
             public void onResponse(Call call, Response response) throws IOException {
 
                 if(response.isSuccessful()){
-                    String xmlStr = response.body().string();
-                    Log.i("ccan","resultStr:"+xmlStr);
-                    Query<AllDataEntity> result = XmlParserManager.getQuery(xmlStr,AllDataEntity.class,"hit",AllDataEntity.class,"hits");
-                    AllDataEntity allDataEntity = (AllDataEntity) result.getBean();
-                    totalCount = Integer.parseInt(allDataEntity.total);
-                    mList.addAll(result.getList());
+                    String jsonStr = response.body().string();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            TestLisTEntity testLiSTEntity = null;
+                            try {
+                                testLiSTEntity = new Gson().fromJson(jsonStr, TestLisTEntity.class);
+                            } catch (JsonSyntaxException e) {
+                                e.printStackTrace();
+                            }
+                            if(testLiSTEntity!=null){
+                                mList.addAll(testLiSTEntity.data);
+                            }
+
+                            totalCount = mList.size();
+
+                            if(mList.size()>=totalCount){
+                                loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING_END);
+                            }else{
+                                loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING_COMPLETE);
+                            }
+                        }
+                    });
 
                 }
-
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if(mList.size()>=totalCount){
-                            loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING_END);
-                        }else{
-                            loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING_COMPLETE);
-                        }
-                    }
-                });
             }
         });
 

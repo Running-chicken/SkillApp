@@ -187,6 +187,8 @@ public class RecyclerViewActivity extends BaseActivity {
                             }
 
                             toRefreshLayout.refreshComplete();
+
+                            totalCount = mList.size();
                             if(mList.size()>=totalCount){
                                 loadMoreWrapper.setLoadState(loadMoreWrapper.LOADING_END);
                             }else{

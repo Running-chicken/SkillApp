@@ -45,104 +45,61 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_wv_local" />
 
         <TextView
-            android:id="@+id/tv_swiperefreshlayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="swiperefreshlayout"
-            android:textSize="20sp"
-            app:layout_constraintLeft_toLeftOf="@+id/tv_recyclerview"
+            android:id="@+id/tv_image_diejia"
+            style="@style/TextStyle"
+            android:text="image_diejia"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_recyclerview" />
 
         <TextView
-            android:id="@+id/tv_image_diejia"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="image_diejia"
-            android:textSize="20sp"
-            app:layout_constraintLeft_toLeftOf="@+id/tv_swiperefreshlayout"
-            app:layout_constraintTop_toBottomOf="@+id/tv_swiperefreshlayout" />
-
-        <TextView
             android:id="@+id/tv_viewpager"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="@+id/tv_image_diejia"
-            app:layout_constraintTop_toBottomOf="@+id/tv_image_diejia"
+            style="@style/TextStyle"
             android:text="viewpager"
-            android:textSize="20sp"
-            android:layout_marginTop="20dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_image_diejia"/>
 
         <TextView
             android:id="@+id/tv_rv_xf"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="@+id/tv_viewpager"
-            app:layout_constraintTop_toBottomOf="@+id/tv_viewpager"
-            android:text="xuanfu"
-            android:textSize="20sp"
-            android:layout_marginTop="20dp" />
+            style="@style/TextStyle"
+            android:text="suspend"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_viewpager"/>
 
-        <TextView
-            android:id="@+id/tv_custom_control"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="@+id/tv_rv_xf"
-            app:layout_constraintTop_toBottomOf="@+id/tv_rv_xf"
-            android:text="Custom Control"
-            android:textSize="20sp"
-            android:layout_marginTop="20dp" />
 
         <TextView
             android:id="@+id/tv_organizational"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="@+id/tv_custom_control"
-            app:layout_constraintTop_toBottomOf="@+id/tv_custom_control"
+            style="@style/TextStyle"
             android:text="组织架构"
-            android:textSize="20sp"
-            android:layout_marginTop="20dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_rv_xf"/>
 
         <TextView
             android:id="@+id/tv_location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="@+id/tv_organizational"
-            app:layout_constraintTop_toBottomOf="@+id/tv_organizational"
+            style="@style/TextStyle"
             android:text="定位"
-            android:textSize="20sp"
-            android:layout_marginTop="20dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_organizational"/>
 
         <TextView
             android:id="@+id/tv_video"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="@+id/tv_location"
-            app:layout_constraintTop_toBottomOf="@+id/tv_location"
-            android:text="视频"
-            android:textSize="20sp"
-            android:layout_marginTop="20dp" />
+            style="@style/TextStyle"
+            android:text="视频播放器"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_location"/>
 
         <TextView
             android:id="@+id/tv_all_app"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="@+id/tv_video"
-            app:layout_constraintTop_toBottomOf="@+id/tv_video"
-            android:text="全部应用"
-            android:textSize="20sp"
-            android:layout_marginTop="20dp" />
+            android:text="应用拖拽"
+            style="@style/TextStyle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_video"/>
 
 
         <TextView
             android:id="@+id/tv_change_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="@+id/tv_all_app"
-            app:layout_constraintTop_toBottomOf="@+id/tv_all_app"
+            style="@style/TextStyle"
             android:text="更换图标"
-            android:textSize="20sp"
-            android:layout_marginTop="20dp" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_all_app"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

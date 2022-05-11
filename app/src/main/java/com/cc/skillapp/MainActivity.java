@@ -6,22 +6,20 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Environment;
-import android.view.View;
 
 import androidx.databinding.DataBindingUtil;
 
 import com.cc.skillapp.activity.AllApplicationActivity;
 import com.cc.skillapp.activity.CalendarActivity;
 import com.cc.skillapp.activity.ChangeIconActivity;
-import com.cc.skillapp.activity.CustomControlActivity;
 import com.cc.skillapp.activity.ImageAvatarActivity;
 import com.cc.skillapp.activity.LoadLocalWebActivity;
 import com.cc.skillapp.activity.LocationActivity;
+import com.cc.skillapp.activity.MediaPlayerActivity;
 import com.cc.skillapp.activity.OkHttpActivity;
 import com.cc.skillapp.activity.OrganizationalStructureActivity;
 import com.cc.skillapp.activity.RecyclerViewActivity;
 import com.cc.skillapp.activity.RvSuspensionActivity;
-import com.cc.skillapp.activity.SwipeRefreshLayoutActivity;
 import com.cc.skillapp.activity.ViewPagerActivity;
 import com.cc.skillapp.databinding.ActivityMainBinding;
 
@@ -44,84 +42,32 @@ public class MainActivity extends BaseActivity {
     }
 
     private void registerListener() {
+        //okhttp
         mBinding.tvOkHttp.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, OkHttpActivity.class)));
+        //日历
         mBinding.tvCalendar.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, CalendarActivity.class)));
+        //webView加载本地资源
         mBinding.tvWvLocal.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, LoadLocalWebActivity.class)));
-
-        mBinding.tvRecyclerview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(mContext, RecyclerViewActivity.class));
-            }
-        });
-
-        mBinding.tvSwiperefreshlayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(mContext, SwipeRefreshLayoutActivity.class));
-            }
-        });
-
-        mBinding.tvImageDiejia.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(mContext, ImageAvatarActivity.class));
-            }
-        });
-
-        mBinding.tvViewpager.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(mContext, ViewPagerActivity.class));
-            }
-        });
-        mBinding.tvRvXf.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(mContext, RvSuspensionActivity.class));
-            }
-        });
-        mBinding.tvCustomControl.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(mContext, CustomControlActivity.class));
-            }
-        });
-
-        mBinding.tvOrganizational.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(mContext, OrganizationalStructureActivity.class));
-            }
-        });
+        //recyclerView下拉刷新
+        mBinding.tvRecyclerview.setOnClickListener(view -> startActivity(new Intent(mContext, RecyclerViewActivity.class)));
 
 
-        mBinding.tvLocation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(mContext, LocationActivity.class));
-            }
-        });
+        mBinding.tvImageDiejia.setOnClickListener(view -> startActivity(new Intent(mContext, ImageAvatarActivity.class)));
 
-        mBinding.tvVideo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(mContext, CustomControlActivity.class));
-            }
-        });
-        mBinding.tvAllApp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(mContext, AllApplicationActivity.class));
-            }
-        });
+        mBinding.tvViewpager.setOnClickListener(view -> startActivity(new Intent(mContext, ViewPagerActivity.class)));
+        mBinding.tvRvXf.setOnClickListener(view -> startActivity(new Intent(mContext, RvSuspensionActivity.class)));
 
-        mBinding.tvChangeIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(mContext, ChangeIconActivity.class));
-            }
-        });
+
+        mBinding.tvOrganizational.setOnClickListener(view -> startActivity(new Intent(mContext, OrganizationalStructureActivity.class)));
+
+
+        mBinding.tvLocation.setOnClickListener(view -> startActivity(new Intent(mContext, LocationActivity.class)));
+
+        mBinding.tvVideo.setOnClickListener(view -> startActivity(new Intent(mContext, MediaPlayerActivity.class)));
+
+        mBinding.tvAllApp.setOnClickListener(view -> startActivity(new Intent(mContext, AllApplicationActivity.class)));
+
+        mBinding.tvChangeIcon.setOnClickListener(view -> startActivity(new Intent(mContext, ChangeIconActivity.class)));
 
 
 

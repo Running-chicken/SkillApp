@@ -50,9 +50,12 @@ public class SDAvatarListLayout extends HorizontalScrollView {
         super(context, attrs, defStyleAttr);
         this.context = context;
         TypedArray ta = getResources().obtainAttributes(attrs, R.styleable.SDAvatarListLayout);
+
         imageMaxCount = ta.getInt(R.styleable.SDAvatarListLayout_image_max_count, imageMaxCount);
         imageSize = (int) ta.getDimension(R.styleable.SDAvatarListLayout_image_size, imageSize);
         imageOffset = ta.getFloat(R.styleable.SDAvatarListLayout_image_offset, imageOffset);
+
+
         imageOffset = imageOffset > 1 ? 1 : imageOffset;
         init();
         ta.recycle();
