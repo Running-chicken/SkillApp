@@ -84,44 +84,5 @@ public class MainActivity extends BaseActivity {
 
 
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-//        checkIconSP();
-    }
-
-    private void checkIconSP() {
-        SharedPreferences changeIconSP = getSharedPreferences("changeIcon",MODE_PRIVATE);
-        String iconLabel = changeIconSP.getString("iconLabel","default");
-
-        if(iconLabel.equals("default")){
-            setDefaultIcon();
-        }else{
-            setRoundIcon();
-        }
-    }
-
-
-    private void setRoundIcon() {
-        PackageManager packageManager = getPackageManager();
-        packageManager.setComponentEnabledSetting(new ComponentName(this,
-                        getPackageName() + ".MainSplashActivity"),
-                PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
-                PackageManager.DONT_KILL_APP);
-        packageManager.setComponentEnabledSetting(new ComponentName(this,
-                        getPackageName()+".SecondIconActivity"),
-                PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
-                PackageManager.DONT_KILL_APP);
-    }
-
-    private void setDefaultIcon(){
-        PackageManager packageManager = getPackageManager();
-        packageManager.setComponentEnabledSetting(new ComponentName(this, getPackageName()+".MainSplashActivity"),
-                PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
-                packageManager.DONT_KILL_APP);
-        packageManager.setComponentEnabledSetting(new ComponentName(this,getPackageName()+".SecondIconActivity"),
-                PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
-                PackageManager.DONT_KILL_APP);
-    }
 
 }

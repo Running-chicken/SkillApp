@@ -1,6 +1,8 @@
 package com.cc.skillapp.activity;
 
+import android.content.ComponentName;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -21,6 +23,7 @@ public class ChangeIconActivity extends BaseActivity {
         initView();
         registerListener();
     }
+
 
     private void registerListener() {
         tvDefault.setOnClickListener(new View.OnClickListener() {
@@ -55,5 +58,45 @@ public class ChangeIconActivity extends BaseActivity {
             editor.putString("iconLabel",newLabel);
             editor.apply();
         }
+    }
+
+    private void checkIconSP() {
+        SharedPreferences changeIconSP = getSharedPreferences("changeIcon",MODE_PRIVATE);
+        String iconLabel = changeIconSP.getString("iconLabel","default");
+
+        if(iconLabel.equals("default")){
+            setDefaultIcon();
+        }else{
+            setRoundIcon();
+        }
+    }
+
+
+    private void setRoundIcon() {
+        PackageManager packageManager = getPackageManager();
+        packageManager.setComponentEnabledSetting(new ComponentName(this,
+                        getPackageName() + ".MainSplashActivity"),
+                PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                PackageManager.DONT_KILL_APP);
+        packageManager.setComponentEnabledSetting(new ComponentName(this,
+                        getPackageName()+".SecondIconActivity"),
+                PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                PackageManager.DONT_KILL_APP);
+    }
+
+    private void setDefaultIcon(){
+        PackageManager packageManager = getPackageManager();
+        packageManager.setComponentEnabledSetting(new ComponentName(this, getPackageName()+".MainSplashActivity"),
+                PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                packageManager.DONT_KILL_APP);
+        packageManager.setComponentEnabledSetting(new ComponentName(this,getPackageName()+".SecondIconActivity"),
+                PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+                PackageManager.DONT_KILL_APP);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        checkIconSP();
     }
 }
