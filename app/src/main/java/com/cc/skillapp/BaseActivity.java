@@ -6,8 +6,10 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.cc.skillapp.utils.PermissionUtils;
+import com.cc.skillapp.utils.StatusBarUtils;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
@@ -25,6 +27,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         MyApplication.getSelf().push(this);
+        StatusBarUtils.setStatusBarTextColorDark(this);
     }
 
 

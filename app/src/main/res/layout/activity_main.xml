@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="20dp"
-        tools:context="com.cc.skillapp.MainActivity">
+        tools:context="com.cc.skillapp.MainActivity"
+        android:background="@color/white">
 
         <TextView
             android:id="@+id/tv_ok_http"

@@ -9,6 +9,7 @@ import android.os.Environment;
 
 import androidx.databinding.DataBindingUtil;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.cc.skillapp.activity.AllApplicationActivity;
 import com.cc.skillapp.activity.CalendarActivity;
@@ -28,6 +29,7 @@ import com.cc.skillapp.utils.RouterPath;
 
 import java.io.File;
 
+@Route(path = RouterPath.Main.MAIN_HOST)
 public class MainActivity extends BaseActivity {
 
 
