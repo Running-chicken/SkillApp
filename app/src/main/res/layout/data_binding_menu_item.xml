@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="model"
+            type="com.cc.skillapp.viewmodel.TestViewModel" />
+        <variable
+            name="data"
+            type="com.cc.skillapp.entity.TestLisTEntity.MenuIcon" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@{data.permiName}"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{data.permiIcon}"
+            android:textSize="15sp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_title" />
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{data.permiCode}"
+            app:layout_constraintTop_toBottomOf="@+id/tv_content"
+            app:layout_constraintLeft_toLeftOf="@+id/tv_content" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

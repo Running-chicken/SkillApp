@@ -3,6 +3,8 @@ package com.cc.skillapp;
 import android.app.Activity;
 import android.app.Application;
 
+import com.alibaba.android.arouter.launcher.ARouter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +18,7 @@ public class MyApplication extends Application {
         super.onCreate();
 
         mApp = (MyApplication) getApplicationContext();
+        ARouter.init(this);
     }
 
     public void push(Activity activity){
