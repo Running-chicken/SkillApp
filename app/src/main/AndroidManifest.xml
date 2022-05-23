@@ -18,9 +18,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.SlidingConflictActivity"
+            android:name=".activity.MainTestActivity"
             android:exported="false" />
-        <!-- 启动页 -->
+        <activity
+            android:name=".activity.TestLifeBActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".activity.TestLifeAActivity"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
+        <activity
+            android:name=".activity.SlidingConflictActivity"
+            android:exported="false" /> <!-- 启动页 -->
         <activity android:name=".MainSplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

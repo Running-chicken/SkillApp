@@ -4,15 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
-import com.alibaba.android.arouter.facade.annotation.Autowired;
-import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.cc.skillapp.R;
 import com.cc.skillapp.databinding.ActivityTestBinding;
 import com.cc.skillapp.entity.TestLisTEntity;
-import com.cc.skillapp.utils.RouterPath;
 import com.cc.skillapp.utils.SSLFactory;
 import com.cc.skillapp.utils.TokenInterceptor;
 import com.cc.skillapp.viewmodel.TestViewModel;
@@ -31,14 +29,12 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-@Route(path = RouterPath.Test.TEST_HOME)
+
 public class TestActivity extends AppCompatActivity {
 
     ActivityTestBinding mBinding;
     TestViewModel mViewModel;
 
-    @Autowired
-    String testParam;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +45,11 @@ public class TestActivity extends AppCompatActivity {
         mViewModel = new ViewModelProvider(this).get(TestViewModel.class);
         mBinding.setViewModel(mViewModel);
 
-        mBinding.tvParams.setText(testParam);
 
         initData();
+
+        mBinding.vMy.setOnClickListener(view -> startActivity(
+                new Intent(TestActivity.this, TestLifeAActivity.class).putExtra("param","singleTask")));
     }
 
     private void initData() {

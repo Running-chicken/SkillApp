@@ -79,7 +79,6 @@ public class MainActivity extends BaseActivity {
 
         mBinding.tvTest.setOnClickListener(v ->
                 ARouter.getInstance().build(RouterPath.Test.TEST_HOME)
-                        .withString("testParam","hello_skill")
                         .navigation()
         );
         mBinding.tvSlidingConflict.setOnClickListener(view ->

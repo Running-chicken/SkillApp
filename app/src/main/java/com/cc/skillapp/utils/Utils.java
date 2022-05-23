@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.os.Environment;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.cc.skillapp.MyApplication;
@@ -120,5 +121,13 @@ public class Utils {
             e.printStackTrace();
         }
         return fileContent;
+    }
+
+    public static void log(String log){
+        Log.i("skill_app:",log);
+    }
+
+    public static void log(Class tClass,String log){
+        Log.i("skill_app:",tClass.getSimpleName()+"---"+log);
     }
 }
