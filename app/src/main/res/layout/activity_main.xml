@@ -7,107 +7,119 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="20dp"
-        tools:context="com.cc.skillapp.MainActivity"
-        android:background="@color/white">
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="20dp"
+            tools:context="com.cc.skillapp.MainActivity"
+            android:background="@color/white">
 
-        <TextView
-            android:id="@+id/tv_ok_http"
-            style="@style/TextStyle"
-            android:text="okhttp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <TextView
-            android:id="@+id/tv_calendar"
-            style="@style/TextStyle"
-            android:text="日历"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_ok_http" />
-
-        <TextView
-            android:id="@+id/tv_wv_local"
-            style="@style/TextStyle"
-            android:text="加载本地"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_calendar" />
+            <TextView
+                android:id="@+id/tv_ok_http"
+                style="@style/TextStyle"
+                android:text="okhttp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
+            <TextView
+                android:id="@+id/tv_calendar"
+                style="@style/TextStyle"
+                android:text="日历"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_ok_http" />
 
-        <TextView
-            android:id="@+id/tv_recyclerview"
-            style="@style/TextStyle"
-            android:text="recyclerview"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_wv_local" />
-
-        <TextView
-            android:id="@+id/tv_image_diejia"
-            style="@style/TextStyle"
-            android:text="image_diejia"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_recyclerview" />
-
-        <TextView
-            android:id="@+id/tv_viewpager"
-            style="@style/TextStyle"
-            android:text="viewpager"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_image_diejia"/>
-
-        <TextView
-            android:id="@+id/tv_rv_xf"
-            style="@style/TextStyle"
-            android:text="suspend"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_viewpager"/>
+            <TextView
+                android:id="@+id/tv_wv_local"
+                style="@style/TextStyle"
+                android:text="加载本地"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_calendar" />
 
 
-        <TextView
-            android:id="@+id/tv_organizational"
-            style="@style/TextStyle"
-            android:text="组织架构"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_rv_xf"/>
 
-        <TextView
-            android:id="@+id/tv_location"
-            style="@style/TextStyle"
-            android:text="定位"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_organizational"/>
+            <TextView
+                android:id="@+id/tv_recyclerview"
+                style="@style/TextStyle"
+                android:text="recyclerview"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_wv_local" />
 
-        <TextView
-            android:id="@+id/tv_video"
-            style="@style/TextStyle"
-            android:text="视频播放器"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_location"/>
+            <TextView
+                android:id="@+id/tv_image_diejia"
+                style="@style/TextStyle"
+                android:text="image_diejia"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_recyclerview" />
 
-        <TextView
-            android:id="@+id/tv_all_app"
-            android:text="应用拖拽"
-            style="@style/TextStyle"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_video"/>
+            <TextView
+                android:id="@+id/tv_viewpager"
+                style="@style/TextStyle"
+                android:text="viewpager"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_image_diejia"/>
+
+            <TextView
+                android:id="@+id/tv_rv_xf"
+                style="@style/TextStyle"
+                android:text="suspend"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_viewpager"/>
 
 
-        <TextView
-            android:id="@+id/tv_change_icon"
-            style="@style/TextStyle"
-            android:text="更换图标"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_all_app"/>
+            <TextView
+                android:id="@+id/tv_organizational"
+                style="@style/TextStyle"
+                android:text="组织架构"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_rv_xf"/>
 
-        <TextView
-            android:id="@+id/tv_test"
-            style="@style/TextStyle"
-            android:text="test"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_change_icon"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/tv_location"
+                style="@style/TextStyle"
+                android:text="定位"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_organizational"/>
+
+            <TextView
+                android:id="@+id/tv_video"
+                style="@style/TextStyle"
+                android:text="视频播放器"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_location"/>
+
+            <TextView
+                android:id="@+id/tv_all_app"
+                android:text="应用拖拽"
+                style="@style/TextStyle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_video"/>
+
+
+            <TextView
+                android:id="@+id/tv_change_icon"
+                style="@style/TextStyle"
+                android:text="更换图标"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_all_app"/>
+
+            <TextView
+                android:id="@+id/tv_test"
+                style="@style/TextStyle"
+                android:text="test"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_change_icon"/>
+
+            <TextView
+                android:id="@+id/tv_sliding_conflict"
+                style="@style/TextStyle"
+                android:text="滑动冲突"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_test"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
 </layout>
