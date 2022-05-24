@@ -1,7 +1,6 @@
 package com.cc.skillapp.activity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,6 +36,10 @@ public class MainTestActivity extends AppCompatActivity {
 
         mBinding.tvService.setOnClickListener(view -> {
             startActivity(new Intent(this,ServiceActivity.class));
+        });
+
+        mBinding.tvBroadcast.setOnClickListener(view -> {
+            startActivity(new Intent(this, BroadCastActivity.class));
         });
 
     }

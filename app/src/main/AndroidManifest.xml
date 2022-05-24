@@ -17,9 +17,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".activity.BroadCastActivity"
+            android:exported="false" />
+
         <service
             android:name=".service.MyIntentService"
-            android:exported="false"></service>
+            android:exported="false" />
 
         <activity
             android:name=".activity.Service2Activity"
@@ -87,6 +91,14 @@
         <activity android:name=".activity.AllApplicationActivity" />
         <activity android:name=".activity.ChangeIconActivity" />
         <activity android:name=".activity.TestActivity" />
+
+        <receiver android:name=".receive.MyBroadReceive"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="this is my broadcast"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

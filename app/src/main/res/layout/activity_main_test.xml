@@ -27,5 +27,10 @@
             android:id="@+id/tv_service"
             style="@style/TextStyle"
             android:text="test service" />
+
+        <TextView
+            android:id="@+id/tv_broadcast"
+            style="@style/TextStyle"
+            android:text="test broadcast" />
     </LinearLayout>
 </layout>

@@ -10,15 +10,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".activity.Service2Activity"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/tv_stop_service"
-            style="@style/TextStyle"
-            android:text="stop service"/>
+        tools:context=".activity.BroadCastActivity">
+
         <TextView
             android:id="@+id/tv_send_broadcast"
-            style="@style/TextStyle"
-            android:text="send broadcast"/>
+            android:text="send_broadcast"
+            style="@style/TextStyle" />
     </LinearLayout>
 </layout>
