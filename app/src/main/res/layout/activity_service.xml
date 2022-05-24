@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.ServiceActivity"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_start_service"
+            style="@style/TextStyle"
+            android:text="startService"/>
+
+        <TextView
+            android:id="@+id/tv_close_service"
+            style="@style/TextStyle"
+            android:text="closeService"/>
+
+        <TextView
+            android:id="@+id/tv_bind_service"
+            style="@style/TextStyle"
+            android:text="bindService"/>
+
+        <TextView
+            android:id="@+id/tv_unbind_service"
+            style="@style/TextStyle"
+            android:text="unbindService"/>
+
+        <TextView
+            android:id="@+id/tv_intent_service"
+            style="@style/TextStyle"
+            android:text="intentService"/>
+
+        <TextView
+            android:id="@+id/tv_do_something"
+            style="@style/TextStyle"
+            android:text="doSomething"/>
+    </LinearLayout>
+</layout>

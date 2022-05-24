@@ -22,5 +22,10 @@
             android:id="@+id/tv_life_period"
             style="@style/TextStyle"
             android:text="test life period" />
+
+        <TextView
+            android:id="@+id/tv_service"
+            style="@style/TextStyle"
+            android:text="test service" />
     </LinearLayout>
 </layout>
