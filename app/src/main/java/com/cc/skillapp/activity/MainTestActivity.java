@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.cc.skillapp.R;
+import com.cc.skillapp.contentprovider.ContentProviderActivity;
 import com.cc.skillapp.databinding.ActivityMainTestBinding;
 import com.cc.skillapp.utils.RouterPath;
 
@@ -42,5 +43,8 @@ public class MainTestActivity extends AppCompatActivity {
             startActivity(new Intent(this, BroadCastActivity.class));
         });
 
+        mBinding.tvSqlite.setOnClickListener(view -> {
+            startActivity(new Intent(this, ContentProviderActivity.class));
+        });
     }
 }

@@ -10,32 +10,29 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".activity.MainTestActivity"
         android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_add"
+            style="@style/TextStyle"
+            android:text="新增"/>
+        <TextView
+            android:id="@+id/tv_delete"
+            style="@style/TextStyle"
+            android:text="删除"/>
 
         <TextView
-            android:id="@+id/tv_item_binding"
+            android:id="@+id/tv_update"
             style="@style/TextStyle"
-            android:text="test itemBinding" />
+            android:text="修改"/>
 
         <TextView
-            android:id="@+id/tv_life_period"
+            android:id="@+id/tv_query"
             style="@style/TextStyle"
-            android:text="test life period" />
+            android:text="查单条"/>
 
         <TextView
-            android:id="@+id/tv_service"
+            android:id="@+id/tv_query_all"
             style="@style/TextStyle"
-            android:text="test service" />
-
-        <TextView
-            android:id="@+id/tv_broadcast"
-            style="@style/TextStyle"
-            android:text="test broadcast" />
-        <TextView
-            android:id="@+id/tv_sqlite"
-            style="@style/TextStyle"
-            android:text="test sqlite" />
-
+            android:text="查询全部"/>
     </LinearLayout>
 </layout>

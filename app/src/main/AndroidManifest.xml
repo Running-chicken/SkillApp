@@ -18,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".contentprovider.ContentProviderActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.BroadCastActivity"
             android:exported="false" />
 
@@ -92,11 +95,12 @@
         <activity android:name=".activity.ChangeIconActivity" />
         <activity android:name=".activity.TestActivity" />
 
-        <receiver android:name=".receive.MyBroadReceive"
-            android:exported="true"
-            android:enabled="true">
+        <receiver
+            android:name=".receive.MyBroadReceive"
+            android:enabled="true"
+            android:exported="true">
             <intent-filter>
-                <action android:name="this is my broadcast"/>
+                <action android:name="this is my broadcast" />
             </intent-filter>
         </receiver>
     </application>
