@@ -24,8 +24,8 @@ public class UserDao {
         }
     }
 
-    public boolean delete(User user){
-        int deleteResult = database.delete("user","user_id=?",new String[]{user.getUserid()+""});
+    public boolean delete(int userid){
+        int deleteResult = database.delete("user","user_id=?",new String[]{userid+""});
         if(deleteResult==0){
             return false;
         }else{
@@ -43,8 +43,8 @@ public class UserDao {
 
 
 
-    public void query(String name){
-        Cursor cursor = database.query("user",null,"name=?",new String[]{name},null,null,null);
+    public void query(int userid){
+        Cursor cursor = database.query("user",null,"user_id=?",new String[]{userid+""},null,null,null);
         while (cursor.moveToNext()){
             Utils.log(getClass(),"查询到："+cursor.getString(1));
         }

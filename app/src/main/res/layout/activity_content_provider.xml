@@ -12,6 +12,10 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <TextView
+            android:id="@+id/tv_init"
+            style="@style/TextStyle"
+            android:text="初始化数据"/>
+        <TextView
             android:id="@+id/tv_add"
             style="@style/TextStyle"
             android:text="新增"/>

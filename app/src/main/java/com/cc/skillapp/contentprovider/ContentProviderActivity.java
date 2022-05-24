@@ -5,6 +5,7 @@ import androidx.databinding.DataBindingUtil;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.cc.skillapp.R;
 import com.cc.skillapp.databinding.ActivityContentProviderBinding;
@@ -24,7 +25,7 @@ public class ContentProviderActivity extends AppCompatActivity {
 
 
 
-        mBinding.tvAdd.setOnClickListener(view -> {
+        mBinding.tvInit.setOnClickListener(view -> {
             initData();
         });
 
@@ -32,7 +33,27 @@ public class ContentProviderActivity extends AppCompatActivity {
             userDao.queryAll();
         });
 
+        mBinding.tvDelete.setOnClickListener(view -> {
+            boolean result = userDao.delete(1);
+            Toast.makeText(this,result?"成功":"失败",Toast.LENGTH_LONG).show();
+        });
 
+        mBinding.tvUpdate.setOnClickListener(view -> {
+            User user = new User();
+            user.setUserid(2);
+            user.setName("cuican");
+            user.setAge(29);
+            boolean result = userDao.update(user);
+            Toast.makeText(this,result?"成功":"失败",Toast.LENGTH_LONG).show();
+        });
+
+        mBinding.tvAdd.setOnClickListener(view -> {
+            User user = new User();
+            user.setName("zhenzhen");
+            user.setAge(25);
+            boolean result = userDao.insert(user);
+            Toast.makeText(this,result?"成功":"失败",Toast.LENGTH_LONG).show();
+        });
 
     }
 
