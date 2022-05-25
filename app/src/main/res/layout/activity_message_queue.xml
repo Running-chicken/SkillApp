@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".test.MessageQueueActivity"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_send_normal_msg"
+            style="@style/TextStyle"
+            android:text="发送同步消息"/>
+
+        <TextView
+            android:id="@+id/tv_send_sync_msg"
+            style="@style/TextStyle"
+            android:text="发送异步消息"/>
+
+        <TextView
+            android:id="@+id/tv_send_sync_barrier"
+            style="@style/TextStyle"
+            android:text="发送同步屏障消息"/>
+
+        <TextView
+            android:id="@+id/tv_remove_sync_barrier"
+            style="@style/TextStyle"
+            android:text="移除同步屏障消息"/>
+
+        <TextView
+            android:id="@+id/tv_show_queue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="16sp"
+            android:padding="10dp"
+            android:text="展示"/>
+    </LinearLayout>
+</layout>

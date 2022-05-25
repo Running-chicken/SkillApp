@@ -10,37 +10,31 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".activity.MainTestActivity"
+        tools:context=".test.HandlerActivity"
         android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/tv_item_binding"
-            style="@style/TextStyle"
-            android:text="test itemBinding" />
-
-        <TextView
-            android:id="@+id/tv_life_period"
-            style="@style/TextStyle"
-            android:text="test life period" />
-
-        <TextView
-            android:id="@+id/tv_service"
-            style="@style/TextStyle"
-            android:text="test service" />
-
-        <TextView
-            android:id="@+id/tv_broadcast"
-            style="@style/TextStyle"
-            android:text="test broadcast" />
-        <TextView
-            android:id="@+id/tv_sqlite"
-            style="@style/TextStyle"
-            android:text="test sqlite" />
-
         <TextView
             android:id="@+id/tv_handler"
             style="@style/TextStyle"
-            android:text="test handler" />
+            android:text="handler"/>
 
+        <TextView
+            android:id="@+id/tv_son_thread"
+            style="@style/TextStyle"
+            android:text="son thread"/>
+
+        <TextView
+            android:id="@+id/tv_handler_thread"
+            style="@style/TextStyle"
+            android:text="handler thread"/>
+
+        <TextView
+            android:id="@+id/tv_sync_barrier"
+            style="@style/TextStyle"
+            android:text="sync Barrier"/>
+
+        <TextView
+            android:id="@+id/tv_ui_update"
+            style="@style/TextStyle"
+            android:text="ui_update"/>
     </LinearLayout>
 </layout>

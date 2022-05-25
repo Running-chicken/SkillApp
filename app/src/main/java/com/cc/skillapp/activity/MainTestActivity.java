@@ -10,6 +10,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.cc.skillapp.R;
 import com.cc.skillapp.contentprovider.ContentProviderActivity;
 import com.cc.skillapp.databinding.ActivityMainTestBinding;
+import com.cc.skillapp.test.HandlerActivity;
 import com.cc.skillapp.utils.RouterPath;
 
 @Route(path = RouterPath.Test.TEST_HOME)
@@ -45,6 +46,10 @@ public class MainTestActivity extends AppCompatActivity {
 
         mBinding.tvSqlite.setOnClickListener(view -> {
             startActivity(new Intent(this, ContentProviderActivity.class));
+        });
+
+        mBinding.tvHandler.setOnClickListener(view -> {
+            startActivity(new Intent(this, HandlerActivity.class));
         });
     }
 }

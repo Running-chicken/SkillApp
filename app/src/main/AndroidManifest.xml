@@ -18,6 +18,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".test.MessageQueueActivity"
+            android:exported="false" />
+        <activity
+            android:name=".test.HandlerActivity"
+            android:exported="false" />
+        <activity
             android:name=".contentprovider.ContentProviderActivity"
             android:exported="false" />
         <activity
@@ -103,6 +109,12 @@
                 <action android:name="this is my broadcast" />
             </intent-filter>
         </receiver>
+
+        <provider
+            android:name=".contentprovider.MyContentProvider"
+            android:authorities="com.cc.myprovider"
+            android:exported="true"
+            android:multiprocess="true" />
     </application>
 
 </manifest>
