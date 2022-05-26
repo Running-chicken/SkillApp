@@ -22,6 +22,7 @@ import com.cc.skillapp.activity.OkHttpActivity;
 import com.cc.skillapp.activity.OrganizationalStructureActivity;
 import com.cc.skillapp.activity.RecyclerViewActivity;
 import com.cc.skillapp.activity.RvSuspensionActivity;
+import com.cc.skillapp.activity.SlideMenuActivity;
 import com.cc.skillapp.activity.SlidingConflictActivity;
 import com.cc.skillapp.activity.TestActivity;
 import com.cc.skillapp.activity.ViewPagerActivity;
@@ -84,6 +85,10 @@ public class MainActivity extends BaseActivity {
         mBinding.tvSlidingConflict.setOnClickListener(view ->
                 startActivity(new Intent(mContext, SlidingConflictActivity.class))
         );
+
+        mBinding.tvSliding.setOnClickListener(view -> {
+            startActivity(new Intent(mContext, SlideMenuActivity.class));
+        });
 
     }
 
