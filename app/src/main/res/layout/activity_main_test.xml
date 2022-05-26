@@ -42,5 +42,20 @@
             style="@style/TextStyle"
             android:text="test handler" />
 
+        <TextView
+            android:id="@+id/tv_fragment"
+            style="@style/TextStyle"
+            android:text="test fragment" />
+
+        <TextView
+            android:id="@+id/tv_event"
+            style="@style/TextStyle"
+            android:text="test event" />
+
+        <TextView
+            android:id="@+id/tv_image"
+            style="@style/TextStyle"
+            android:text="test image" />
+
     </LinearLayout>
 </layout>

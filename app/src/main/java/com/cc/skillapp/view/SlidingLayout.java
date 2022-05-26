@@ -114,7 +114,7 @@ public class SlidingLayout extends LinearLayout implements View.OnTouchListener 
             case MotionEvent.ACTION_MOVE:
                 xMove = motionEvent.getRawX();
                 int distanceX = (int) (xMove-xDown);
-                if(Math.abs(distanceX)>100 && couldSlide()){
+                if(couldSlide()){
                     if(isLeftLayoutVisible){
                         leftLayoutParams.leftMargin = distanceX;
                     }else{
@@ -132,7 +132,7 @@ public class SlidingLayout extends LinearLayout implements View.OnTouchListener 
                 break;
             case MotionEvent.ACTION_UP:
                 xUp = motionEvent.getRawX();
-                if(Math.abs(xUp-xDown)>100 && couldSlide()){
+                if(couldSlide()){
                     if (wantToShowLeftLayout()) {
                         if (shouldScrollToLeftLayout()) {
                             scrollToLeftLayout();
@@ -156,12 +156,13 @@ public class SlidingLayout extends LinearLayout implements View.OnTouchListener 
 
     /**设置可滑动范围*/
     private boolean couldSlide(){
-        if((!isLeftLayoutVisible && xDown < 200) ||
-                (isLeftLayoutVisible && xDown>(screenWidth-200))){
-            return true;
-        }else{
-            return false;
-        }
+        //条件1 只能在两个边缘滑动
+        boolean conditionOne = (!isLeftLayoutVisible && xDown < leftLayoutPadding)
+                || (isLeftLayoutVisible && xDown>(screenWidth-leftLayoutPadding));
+        //条件2 水平距离>数值距离
+        boolean conditionTwo = Math.abs(xMove-xDown) > leftLayoutPadding;
+
+        return conditionOne && conditionTwo;
     }
 
 

@@ -18,6 +18,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".test.image.ImageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".test.event.EventActivity"
+            android:exported="false" />
+        <activity
+            android:name=".test.fragment.TestFragmentActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.SlideMenuActivity"
             android:exported="false" />
         <activity
