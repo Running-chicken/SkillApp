@@ -96,8 +96,14 @@ public class SlidingLayout extends LinearLayout implements View.OnTouchListener 
     }
 
 
-
-
+    /**
+     * 防止滑动冲突
+     * 1.判断滑动距离
+     * 2.设置可滑动范围
+     * @param view
+     * @param motionEvent
+     * @return
+     */
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         createVelocityTracker(motionEvent);
@@ -108,40 +114,56 @@ public class SlidingLayout extends LinearLayout implements View.OnTouchListener 
             case MotionEvent.ACTION_MOVE:
                 xMove = motionEvent.getRawX();
                 int distanceX = (int) (xMove-xDown);
-                if(isLeftLayoutVisible){
-                    leftLayoutParams.leftMargin = distanceX;
-                }else{
-                    leftLayoutParams.leftMargin = leftEdge+distanceX;
+                if(Math.abs(distanceX)>100 && couldSlide()){
+                    if(isLeftLayoutVisible){
+                        leftLayoutParams.leftMargin = distanceX;
+                    }else{
+                        leftLayoutParams.leftMargin = leftEdge+distanceX;
+                    }
+
+                    if(leftLayoutParams.leftMargin<leftEdge){
+                        leftLayoutParams.leftMargin = leftEdge;
+                    }else if(leftLayoutParams.leftMargin>rightEdge){
+                        leftLayoutParams.leftMargin = rightEdge;
+                    }
+                    leftLayout.setLayoutParams(leftLayoutParams);
                 }
 
-                if(leftLayoutParams.leftMargin<leftEdge){
-                    leftLayoutParams.leftMargin = leftEdge;
-                }else if(leftLayoutParams.leftMargin>rightEdge){
-                    leftLayoutParams.leftMargin = rightEdge;
-                }
-                leftLayout.setLayoutParams(leftLayoutParams);
                 break;
             case MotionEvent.ACTION_UP:
                 xUp = motionEvent.getRawX();
-                if (wantToShowLeftLayout()) {
-                    if (shouldScrollToLeftLayout()) {
-                        scrollToLeftLayout();
-                    } else {
-                        scrollToRightLayout();
+                if(Math.abs(xUp-xDown)>100 && couldSlide()){
+                    if (wantToShowLeftLayout()) {
+                        if (shouldScrollToLeftLayout()) {
+                            scrollToLeftLayout();
+                        } else {
+                            scrollToRightLayout();
+                        }
+                    } else if (wantToShowRightLayout()) {
+                        if (shouldScrollToContent()) {
+                            scrollToRightLayout();
+                        } else {
+                            scrollToLeftLayout();
+                        }
                     }
-                } else if (wantToShowRightLayout()) {
-                    if (shouldScrollToContent()) {
-                        scrollToRightLayout();
-                    } else {
-                        scrollToLeftLayout();
-                    }
+                    recycleVelocityTracker();
                 }
-                recycleVelocityTracker();
-
         }
 
         return isBindBasicLayout();
     }
+
+
+    /**设置可滑动范围*/
+    private boolean couldSlide(){
+        if((!isLeftLayoutVisible && xDown < 200) ||
+                (isLeftLayoutVisible && xDown>(screenWidth-200))){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 
     public boolean wantToShowRightLayout(){
         return xUp-xDown<0 && isLeftLayoutVisible;
@@ -160,6 +182,7 @@ public class SlidingLayout extends LinearLayout implements View.OnTouchListener 
                 || getScrollVelocity() > SNAP_VELOCITY;
     }
 
+    //基础布局就不能滚动 其他布局可以滚动
     private boolean isBindBasicLayout() {
         if (mBindView == null) {
             return false;

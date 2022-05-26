@@ -17,6 +17,10 @@ public class SlideMenuActivity extends AppCompatActivity {
             "Content Item 4", "Content Item 5", "Content Item 6", "Content Item 7",
             "Content Item 8", "Content Item 9", "Content Item 10", "Content Item 11",
             "Content Item 12", "Content Item 13", "Content Item 14", "Content Item 15",
+            "Content Item 16","Content Item 1", "Content Item 2", "Content Item 3",
+            "Content Item 4", "Content Item 5", "Content Item 6", "Content Item 7",
+            "Content Item 8", "Content Item 9", "Content Item 10", "Content Item 11",
+            "Content Item 12", "Content Item 13", "Content Item 14", "Content Item 15",
             "Content Item 16" };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +37,7 @@ public class SlideMenuActivity extends AppCompatActivity {
                 mBinding.slRoot.scrollToLeftLayout();
             }
         });
+
 
 
     }
