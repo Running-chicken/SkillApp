@@ -1,20 +1,19 @@
 package com.cc.skillapp.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 
+import androidx.databinding.DataBindingUtil;
+
 import com.cc.skillapp.BaseActivity;
 import com.cc.skillapp.R;
 import com.cc.skillapp.databinding.ActivityServiceBinding;
 import com.cc.skillapp.service.MyIntentService;
 import com.cc.skillapp.service.MyService;
-import com.cc.skillapp.utils.Utils;
+import com.cc.skillapp.service.MyService2;
 
 public class ServiceActivity extends BaseActivity {
 
@@ -53,6 +52,10 @@ public class ServiceActivity extends BaseActivity {
 
         mBinding.tvIntentService.setOnClickListener(view -> {
             startService(new Intent(this, MyIntentService.class).putExtra("params","wiiwafefeafefeaooji"));
+        });
+
+        mBinding.tvServiceNotify.setOnClickListener(view -> {
+            startService(new Intent(this, MyService2.class));
         });
 
 

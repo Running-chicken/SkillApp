@@ -91,6 +91,7 @@ public class MyService extends Service {
     public class MyBinder extends Binder{
 
         public MyService getService(){
+            Utils.log(getClass(),"my binder");
             return MyService.this;
         }
 
