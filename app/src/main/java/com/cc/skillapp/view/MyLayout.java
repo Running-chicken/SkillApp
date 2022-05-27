@@ -23,8 +23,32 @@ public class MyLayout extends LinearLayout {
         super.requestDisallowInterceptTouchEvent(disallowIntercept);
     }
 
+    int lastX=0;
+    int lastY=0;
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
+        //外部拦截法
+//        switch (ev.getAction()){
+//            case MotionEvent.ACTION_DOWN:
+//                lastX = (int) ev.getX();
+//                lastY = (int) ev.getY();
+//                break;
+//            case MotionEvent.ACTION_MOVE:
+//                int dx = (int) (ev.getX()-lastX);
+//                int dy= (int) (ev.getY()-lastY);
+//                if(Math.abs(dx)>Math.abs(dy)){
+//                    return true;
+//                }
+//                break;
+//        }
+//        return super.onInterceptTouchEvent(ev);
+
+
+        //内部拦截法
+        if(ev.getAction()==MotionEvent.ACTION_DOWN){
+            super.onInterceptTouchEvent(ev);
+            return false;
+        }
         return true;
     }
 }

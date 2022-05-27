@@ -57,5 +57,10 @@
             style="@style/TextStyle"
             android:text="test image" />
 
+        <TextView
+            android:id="@+id/tv_surface"
+            style="@style/TextStyle"
+            android:text="test surfaceView" />
+
     </LinearLayout>
 </layout>

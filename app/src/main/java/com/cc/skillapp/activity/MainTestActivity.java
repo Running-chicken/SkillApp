@@ -15,6 +15,7 @@ import com.cc.skillapp.test.HandlerActivity;
 import com.cc.skillapp.test.event.EventActivity;
 import com.cc.skillapp.test.fragment.TestFragmentActivity;
 import com.cc.skillapp.test.image.ImageActivity;
+import com.cc.skillapp.test.view.SurfaceActivity;
 import com.cc.skillapp.utils.RouterPath;
 
 @Route(path = RouterPath.Test.TEST_HOME)
@@ -64,6 +65,10 @@ public class MainTestActivity extends AppCompatActivity {
         });
         mBinding.tvImage.setOnClickListener(view -> {
             startActivity(new Intent(this, ImageActivity.class));
+        });
+
+        mBinding.tvSurface.setOnClickListener(view -> {
+            startActivity(new Intent(this, SurfaceActivity.class));
         });
     }
 }
