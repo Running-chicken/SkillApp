@@ -2,12 +2,12 @@ apply from:"../module.build.gradle"
 
 android {
 
-//    defaultConfig {
-//        if(isBuildModule.toBoolean()){
-//            applicationId "com.example.module_mine"
-//        }
-//        resourcePrefix "mine_"
-//    }
+    defaultConfig {
+        if(isBuildModule.toBoolean()){
+            applicationId "com.example.module_mine"
+        }
+        resourcePrefix "mine_"
+    }
 
 }
 
