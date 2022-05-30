@@ -1,4 +1,4 @@
-package com.cc.skillapp.utils;
+package com.example.library_base.util;
 
 public interface RouterPath {
 
@@ -10,6 +10,10 @@ public interface RouterPath {
         String TEST_HOME = "/skill/test";
 
 
+    }
+
+    interface Mine{
+        String MINE_HOUSE = "/mine/house";
     }
 
 

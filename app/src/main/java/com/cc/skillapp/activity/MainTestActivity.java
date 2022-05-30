@@ -9,14 +9,13 @@ import androidx.databinding.DataBindingUtil;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.cc.skillapp.R;
 import com.cc.skillapp.contentprovider.ContentProviderActivity;
-import com.cc.skillapp.databinding.ActivityEventBinding;
 import com.cc.skillapp.databinding.ActivityMainTestBinding;
 import com.cc.skillapp.test.HandlerActivity;
 import com.cc.skillapp.test.event.EventActivity;
 import com.cc.skillapp.test.fragment.TestFragmentActivity;
 import com.cc.skillapp.test.image.ImageActivity;
 import com.cc.skillapp.test.view.SurfaceActivity;
-import com.cc.skillapp.utils.RouterPath;
+import com.example.library_base.util.RouterPath;
 
 @Route(path = RouterPath.Test.TEST_HOME)
 public class MainTestActivity extends AppCompatActivity {

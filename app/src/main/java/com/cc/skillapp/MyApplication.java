@@ -18,7 +18,10 @@ public class MyApplication extends Application {
         super.onCreate();
 
         mApp = (MyApplication) getApplicationContext();
+        ARouter.openDebug();
+        ARouter.openLog();
         ARouter.init(this);
+
     }
 
     public void push(Activity activity){

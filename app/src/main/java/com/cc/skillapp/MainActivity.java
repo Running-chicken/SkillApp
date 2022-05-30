@@ -1,9 +1,6 @@
 package com.cc.skillapp;
 
-import android.content.ComponentName;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Environment;
 
@@ -24,10 +21,9 @@ import com.cc.skillapp.activity.RecyclerViewActivity;
 import com.cc.skillapp.activity.RvSuspensionActivity;
 import com.cc.skillapp.activity.SlideMenuActivity;
 import com.cc.skillapp.activity.SlidingConflictActivity;
-import com.cc.skillapp.activity.TestActivity;
 import com.cc.skillapp.activity.ViewPagerActivity;
 import com.cc.skillapp.databinding.ActivityMainBinding;
-import com.cc.skillapp.utils.RouterPath;
+import com.example.library_base.util.RouterPath;
 
 import java.io.File;
 
@@ -88,6 +84,10 @@ public class MainActivity extends BaseActivity {
 
         mBinding.tvSliding.setOnClickListener(view -> {
             startActivity(new Intent(mContext, SlideMenuActivity.class));
+        });
+
+        mBinding.tvMine.setOnClickListener(view -> {
+            ARouter.getInstance().build(RouterPath.Mine.MINE_HOUSE).navigation();
         });
 
     }

@@ -1,0 +1,20 @@
+apply from:"../module.build.gradle"
+
+android {
+
+//    defaultConfig {
+//        if(isBuildModule.toBoolean()){
+//            applicationId "com.example.module_mine"
+//        }
+//        resourcePrefix "mine_"
+//    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api project(':library_base')
+    // 组件中依赖阿里路由编译框架
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
+
+}

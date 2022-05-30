@@ -1,23 +1,18 @@
 package com.cc.skillapp;
 
-import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.style.EasyEditSpan;
 import android.view.View;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.cc.skillapp.utils.DangerousPermissions;
 import com.cc.skillapp.utils.PermissionUtils;
-import com.cc.skillapp.utils.RouterPath;
-import com.cc.skillapp.utils.StatusBarUtils;
+import com.example.library_base.util.RouterPath;
 
 public class MainSplashActivity extends BaseActivity {
 
