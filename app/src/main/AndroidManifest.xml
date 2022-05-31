@@ -19,6 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".test.binder.BinderActivity"
+            android:exported="false" />
+        <activity
             android:name=".test.view.SurfaceActivity"
             android:exported="false" />
 
@@ -64,6 +67,10 @@
             android:name=".service.MyService"
             android:enabled="true"
             android:exported="true" />
+
+        <service android:name=".test.binder.BinderService"
+            android:enabled="true"
+            android:exported="true"/>
 
         <activity
             android:name=".activity.ServiceActivity"

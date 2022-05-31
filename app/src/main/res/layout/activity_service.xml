@@ -46,5 +46,10 @@
             android:id="@+id/tv_service_notify"
             style="@style/TextStyle"
             android:text="service_notify"/>
+
+        <TextView
+            android:id="@+id/tv_service_binder"
+            style="@style/TextStyle"
+            android:text="service_BINDER"/>
     </LinearLayout>
 </layout>
