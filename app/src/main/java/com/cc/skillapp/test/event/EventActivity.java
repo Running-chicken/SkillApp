@@ -4,20 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import android.os.Bundle;
-import android.util.LruCache;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ListView;
-import android.widget.TextView;
 
-import com.bumptech.glide.load.resource.transcode.BitmapToGlideDrawableTranscoder;
 import com.cc.skillapp.R;
 import com.cc.skillapp.adapter.MyVPAdapter;
 import com.cc.skillapp.databinding.ActivityEventBinding;
 import com.cc.skillapp.test.view.TestListView;
-import com.cc.skillapp.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;

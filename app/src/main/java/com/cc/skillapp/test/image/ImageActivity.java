@@ -3,7 +3,6 @@ package com.cc.skillapp.test.image;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-import androidx.databinding.adapters.ImageViewBindingAdapter;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -15,7 +14,7 @@ import android.util.LruCache;
 
 import com.cc.skillapp.R;
 import com.cc.skillapp.databinding.ActivityImageBinding;
-import com.cc.skillapp.utils.Utils;
+import com.example.library_base.util.Utils;
 
 public class ImageActivity extends AppCompatActivity {
 

@@ -4,7 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.cc.skillapp.utils.Utils;
+import com.example.library_base.util.Utils;
 
 public class MyBroadReceive extends BroadcastReceiver {
     @Override

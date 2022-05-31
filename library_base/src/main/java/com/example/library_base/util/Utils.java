@@ -1,4 +1,4 @@
-package com.cc.skillapp.utils;
+package com.example.library_base.util;
 
 import android.app.Activity;
 import android.content.Context;
@@ -7,7 +7,6 @@ import android.os.Environment;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.cc.skillapp.MyApplication;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -20,8 +19,8 @@ import java.io.OutputStream;
 
 public class Utils {
 
-    public static int dip2px(float dpValue) {
-        final float scale = MyApplication.getSelf().getResources().getDisplayMetrics().density;
+    public static int dip2px(Context context,float dpValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
     }
 

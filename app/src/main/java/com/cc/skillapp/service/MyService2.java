@@ -9,7 +9,7 @@ import android.os.Build;
 import android.os.IBinder;
 
 import com.cc.skillapp.R;
-import com.cc.skillapp.utils.Utils;
+import com.example.library_base.util.Utils;
 
 public class MyService2 extends Service {
 

@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cc.skillapp.R;
 import com.cc.skillapp.entity.AllApplicationEntity;
-import com.cc.skillapp.utils.StringUtils;
-import com.cc.skillapp.utils.Utils;
+import com.example.library_base.util.StringUtils;
+import com.example.library_base.util.Utils;
 
 import java.util.List;
 

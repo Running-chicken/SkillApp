@@ -8,9 +8,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.cc.skillapp.R;
-import com.cc.skillapp.databinding.ActivityTest2Binding;
 import com.cc.skillapp.databinding.ActivityTestLife2Binding;
-import com.cc.skillapp.utils.Utils;
+import com.example.library_base.util.Utils;
 
 public class TestLifeBActivity extends AppCompatActivity {
 

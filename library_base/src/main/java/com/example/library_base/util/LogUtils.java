@@ -1,4 +1,4 @@
-package com.cc.skillapp.utils;
+package com.example.library_base.util;
 
 import android.util.Log;
 

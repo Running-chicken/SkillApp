@@ -2,17 +2,11 @@ package com.cc.skillapp.test.binder;
 
 import android.app.Service;
 import android.content.Intent;
-import android.content.ServiceConnection;
-import android.os.Binder;
 import android.os.IBinder;
-import android.os.IInterface;
-import android.os.Parcel;
-import android.os.RemoteException;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.cc.skillapp.utils.Utils;
+import com.example.library_base.util.Utils;
 
 public class BinderService extends Service {
 

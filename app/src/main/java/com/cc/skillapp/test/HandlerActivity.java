@@ -7,17 +7,12 @@ import androidx.databinding.DataBindingUtil;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.HandlerThread;
 import android.os.Looper;
 import android.os.Message;
-import android.os.MessageQueue;
 
-import com.bumptech.glide.GenericTranscodeRequest;
 import com.cc.skillapp.R;
 import com.cc.skillapp.databinding.ActivityHandlerBinding;
-import com.cc.skillapp.utils.Utils;
-
-import java.lang.reflect.Field;
+import com.example.library_base.util.Utils;
 
 public class HandlerActivity extends AppCompatActivity {
 

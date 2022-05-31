@@ -4,7 +4,7 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.SystemClock;
 
-import com.cc.skillapp.utils.Utils;
+import com.example.library_base.util.Utils;
 
 public class DownTask extends HandlerThread {
 

@@ -3,7 +3,6 @@ package com.cc.skillapp.test;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-import androidx.databinding.adapters.ImageViewBindingAdapter;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -13,7 +12,6 @@ import android.os.MessageQueue;
 
 import com.cc.skillapp.R;
 import com.cc.skillapp.databinding.ActivityMessageQueueBinding;
-import com.cc.skillapp.utils.Utils;
 
 import java.lang.reflect.Field;
 import java.util.Timer;

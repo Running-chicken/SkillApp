@@ -5,21 +5,12 @@ import android.content.DialogInterface;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.view.MotionEvent;
-import android.view.View;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
 import com.cc.skillapp.BaseActivity;
 import com.cc.skillapp.R;
-import com.cc.skillapp.adapter.ViewPagerAdapter;
-import com.cc.skillapp.utils.StringUtils;
-import com.cc.skillapp.view.InfiniteShufflingViewPager;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.library_base.util.StringUtils;
 
 import static android.net.ConnectivityManager.TYPE_WIFI;
 

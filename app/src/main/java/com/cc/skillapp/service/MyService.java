@@ -12,7 +12,7 @@ import androidx.core.app.NotificationCompat;
 
 import com.cc.skillapp.R;
 import com.cc.skillapp.activity.ServiceActivity;
-import com.cc.skillapp.utils.Utils;
+import com.example.library_base.util.Utils;
 
 public class MyService extends Service {
     MyBinder myBinder = new MyBinder();

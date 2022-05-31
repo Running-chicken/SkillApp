@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cc.skillapp.R;
 import com.cc.skillapp.entity.AllApplicationEntity;
-import com.cc.skillapp.utils.StringUtils;
-import com.cc.skillapp.utils.Utils;
+import com.example.library_base.util.StringUtils;
+import com.example.library_base.util.Utils;
 
 import java.util.List;
 
@@ -52,14 +52,14 @@ public class AllTitleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             }
             LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) ((Holder) holder).mLlAllTitle.getLayoutParams();
             if (position == 0){
-                layoutParams.leftMargin = Utils.dip2px(20);
+                layoutParams.leftMargin = Utils.dip2px(mContext,20);
             }else {
-                layoutParams.leftMargin = Utils.dip2px(30);
+                layoutParams.leftMargin = Utils.dip2px(mContext,30);
             }
             if (position == getItemCount() - 1){
-                layoutParams.rightMargin = Utils.dip2px(20);
+                layoutParams.rightMargin = Utils.dip2px(mContext,20);
             }else {
-                layoutParams.rightMargin = Utils.dip2px(0);
+                layoutParams.rightMargin = Utils.dip2px(mContext,0);
             }
             ((Holder) holder).mLlAllTitle.setLayoutParams(layoutParams);
             holder.itemView.setOnClickListener(new View.OnClickListener() {

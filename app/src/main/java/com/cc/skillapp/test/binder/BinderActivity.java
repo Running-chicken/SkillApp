@@ -8,13 +8,10 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.os.Parcel;
-import android.os.RemoteException;
 
 import com.cc.skillapp.R;
 import com.cc.skillapp.databinding.ActivityBinderBinding;
-import com.cc.skillapp.service.MyService;
-import com.cc.skillapp.utils.Utils;
+import com.example.library_base.util.Utils;
 
 public class BinderActivity extends AppCompatActivity {
 
