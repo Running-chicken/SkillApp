@@ -6,17 +6,19 @@ import android.os.IBinder;
 import android.os.RemoteException;
 
 
+import com.cc.skillapp.IAidlInterface;
 import com.cc.skillapp.utils.Utils;
 
 public class AidlService extends Service {
 
-    IMyAidlInterface.Stub stub = new IMyAidlInterface.Stub(){
+    IAidlInterface.Stub stub = new IAidlInterface.Stub(){
 
 
         @Override
-        public void helloActivity(String params) throws RemoteException {
-           Utils.log(getClass(),params);
+        public int add(int a, int b) throws RemoteException {
+            return a+b;
         }
+
     };
 
     @Override

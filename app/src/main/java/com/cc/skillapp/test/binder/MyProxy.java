@@ -44,6 +44,6 @@ public class MyProxy implements MyInterface{
 
     @Override
     public IBinder asBinder() {
-        return null;
+        return iBinder;
     }
 }

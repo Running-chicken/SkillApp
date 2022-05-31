@@ -17,7 +17,12 @@ import com.cc.skillapp.utils.Utils;
 public class BinderService extends Service {
 
 
-    MyBinder mStub = new MyBinder();
+    MyBinder mStub = new MyBinder() {
+        @Override
+        public int add(int arg0, int arg1) {
+            return arg0+arg1;
+        }
+    };
 
     @Nullable
     @Override

@@ -9,7 +9,7 @@ import android.os.RemoteException;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-public class MyBinder extends Binder implements MyInterface{
+public abstract class MyBinder extends Binder implements MyInterface{
 
     public static final String DESCRIPTOR = "com.cc.skill.addbinder";
     public static final int ADD = IBinder.FIRST_CALL_TRANSACTION;
@@ -50,8 +50,4 @@ public class MyBinder extends Binder implements MyInterface{
         return this;
     }
 
-    @Override
-    public int add(int arg0, int arg1) {
-        return arg0+arg1;
-    }
 }
