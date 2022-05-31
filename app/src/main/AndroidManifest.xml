@@ -144,6 +144,16 @@
             android:authorities="com.cc.myprovider"
             android:exported="true"
             android:multiprocess="true" />
+
+        <service android:name=".test.aidl.AidlService"
+            android:exported="true"
+            android:process=":remote"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.cc.skillapp.test.aidl.IMyAidlInterface"/>
+            </intent-filter>
+        </service>
+
     </application>
 
 </manifest>
