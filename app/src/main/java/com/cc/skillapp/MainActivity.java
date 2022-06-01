@@ -8,7 +8,7 @@ import androidx.databinding.DataBindingUtil;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.cc.module.test.TestModuleActivity;
+import com.cc.library.base.util.RouterPath;
 import com.cc.skillapp.activity.AllApplicationActivity;
 import com.cc.skillapp.activity.CalendarActivity;
 import com.cc.skillapp.activity.ChangeIconActivity;
@@ -24,7 +24,6 @@ import com.cc.skillapp.activity.SlideMenuActivity;
 import com.cc.skillapp.activity.SlidingConflictActivity;
 import com.cc.skillapp.activity.ViewPagerActivity;
 import com.cc.skillapp.databinding.ActivityMainBinding;
-import com.cc.library.base.util.RouterPath;
 
 import java.io.File;
 
@@ -76,7 +75,7 @@ public class MainActivity extends BaseActivity {
         mBinding.tvChangeIcon.setOnClickListener(view -> startActivity(new Intent(mContext, ChangeIconActivity.class)));
 
         mBinding.tvTest.setOnClickListener(v ->
-                ARouter.getInstance().build(RouterPath.Test.TEST_HOME)
+                ARouter.getInstance().build(RouterPath.Main.MAIN_TEST)
                         .navigation()
         );
         mBinding.tvSlidingConflict.setOnClickListener(view ->
@@ -92,7 +91,7 @@ public class MainActivity extends BaseActivity {
         });
 
         mBinding.tvTestModule.setOnClickListener(view -> {
-            startActivity(new Intent(this, TestModuleActivity.class));
+            ARouter.getInstance().build(RouterPath.Test.TEST_HOME).navigation();
         });
 
     }

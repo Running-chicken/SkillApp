@@ -7,8 +7,9 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.cc.library.base.entity.TestLisTEntity;
+import com.cc.library.base.entity.TestLisTEntity.*;
 import com.cc.skillapp.R;
-import com.cc.skillapp.entity.TestLisTEntity.MenuIcon;
 
 import java.util.List;
 

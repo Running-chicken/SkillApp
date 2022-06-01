@@ -49,6 +49,11 @@
         <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.24166666666666667" />
         <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/app/src/main/res/xml/network_security_config.xml" value="0.225" />
         <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/module_mine/src/main/res/layout/mine_activity_host.xml" value="0.1" />
+        <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/module_test/src/main/res/layout/activity_sqlite.xml" value="0.225" />
+        <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/module_test/src/main/res/layout/activity_test_module.xml" value="0.1" />
+        <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/module_test/src/main/res/layout/test_activity_module.xml" value="0.225" />
+        <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/module_test/src/main/res/layout/test_activity_rxjava.xml" value="0.225" />
+        <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/module_test/src/main/res/layout/test_activity_sqlite.xml" value="0.225" />
         <entry key="..\:/Users/can/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_list_item_1.xml" value="0.225" />
       </map>
     </option>

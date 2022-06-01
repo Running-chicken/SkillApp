@@ -8,7 +8,7 @@
             type="com.cc.skillapp.viewmodel.TestViewModel" />
         <variable
             name="data"
-            type="com.cc.skillapp.entity.TestLisTEntity.MenuIcon" />
+            type="com.cc.library.base.entity.TestLisTEntity.MenuIcon" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

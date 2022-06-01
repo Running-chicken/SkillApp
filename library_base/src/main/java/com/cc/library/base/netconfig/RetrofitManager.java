@@ -1,7 +1,6 @@
 package com.cc.library.base.netconfig;
 
-import com.cc.library.base.netconfig.converter.GsonConverterFactory;
-import com.cc.library.base.netconfig.converter.NoBodyConverterFactory;
+import com.example.library_base.BuildConfig;
 
 import java.net.Proxy;
 import java.util.concurrent.TimeUnit;
@@ -10,8 +9,10 @@ import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
 
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Retrofit封装类
@@ -48,7 +49,6 @@ public class RetrofitManager {
                 .client(getOkHttpClient(canProxy)) //配置okHttp
                 .baseUrl(host) //域名  https://api-beta.yjzf.com
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create()) //
-                .addConverterFactory(NoBodyConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -67,10 +67,17 @@ public class RetrofitManager {
                 .readTimeout(2,TimeUnit.MINUTES)
                 .writeTimeout(2,TimeUnit.MINUTES);
 
+
+        if(BuildConfig.DEBUG){
+            HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+            builder.addInterceptor(interceptor);
+        }
+
         //设置header
         builder.addInterceptor(new TokenInterceptor());
 
-        builder.proxy(Proxy.NO_PROXY);
+//        builder.proxy(Proxy.NO_PROXY);
 
         //配置ssl协议
         SSLFactory.SSLParams sslParams = SSLFactory.getSslSocketFactory();

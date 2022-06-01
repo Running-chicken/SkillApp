@@ -1,4 +1,4 @@
-package com.cc.skillapp.entity;
+package com.cc.library.base.entity;
 
 import java.util.List;
 

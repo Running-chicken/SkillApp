@@ -8,11 +8,11 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import com.cc.library.base.entity.TestLisTEntity;
+import com.cc.library.base.entity.TestLisTEntity.*;
 import com.cc.skillapp.BaseActivity;
 import com.cc.skillapp.R;
 import com.cc.skillapp.adapter.MenuIconAdapter;
-import com.cc.skillapp.entity.TestLisTEntity;
-import com.cc.skillapp.entity.TestLisTEntity.MenuIcon;
 import com.cc.skillapp.manager.MyStaggeredGridLayoutManager;
 import com.cc.skillapp.utils.LoadMoreWrapper;
 import com.cc.library.base.netconfig.SSLFactory;

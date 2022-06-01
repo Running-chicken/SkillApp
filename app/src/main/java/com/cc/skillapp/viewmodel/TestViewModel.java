@@ -6,10 +6,10 @@ import androidx.annotation.NonNull;
 import androidx.databinding.ObservableArrayList;
 import androidx.lifecycle.AndroidViewModel;
 
+import com.cc.library.base.entity.TestLisTEntity;
+import com.cc.library.base.entity.TestLisTEntity.MenuIcon;
 import com.cc.skillapp.BR;
 import com.cc.skillapp.R;
-import com.cc.skillapp.entity.TestLisTEntity;
-import com.cc.skillapp.entity.TestLisTEntity.*;
 
 import me.tatarka.bindingcollectionadapter2.ItemBinding;
 

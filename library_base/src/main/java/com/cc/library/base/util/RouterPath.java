@@ -4,6 +4,7 @@ public interface RouterPath {
 
     interface Main{
         String MAIN_HOST = "/main/host";
+        String MAIN_TEST = "/main/test";
     }
 
     interface Test{
@@ -15,6 +16,9 @@ public interface RouterPath {
     interface Mine{
         String MINE_HOUSE = "/mine/house";
     }
+
+
+
 
 
 

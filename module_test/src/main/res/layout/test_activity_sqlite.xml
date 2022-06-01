@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.SQLiteActivity"
+        android:orientation="vertical"
+        android:padding="20dp">
+        <EditText
+            android:id="@+id/et_input_name"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:hint="请输入姓名"
+            android:textSize="20sp"/>
+
+        <EditText
+            android:id="@+id/et_input_age"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:hint="请输入年龄"
+            android:textSize="20sp"/>
+
+        <EditText
+            android:id="@+id/et_input_id"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:hint="请输入id"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/tv_result"
+            style="@style/TextStyle"
+            android:text="结果是："/>
+
+        <TextView
+            android:id="@+id/tv_insert"
+            style="@style/TextStyle"
+            android:text="插入"/>
+
+        <TextView
+            android:id="@+id/tv_delete"
+            style="@style/TextStyle"
+            android:text="删除"/>
+
+        <TextView
+            android:id="@+id/tv_update"
+            style="@style/TextStyle"
+            android:text="修改"/>
+
+        <TextView
+            android:id="@+id/tv_query"
+            style="@style/TextStyle"
+            android:text="查询"/>
+    </LinearLayout>
+</layout>

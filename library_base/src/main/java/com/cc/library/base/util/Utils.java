@@ -129,4 +129,5 @@ public class Utils {
     public static void log(Class tClass,String log){
         Log.i("skill_app:",tClass.getSimpleName()+"---"+log);
     }
+
 }

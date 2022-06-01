@@ -12,11 +12,11 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.cc.library.base.entity.TestLisTEntity;
+import com.cc.library.base.entity.TestLisTEntity.MenuIcon;
 import com.cc.skillapp.BaseActivity;
 import com.cc.skillapp.R;
 import com.cc.skillapp.adapter.MenuIconAdapter;
-import com.cc.skillapp.entity.TestLisTEntity;
-import com.cc.skillapp.entity.TestLisTEntity.MenuIcon;
 import com.cc.skillapp.manager.FullyLinearLayoutManager;
 import com.cc.skillapp.utils.LoadMoreWrapper;
 import com.cc.library.base.netconfig.SSLFactory;

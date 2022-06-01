@@ -8,9 +8,9 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.cc.library.base.entity.TestLisTEntity;
 import com.cc.skillapp.R;
 import com.cc.skillapp.databinding.ActivityTestBinding;
-import com.cc.skillapp.entity.TestLisTEntity;
 import com.cc.library.base.netconfig.SSLFactory;
 import com.cc.library.base.netconfig.TokenInterceptor;
 import com.cc.skillapp.viewmodel.TestViewModel;

@@ -17,7 +17,7 @@ import com.cc.skillapp.test.image.ImageActivity;
 import com.cc.skillapp.test.view.SurfaceActivity;
 import com.cc.library.base.util.RouterPath;
 
-@Route(path = RouterPath.Test.TEST_HOME)
+@Route(path = RouterPath.Main.MAIN_TEST)
 public class MainTestActivity extends AppCompatActivity {
 
     @Override
