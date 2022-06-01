@@ -23,6 +23,10 @@ public class Person {
         return id;
     }
 
+    public String getIdShow(){
+        return id+"";
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -43,5 +47,8 @@ public class Person {
         this.age = age;
     }
 
+    public String getAgeShow(){
+        return age+"";
+    }
 
 }
