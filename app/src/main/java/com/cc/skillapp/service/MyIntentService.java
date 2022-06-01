@@ -3,7 +3,7 @@ package com.cc.skillapp.service;
 import android.app.IntentService;
 import android.content.Intent;
 
-import com.example.library_base.util.Utils;
+import com.cc.library.base.util.Utils;
 
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in

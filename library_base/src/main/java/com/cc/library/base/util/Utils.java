@@ -1,4 +1,4 @@
-package com.example.library_base.util;
+package com.cc.library.base.util;
 
 import android.app.Activity;
 import android.content.Context;

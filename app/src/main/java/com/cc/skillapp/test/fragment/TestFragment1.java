@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.cc.skillapp.R;
-import com.example.library_base.util.Utils;
+import com.cc.library.base.util.Utils;
 
 public class TestFragment1 extends Fragment {
 

@@ -23,7 +23,7 @@ import com.cc.skillapp.activity.SlideMenuActivity;
 import com.cc.skillapp.activity.SlidingConflictActivity;
 import com.cc.skillapp.activity.ViewPagerActivity;
 import com.cc.skillapp.databinding.ActivityMainBinding;
-import com.example.library_base.util.RouterPath;
+import com.cc.library.base.util.RouterPath;
 
 import java.io.File;
 

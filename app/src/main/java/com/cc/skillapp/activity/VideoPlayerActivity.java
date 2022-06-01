@@ -10,7 +10,7 @@ import android.widget.VideoView;
 
 import com.cc.skillapp.BaseActivity;
 import com.cc.skillapp.R;
-import com.example.library_base.util.StringUtils;
+import com.cc.library.base.util.StringUtils;
 
 import static android.net.ConnectivityManager.TYPE_WIFI;
 

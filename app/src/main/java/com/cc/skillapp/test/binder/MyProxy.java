@@ -7,7 +7,7 @@ import android.os.IBinder;
 import android.os.Parcel;
 import android.os.RemoteException;
 
-import com.example.library_base.util.Utils;
+import com.cc.library.base.util.Utils;
 
 public class MyProxy implements MyInterface{
     private IBinder iBinder;

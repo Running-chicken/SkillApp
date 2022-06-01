@@ -12,7 +12,7 @@ import androidx.core.app.ActivityCompat;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.cc.skillapp.utils.DangerousPermissions;
 import com.cc.skillapp.utils.PermissionUtils;
-import com.example.library_base.util.RouterPath;
+import com.cc.library.base.util.RouterPath;
 
 public class MainSplashActivity extends BaseActivity {
 

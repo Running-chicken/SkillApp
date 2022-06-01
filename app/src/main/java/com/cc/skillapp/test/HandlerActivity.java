@@ -12,7 +12,7 @@ import android.os.Message;
 
 import com.cc.skillapp.R;
 import com.cc.skillapp.databinding.ActivityHandlerBinding;
-import com.example.library_base.util.Utils;
+import com.cc.library.base.util.Utils;
 
 public class HandlerActivity extends AppCompatActivity {
 

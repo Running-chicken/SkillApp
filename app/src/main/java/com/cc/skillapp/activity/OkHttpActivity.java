@@ -11,8 +11,8 @@ import androidx.databinding.DataBindingUtil;
 
 import com.cc.skillapp.R;
 import com.cc.skillapp.databinding.ActivityOkHttpBinding;
-import com.cc.skillapp.utils.SSLFactory;
-import com.cc.skillapp.utils.TokenInterceptor;
+import com.cc.library.base.netconfig.SSLFactory;
+import com.cc.library.base.netconfig.TokenInterceptor;
 import com.google.gson.Gson;
 
 import java.io.IOException;

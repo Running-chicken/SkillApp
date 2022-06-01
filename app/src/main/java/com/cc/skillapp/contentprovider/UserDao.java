@@ -4,7 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.library_base.util.Utils;
+import com.cc.library.base.util.Utils;
 
 public class UserDao {
     private SQLiteDatabase database;

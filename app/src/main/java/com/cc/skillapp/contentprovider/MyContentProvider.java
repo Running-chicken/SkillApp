@@ -10,7 +10,7 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.library_base.util.Utils;
+import com.cc.library.base.util.Utils;
 
 public class MyContentProvider extends ContentProvider {
     OpenHelper openHelper;

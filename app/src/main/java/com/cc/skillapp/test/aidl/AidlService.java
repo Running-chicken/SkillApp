@@ -7,7 +7,7 @@ import android.os.RemoteException;
 
 
 import com.cc.skillapp.IAidlInterface;
-import com.example.library_base.util.Utils;
+import com.cc.library.base.util.Utils;
 
 public class AidlService extends Service {
 

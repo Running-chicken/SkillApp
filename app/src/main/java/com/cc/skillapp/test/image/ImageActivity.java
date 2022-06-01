@@ -14,7 +14,7 @@ import android.util.LruCache;
 
 import com.cc.skillapp.R;
 import com.cc.skillapp.databinding.ActivityImageBinding;
-import com.example.library_base.util.Utils;
+import com.cc.library.base.util.Utils;
 
 public class ImageActivity extends AppCompatActivity {
 

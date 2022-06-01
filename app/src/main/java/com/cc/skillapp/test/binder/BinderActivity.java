@@ -11,7 +11,7 @@ import android.os.IBinder;
 
 import com.cc.skillapp.R;
 import com.cc.skillapp.databinding.ActivityBinderBinding;
-import com.example.library_base.util.Utils;
+import com.cc.library.base.util.Utils;
 
 public class BinderActivity extends AppCompatActivity {
 

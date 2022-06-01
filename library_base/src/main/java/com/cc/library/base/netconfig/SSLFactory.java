@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.cc.skillapp.utils;
+package com.cc.library.base.netconfig;
 
 import java.io.IOException;
 import java.io.InputStream;

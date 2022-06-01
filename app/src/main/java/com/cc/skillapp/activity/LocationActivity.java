@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.cc.skillapp.BaseActivity;
 import com.cc.skillapp.R;
-import com.example.library_base.util.Utils;
+import com.cc.library.base.util.Utils;
 
 public class LocationActivity extends BaseActivity {
 

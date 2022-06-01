@@ -1,4 +1,4 @@
-package com.cc.skillapp.utils;
+package com.cc.library.base.netconfig;
 
 
 import java.io.IOException;
@@ -10,30 +10,16 @@ import okhttp3.Response;
 /**
  * token拦截器，用于请求时添加token请求头，以及保存token响应头
  *
- * @Author zrh
- * @Created 4/20/19
- * @Editor zrh
- * @Edited 5/11/19
- * @Type
- * @Layout
- * @Api
+ * @Author cc
  */
 public class TokenInterceptor implements Interceptor {
 
     private static final String HEADER_KEY = "authority"; // 可选城市接口中的cityDomain字段。
-
-    // 城市分公司
-//    private static final String ORGAN_ID = "X-Organ-Id"; // 品牌ID
-//    private static final String CITY_CODE = "X-City-Code"; // 城市ID
-    // https://wiki.yjzf.com/pages/viewpage.action?pageId=5737763
     private static final String USER_AGENT = "User-Agent"; // APP客户端
     private static final String X_USER_AGENT = "x-user-agent"; // 登录平台
     private static final String X_DEVICE_NAME = "x-device-name"; // 登录设备
     private static final String USER_TOKEN = "authorization"; // 客户端
-//    private static final String X_REQUEST_WITH = "X-Requested-With"; // AJAX请求
-    // HeaderKeysBean
 
-    @SuppressWarnings("NullableProblems")
     @Override
     public Response intercept(Chain chain) throws IOException {
 
@@ -41,7 +27,6 @@ public class TokenInterceptor implements Interceptor {
         Request.Builder requestBuilder = request.newBuilder();
 
         requestBuilder.header(HEADER_KEY, "nn-beta.yjzf.com");
-
         requestBuilder.header(USER_AGENT, "YJZF/2.11.0 (Redmi_M2007J17C; Android 11; zh_CN)");
         requestBuilder.header(X_USER_AGENT, "YJZF/2.11.0");
         requestBuilder.header(X_DEVICE_NAME, "Redmi_M2007J17C");
