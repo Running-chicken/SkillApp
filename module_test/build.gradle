@@ -1,0 +1,19 @@
+apply from :"../module.build.gradle"
+
+android {
+
+    defaultConfig {
+        if(isBuildModule.toBoolean()){
+            applicationId "com.cc.module.test"
+        }
+        resourcePrefix "test_"
+    }
+
+}
+
+dependencies {
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api project(':library_base')
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
+}

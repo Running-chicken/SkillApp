@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.cc.module.test.TestModuleActivity;
 import com.cc.skillapp.activity.AllApplicationActivity;
 import com.cc.skillapp.activity.CalendarActivity;
 import com.cc.skillapp.activity.ChangeIconActivity;
@@ -88,6 +89,10 @@ public class MainActivity extends BaseActivity {
 
         mBinding.tvMine.setOnClickListener(view -> {
             ARouter.getInstance().build(RouterPath.Mine.MINE_HOUSE).navigation();
+        });
+
+        mBinding.tvTestModule.setOnClickListener(view -> {
+            startActivity(new Intent(this, TestModuleActivity.class));
         });
 
     }
