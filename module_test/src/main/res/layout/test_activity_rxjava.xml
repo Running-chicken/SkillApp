@@ -25,5 +25,12 @@
             app:itemBinding="@{viewModel.itemBinding}"
             app:items="@{viewModel.items}"/>
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:itemBinding="@{viewModel.iconItemBinding}"
+            app:items="@{viewModel.iconItems}"/>
+
     </LinearLayout>
 </layout>
