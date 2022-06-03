@@ -19,6 +19,11 @@
             android:text="rxjava" />
 
         <TextView
+            android:id="@+id/tv_rxjava2"
+            style="@style/TextStyle"
+            android:text="rxjava2" />
+
+        <TextView
             android:id="@+id/tv_sql"
             style="@style/TextStyle"
             android:text="sqlite" />

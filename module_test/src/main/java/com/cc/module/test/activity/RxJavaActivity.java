@@ -2,8 +2,10 @@ package com.cc.module.test.activity;
 
 import android.database.Cursor;
 import android.os.Bundle;
+import android.os.SystemClock;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.adapters.ImageViewBindingAdapter;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.cc.library.base.entity.Person;
@@ -32,8 +34,10 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.BiFunction;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
+import io.reactivex.functions.Predicate;
 import io.reactivex.schedulers.Schedulers;
 
 public class RxJavaActivity extends AppCompatActivity {
@@ -57,7 +61,154 @@ public class RxJavaActivity extends AppCompatActivity {
 //        testRxJava();
 //        testMap();
 //        testFlatmap();
-        testFlatmapUpdate();
+//        testFlatmapUpdate();
+//        testZip();
+//        testZipUpdate();
+//        testFilter();
+    }
+
+    private void testFilter(){
+        Observable.create(new ObservableOnSubscribe<Integer>() {
+
+            @Override
+            public void subscribe(@NonNull ObservableEmitter<Integer> emitter) throws Exception {
+                for(int i=0;i<50;i++){
+//                    SystemClock.sleep(2000);
+                    emitter.onNext(i);
+                }
+            }
+        }).subscribeOn(Schedulers.io())
+//                .filter(new Predicate<Integer>() {
+//                    @Override
+//                        public boolean test(@NonNull Integer integer) throws Exception {
+//                            return integer%10 == 0;
+//                        }
+//                })
+                .sample(5,TimeUnit.SECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<Integer>() {
+                    @Override
+                    public void accept(Integer integer) throws Exception {
+                        Utils.log("输出："+integer);
+                    }
+                });
+
+    }
+
+    private void testZipUpdate(){
+        Map<String,Object> params = new HashMap<>();
+        params.put("latitude","39.915794");
+        params.put("longitude","116.40289");
+        Observable<LocationEntity> observable1 = RetrofitManager.create(TestRxJavaApi.class)
+                .getLocationInfo(params)
+                .subscribeOn(Schedulers.io());
+
+        Map<String,Object> iconParams = new HashMap<>();
+        iconParams.put("platform",1);
+        iconParams.put("parentId",0);
+        Observable<TestLisTEntity> observable2 = RetrofitManager.create(TestRxJavaApi.class)
+                .getMenuIcon(iconParams)
+                .subscribeOn(Schedulers.io());
+        Observable.zip(observable1, observable2, new BiFunction<LocationEntity, TestLisTEntity, String>() {
+            @NonNull
+            @Override
+            public String apply(@NonNull LocationEntity locationEntity, @NonNull TestLisTEntity testLisTEntity) throws Exception {
+                return locationEntity.data.cityName+testLisTEntity.data.get(0).permiName;
+            }
+        }).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(@NonNull String s) {
+                        binding.tvObservable.setText(s);
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+    }
+
+    /**
+     * zip组合执行 只有两个都处理完 才会进入下游
+     * 两根水管 取事件数量最少的作为组合次数，组合完就进下游
+     */
+    private void testZip(){
+        Observable<Integer> observable1 = Observable.create(new ObservableOnSubscribe<Integer>() {
+
+            @Override
+            public void subscribe(@NonNull ObservableEmitter<Integer> emitter) throws Exception {
+                Utils.log("输入：1");
+                emitter.onNext(1);
+                Utils.log("输入：2");
+                emitter.onNext(2);
+                Utils.log("输入：3");
+                emitter.onNext(3);
+                Utils.log("输入：4");
+                emitter.onNext(4);
+                Utils.log("输入：5");
+                emitter.onNext(5);
+                Utils.log("输入：onComplete1");
+                emitter.onComplete();
+            }
+        }).subscribeOn(Schedulers.io());
+        Observable<String> observable2 = Observable.create(new ObservableOnSubscribe<String>() {
+
+            @Override
+            public void subscribe(@NonNull ObservableEmitter<String> emitter) throws Exception {
+                Utils.log("输入：a");
+                emitter.onNext("a");
+                Utils.log("输入：b");
+                emitter.onNext("b");
+                Utils.log("输入：c");
+                emitter.onNext("c");
+                Utils.log("输入：onComplete2");
+                emitter.onComplete();
+            }
+        }).subscribeOn(Schedulers.io());
+
+        Observable.zip(observable1, observable2, new BiFunction<Integer, String, String>() {
+
+            @NonNull
+            @Override
+            public String apply(@NonNull Integer integer, @NonNull String s) throws Exception {
+
+                return integer+s;
+            }
+        }).subscribe(new Observer<String>() {
+            @Override
+            public void onSubscribe(@NonNull Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(@NonNull String s) {
+                Utils.log("输出："+ s);
+            }
+
+            @Override
+            public void onError(@NonNull Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+                Utils.log("输出：onComplete");
+            }
+        });
+
+
     }
 
     private void testFlatmapUpdate(){

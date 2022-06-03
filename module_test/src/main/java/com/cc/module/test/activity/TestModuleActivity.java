@@ -27,5 +27,9 @@ public class TestModuleActivity extends AppCompatActivity {
         mBinding.tvSql.setOnClickListener(view -> {
             startActivity(new Intent(this,SQLiteActivity.class));
         });
+
+        mBinding.tvRxjava2.setOnClickListener(view -> {
+            startActivity(new Intent(this,RxJava2Activity.class));
+        });
     }
 }
