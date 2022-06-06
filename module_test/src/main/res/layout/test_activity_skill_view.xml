@@ -9,4 +9,11 @@
     <com.cc.module.test.view.SkillView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
+    <com.cc.module.test.view.MyListImageView
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        app:max_size="5"
+        app:text_size="30sp"
+        app:text="我叫崔粲"/>
 </LinearLayout>
