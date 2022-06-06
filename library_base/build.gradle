@@ -68,4 +68,7 @@ dependencies {
     api 'io.reactivex.rxjava2:rxandroid:2.1.1'
 
 
+
+    //eventbus
+    api 'org.greenrobot:eventbus:3.2.0'
 }

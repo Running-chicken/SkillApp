@@ -18,6 +18,12 @@
         <activity
             android:name=".activity.TestModuleActivity"
             android:exported="true" />
+        <activity
+            android:name=".activity.SaveActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.EventBusActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

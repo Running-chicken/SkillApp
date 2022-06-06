@@ -10,34 +10,35 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Skillapp">
         <activity
-            android:name=".activity.TestModuleActivity"
+            android:name=".activity.EventBusActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.SaveActivity"
             android:exported="false">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
         </activity>
-        <activity android:name=".activity.SkillViewActivity"
+        <activity
+            android:name=".activity.TestModuleActivity"
             android:exported="true">
+
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activity.SkillViewActivity"
+            android:exported="false"></activity>
         <activity
             android:name=".activity.SQLiteActivity"
             android:exported="false" />
         <activity
             android:name=".activity.RxJavaActivity"
             android:exported="false" />
-
-
-
         <activity
             android:name=".activity.RxJava2Activity"
             android:exported="false" />
-
     </application>
 
 </manifest>
