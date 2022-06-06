@@ -31,5 +31,9 @@ public class TestModuleActivity extends AppCompatActivity {
         mBinding.tvRxjava2.setOnClickListener(view -> {
             startActivity(new Intent(this,RxJava2Activity.class));
         });
+
+        mBinding.tvView.setOnClickListener(view -> {
+            startActivity(new Intent(this,SkillViewActivity.class));
+        });
     }
 }

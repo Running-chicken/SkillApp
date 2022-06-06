@@ -4,6 +4,9 @@
 
     <application>
         <activity
+            android:name=".activity.SkillViewActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.RxJava2Activity"
             android:exported="false" />
         <activity

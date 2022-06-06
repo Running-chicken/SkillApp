@@ -14,6 +14,11 @@
         tools:context=".activity.TestModuleActivity">
 
         <TextView
+            android:id="@+id/tv_view"
+            style="@style/TextStyle"
+            android:text="自定义view" />
+
+        <TextView
             android:id="@+id/tv_rxjava"
             style="@style/TextStyle"
             android:text="rxjava" />
