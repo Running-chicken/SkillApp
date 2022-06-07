@@ -56,7 +56,7 @@ public class RxJavaActivity extends AppCompatActivity {
         binding.setViewModel(mViewModel);
 
 
-//        getRetrofit();
+        getRetrofit();
 //        getSqlite();
 //        testRxJava();
 //        testMap();

@@ -1,18 +1,27 @@
 package com.cc.skillapp.activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
+
+import com.cc.library.base.util.Utils;
 import com.cc.skillapp.R;
 import com.cc.skillapp.databinding.ActivityTest2Binding;
-import com.cc.library.base.util.Utils;
+import com.trello.rxlifecycle3.android.ActivityEvent;
+import com.trello.rxlifecycle3.components.support.RxAppCompatActivity;
 
-public class TestLifeAActivity extends AppCompatActivity {
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Action;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
+
+public class TestLifeAActivity extends RxAppCompatActivity {
 
 
 
@@ -40,6 +49,28 @@ public class TestLifeAActivity extends AppCompatActivity {
         }else {
             Utils.log(getClass(),"onCreate");
         }
+
+        testRxJavaTime();
+
+
+    }
+
+
+    private void testRxJavaTime(){
+        Observable.interval(0,1,TimeUnit.SECONDS).doOnDispose(new Action() {
+            @Override
+            public void run() throws Exception {
+                Utils.log("this is dispose");
+            }
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .compose(bindUntilEvent(ActivityEvent.STOP))
+                .subscribe(new Consumer<Long>() {
+                    @Override
+                    public void accept(Long aLong) throws Exception {
+                        Utils.log("输出："+aLong);
+                    }
+                });
     }
 
     @Override
