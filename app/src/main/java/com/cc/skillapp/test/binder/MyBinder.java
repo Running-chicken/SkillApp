@@ -31,7 +31,11 @@ public abstract class MyBinder extends Binder implements MyInterface{
     protected boolean onTransact(int code, @NonNull Parcel data, @Nullable Parcel reply, int flags) throws RemoteException {
 
         switch (code){
+            case INTERFACE_TRANSACTION:
+                reply.writeString(DESCRIPTOR);
+                return true;
             case ADD:
+                data.enforceInterface(DESCRIPTOR);
                 int arg0=data.readInt();
                 int arg1=data.readInt();
                 int result = this.add(arg0,arg1);

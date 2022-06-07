@@ -23,16 +23,12 @@ public class MyProxy implements MyInterface{
         Parcel reply = Parcel.obtain();
         int result = 0;
 
-        data.writeInt(1);
-        data.writeInt(2);
         data.writeInterfaceToken(DESCRIPTOR);
-
+        data.writeInt(arg0);
+        data.writeInt(arg1);
         try {
             iBinder.transact(ADD,data,reply,0);
-
-            reply.readException();
             result = reply.readInt();
-            Utils.log("输出结果是："+result);
         } catch (RemoteException e) {
             e.printStackTrace();
         } finally {
