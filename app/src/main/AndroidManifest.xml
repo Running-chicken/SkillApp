@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.cc.skillapp">
 
-
-
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -13,6 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <service
+            android:name=".service.ActivityManagerService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.cc.skillapp.service.ActivityManagerService"/>
+            </intent-filter>
+        </service>
+
         <activity
             android:name=".test.binder.BinderActivity"
             android:exported="false" />
@@ -62,10 +69,10 @@
             android:name=".service.MyService"
             android:enabled="true"
             android:exported="true" />
-
-        <service android:name=".test.binder.BinderService"
+        <service
+            android:name=".test.binder.BinderService"
             android:enabled="true"
-            android:exported="true"/>
+            android:exported="true" />
 
         <activity
             android:name=".activity.ServiceActivity"
@@ -140,15 +147,15 @@
             android:exported="true"
             android:multiprocess="true" />
 
-        <service android:name=".test.aidl.AidlService"
+        <service
+            android:name=".test.aidl.AidlService"
+            android:enabled="true"
             android:exported="true"
-            android:process=":remote"
-            android:enabled="true">
+            android:process=":remote">
             <intent-filter>
-                <action android:name="com.cc.skillapp.test.aidl.IMyAidlInterface"/>
+                <action android:name="com.cc.skillapp.test.aidl.IMyAidlInterface" />
             </intent-filter>
         </service>
-
     </application>
 
 </manifest>
