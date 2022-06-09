@@ -140,6 +140,12 @@
                 android:text="我的"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_sliding"/>
+            <TextView
+                android:id="@+id/tv_cha_jia"
+                style="@style/TextStyle"
+                android:text="cha jia hua"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_mine"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 

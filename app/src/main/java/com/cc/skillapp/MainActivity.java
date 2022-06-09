@@ -16,6 +16,7 @@ import com.cc.skillapp.activity.ImageAvatarActivity;
 import com.cc.skillapp.activity.LoadLocalWebActivity;
 import com.cc.skillapp.activity.LocationActivity;
 import com.cc.skillapp.activity.MediaPlayerActivity;
+import com.cc.skillapp.activity.MyPluginActivity;
 import com.cc.skillapp.activity.OkHttpActivity;
 import com.cc.skillapp.activity.OrganizationalStructureActivity;
 import com.cc.skillapp.activity.RecyclerViewActivity;
@@ -92,6 +93,10 @@ public class MainActivity extends BaseActivity {
 
         mBinding.tvTestModule.setOnClickListener(view -> {
             ARouter.getInstance().build(RouterPath.Test.TEST_HOME).navigation();
+        });
+
+        mBinding.tvChaJia.setOnClickListener(view -> {
+            startActivity(new Intent(this, MyPluginActivity.class));
         });
 
     }

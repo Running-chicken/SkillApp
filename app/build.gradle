@@ -20,6 +20,27 @@ android {
 
 
     }
+
+
+    signingConfigs {
+        release {
+            storeFile file("keystore/skillapp.jks")
+            storePassword "7688526"
+            keyAlias "skillapp"
+            keyPassword "7688526"
+            v1SigningEnabled true//检查您工程的Gradle Plugin版本是否高于3.4.1，如果Gradle Plugin版本高于3.4.1，请您将Gradle Plugin版本降至3.4.1，并将Gradle版本降至5.4.1。如果无法降低Gradle Plugin及Gradle版本，需要在您工程的App模块下的build.gradle中添加签名配置
+            v2SigningEnabled true
+        }
+        debug {
+            storeFile file("keystore/skillapp.jks")
+            storePassword "7688526"
+            keyAlias "skillapp"
+            keyPassword "7688526"
+            v1SigningEnabled true
+            v2SigningEnabled false
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -34,14 +55,18 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     if(isBuildModule.toBoolean()){
         implementation project(':library_base')
     }else{
         implementation project(':module_mine')
         implementation project(':module_test')
+        implementation project(':plugin_core')
     }
 
 
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.3'
+//    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.3'
 }

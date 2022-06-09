@@ -17,6 +17,8 @@
             <option value="$PROJECT_DIR$/library_res" />
             <option value="$PROJECT_DIR$/module_mine" />
             <option value="$PROJECT_DIR$/module_test" />
+            <option value="$PROJECT_DIR$/plugin" />
+            <option value="$PROJECT_DIR$/plugin_core" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

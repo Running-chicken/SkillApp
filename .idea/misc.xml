@@ -23,6 +23,7 @@
         <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/app/src/main/res/layout/activity_main_test.xml" value="0.1688888888888889" />
         <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/app/src/main/res/layout/activity_media_player.xml" value="0.225" />
         <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/app/src/main/res/layout/activity_message_queue.xml" value="0.225" />
+        <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/app/src/main/res/layout/activity_my_plugin.xml" value="0.225" />
         <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/app/src/main/res/layout/activity_ok_http.xml" value="0.225" />
         <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/app/src/main/res/layout/activity_recycler_view.xml" value="0.225" />
         <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/app/src/main/res/layout/activity_report.xml" value="0.225" />
@@ -60,6 +61,9 @@
         <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/module_test/src/main/res/layout/test_icon_list_item.xml" value="0.225" />
         <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/module_test/src/main/res/layout/test_person_list_item.xml" value="0.225" />
         <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/module_test/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
+        <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/plugin/src/main/res/layout/activity_plugin.xml" value="0.1" />
+        <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/plugin_core/src/main/res/layout/activity_proxy.xml" value="0.225" />
+        <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/plugin_core/src/main/res/layout/layout_ac_plugin.xml" value="0.1" />
         <entry key="..\:/Users/can/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_list_item_1.xml" value="0.225" />
       </map>
     </option>
