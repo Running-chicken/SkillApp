@@ -2,6 +2,7 @@ package com.cc.skillapp.activity;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -50,8 +51,14 @@ public class TestLifeAActivity extends RxAppCompatActivity {
             Utils.log(getClass(),"onCreate");
         }
 
-        testRxJavaTime();
+//        testRxJavaTime();
 
+
+        mBinding.tvStartData.setOnClickListener(view -> {
+            Intent intent = new Intent();
+            intent.setData(Uri.parse("cc://can3191:8888/niu"));
+            startActivity(intent);
+        });
 
     }
 

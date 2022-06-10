@@ -11,82 +11,114 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <!--启动页-->
+        <activity android:name=".MainSplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity> <!-- 备用icon -->
+        <activity-alias
+            android:name=".SecondIconActivity"
+            android:enabled="false"
+            android:icon="@mipmap/home_product_ad"
+            android:targetActivity=".MainSplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <!-- 首页 -->
+        <activity android:name=".MainActivity" />
+        <!--插件化-->
         <activity
             android:name=".activity.MyPluginActivity"
             android:exported="false" />
-
-        <service
-            android:name=".service.ActivityManagerService"
-            android:enabled="true"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="com.cc.skillapp.service.ActivityManagerService"/>
-            </intent-filter>
-        </service>
-
+        <!--调试binder-->
         <activity
             android:name=".test.binder.BinderActivity"
             android:exported="false" />
+        <!--自定义SurfaceView-->
         <activity
             android:name=".test.view.SurfaceActivity"
             android:exported="false" />
-
+        <!--服务 发通知-->
         <service
             android:name=".service.MyService2"
             android:enabled="true"
             android:exported="true" />
-
+        <!--图片缓存-->
         <activity
             android:name=".test.image.ImageActivity"
             android:exported="false" />
+        <!--eventBus-->
         <activity
             android:name=".test.event.EventActivity"
             android:exported="false" />
+        <!--？-->
         <activity
             android:name=".test.fragment.TestFragmentActivity"
             android:exported="false" />
+        <!--自定义View-->
         <activity
             android:name=".activity.SlideMenuActivity"
             android:exported="false" />
+        <!--手写同步屏障-->
         <activity
             android:name=".test.MessageQueueActivity"
             android:exported="false" />
+        <!--HandlerDemo-->
         <activity
             android:name=".test.HandlerActivity"
             android:exported="false" />
+        <!--contentProviderDemo-->
         <activity
             android:name=".contentprovider.ContentProviderActivity"
             android:exported="false" />
+        <!--广播demo-->
         <activity
             android:name=".activity.BroadCastActivity"
             android:exported="false" />
-
+        <!--intentServiceDemo-->
         <service
             android:name=".service.MyIntentService"
             android:exported="false" />
-
+        <!--隐式广播-->
         <activity
             android:name=".activity.Service2Activity"
             android:exported="false" />
-
+        <!--服务 发通知-->
         <service
             android:name=".service.MyService"
             android:enabled="true"
             android:exported="true" />
+        <!--服务 生命周期-->
         <service
             android:name=".test.binder.BinderService"
             android:enabled="true"
             android:exported="true" />
-
+        <!--服务 调试-->
         <activity
             android:name=".activity.ServiceActivity"
             android:exported="false" />
+        <!--test 主页-->
         <activity
             android:name=".activity.MainTestActivity"
             android:exported="false" />
+        <!--生命周期 调试-->
         <activity
             android:name=".activity.TestLifeBActivity"
-            android:exported="false" />
+            android:exported="true">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="cc.test.left.B"/>
+                <data android:scheme="cc"
+                    android:host="can3191"
+                    android:port="8888"
+                    android:path="/niu"/>
+            </intent-filter>
+        </activity>
+        <!--生命周期 调试-->
         <activity
             android:name=".activity.TestLifeAActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -98,28 +130,10 @@
                 <category android:name="test.demo.category.life.a" />
             </intent-filter>
         </activity>
+        <!--滑动冲突-->
         <activity
             android:name=".activity.SlidingConflictActivity"
             android:exported="false" /> <!-- 启动页 -->
-        <activity android:name=".MainSplashActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity> <!-- 备用icon -->
-        <activity-alias
-            android:name=".SecondIconActivity"
-            android:enabled="false"
-            android:icon="@mipmap/home_product_ad"
-            android:targetActivity=".MainSplashActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity-alias> <!-- 首页 -->
-        <activity android:name=".MainActivity" />
         <activity android:name=".activity.LocationActivity" />
         <activity android:name=".activity.ViewPagerActivity" />
         <activity android:name=".activity.ImageAvatarActivity" />
@@ -136,6 +150,7 @@
         <activity android:name=".activity.ChangeIconActivity" />
         <activity android:name=".activity.TestActivity" />
 
+        <!--广播demo-->
         <receiver
             android:name=".receive.MyBroadReceive"
             android:enabled="true"
@@ -145,12 +160,14 @@
             </intent-filter>
         </receiver>
 
+        <!--ContentProvider demo-->
         <provider
             android:name=".contentprovider.MyContentProvider"
             android:authorities="com.cc.myprovider"
             android:exported="true"
             android:multiprocess="true" />
 
+        <!--aidl -->
         <service
             android:name=".test.aidl.AidlService"
             android:enabled="true"
@@ -158,6 +175,15 @@
             android:process=":remote">
             <intent-filter>
                 <action android:name="com.cc.skillapp.test.aidl.IMyAidlInterface" />
+            </intent-filter>
+        </service>
+        <!--手写 AMS-->
+        <service
+            android:name=".service.ActivityManagerService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.cc.skillapp.service.ActivityManagerService"/>
             </intent-filter>
         </service>
     </application>
