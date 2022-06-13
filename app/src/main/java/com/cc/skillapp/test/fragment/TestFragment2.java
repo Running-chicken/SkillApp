@@ -9,17 +9,21 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.cc.library.base.util.StringUtils;
-import com.cc.skillapp.R;
+import com.cc.library.base.entity.BaseEventBus;
 import com.cc.library.base.util.Utils;
+import com.cc.skillapp.R;
 import com.cc.skillapp.databinding.FragmentTest1Binding;
+import com.cc.skillapp.databinding.FragmentTest2Binding;
+import com.cc.skillapp.fragment.FragmentTest1;
 
-public class TestFragment1 extends Fragment {
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
-    FragmentTest1Binding mBinding;
+public class TestFragment2 extends Fragment {
+
+    FragmentTest2Binding mBinding;
     FragmentViewModel fragmentViewModel;
 
     @Nullable
@@ -27,43 +31,42 @@ public class TestFragment1 extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Utils.log(getClass(),"onCreateView");
 
-        mBinding = FragmentTest1Binding.inflate(inflater,container,false);
+        mBinding = FragmentTest2Binding.inflate(inflater,container,false);
         fragmentViewModel = new ViewModelProvider(getActivity()).get(FragmentViewModel.class);
         mBinding.setViewModel(fragmentViewModel);
         return mBinding.getRoot();
+
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         mBinding.tvChange.setOnClickListener(view1 -> {
-            fragmentViewModel.params1.set("fg2:我是你大爷");
+            fragmentViewModel.params.set("fg1:我是你弟弟");
         });
 
-        fragmentViewModel.liveData1.observe(getActivity(), new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                if(!StringUtils.isNullOrEmpty(s)){
-                    mBinding.tvLivedata.setText(s);
-                }
-            }
+        mBinding.tvLivedata.setOnClickListener(view1 -> {
+            fragmentViewModel.liveData1.setValue("修改你的liveData");
         });
 
-        Bundle bundle = getArguments();
-        if(bundle!=null){
-            String params = bundle.getString("params");
-            if(!StringUtils.isNullOrEmpty(params)){
-                mBinding.tvArg.setText(params);
-            }
-        }
-
+        mBinding.tvEventBus.setOnClickListener(view1 ->{
+            EventBus.getDefault().post(new BaseEventBus("act","我来自fg2"));
+        });
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Utils.log(getClass(),"onCreate");
+
+        EventBus.getDefault().register(this);
+    }
+
+    @Subscribe
+    public void testHaHa(BaseEventBus baseEventBus){
+        if("frag".equals(baseEventBus.getType())){
+            Utils.log(getClass(),baseEventBus.getMsg());
+        }
     }
 
     @Override
@@ -100,6 +103,8 @@ public class TestFragment1 extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         Utils.log(getClass(),"onDestroy");
+        EventBus.getDefault().unregister(this);
+
     }
 
     @Override

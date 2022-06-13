@@ -19,6 +19,10 @@
         <TextView
             android:id="@+id/tv_send_broadcast"
             style="@style/TextStyle"
-            android:text="send broadcast"/>
+            android:text="发送静态广播"/>
+        <TextView
+            android:id="@+id/tv_send_broadcast1"
+            style="@style/TextStyle"
+            android:text="发送动态广播"/>
     </LinearLayout>
 </layout>

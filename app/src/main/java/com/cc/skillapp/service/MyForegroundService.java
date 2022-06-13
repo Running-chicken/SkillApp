@@ -11,7 +11,7 @@ import android.os.IBinder;
 import com.cc.skillapp.R;
 import com.cc.library.base.util.Utils;
 
-public class MyService2 extends Service {
+public class MyForegroundService extends Service {
 
     public String channelId = "myChannelId";
     public String channelName= "myChannelName";
@@ -19,7 +19,7 @@ public class MyService2 extends Service {
 
     public MyBinder myBinder = new MyBinder();
 
-    public MyService2() {
+    public MyForegroundService() {
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.cc.skillapp.activity;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,11 +9,12 @@ import androidx.databinding.DataBindingUtil;
 
 import com.cc.skillapp.R;
 import com.cc.skillapp.databinding.ActivityBroadCastBinding;
+import com.cc.skillapp.receive.DongTaiReceive;
 import com.cc.skillapp.receive.MyBroadReceive;
 
 public class BroadCastActivity extends AppCompatActivity {
 
-    MyBroadReceive receive;
+    DongTaiReceive receive;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,14 +23,14 @@ public class BroadCastActivity extends AppCompatActivity {
             startActivity(new Intent(this,Service2Activity.class));
         });
 
-//        IntentFilter intentFilter = new IntentFilter("com.cc.me.broadcast");
-//        receive = new MyBroadReceive();
-//        registerReceiver(receive,intentFilter);
+        IntentFilter intentFilter = new IntentFilter("com.cc.me.dt.broadcast");
+        receive = new DongTaiReceive();
+        registerReceiver(receive,intentFilter);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-//        unregisterReceiver(receive);
+        unregisterReceiver(receive);
     }
 }

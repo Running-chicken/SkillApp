@@ -21,25 +21,24 @@
             android:id="@+id/tv_params"
             style="@style/TextStyle"
             android:layout_width="match_parent"
-            android:text="@{viewModel.params}"/>
-
-
+            android:text="@{viewModel.params1}"/>
         <TextView
             android:id="@+id/tv_change"
             style="@style/TextStyle"
             android:layout_width="match_parent"
-            android:text="修改fragment2参数"/>
+            android:text="修改fragment1参数"/>
 
         <TextView
             android:id="@+id/tv_livedata"
             style="@style/TextStyle"
             android:layout_width="match_parent"
-            android:text="默认liveData"/>
+            android:text="修改fragment1livedata"/>
 
         <TextView
-            android:id="@+id/tv_arg"
+            android:id="@+id/tv_event_bus"
             style="@style/TextStyle"
             android:layout_width="match_parent"
-            android:text="activity传值"/>
+            android:text="eventBus 接收"/>
+
     </LinearLayout>
 </layout>

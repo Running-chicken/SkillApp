@@ -13,7 +13,7 @@ import com.cc.skillapp.R;
 import com.cc.skillapp.databinding.ActivityServiceBinding;
 import com.cc.skillapp.service.MyIntentService;
 import com.cc.skillapp.service.MyService;
-import com.cc.skillapp.service.MyService2;
+import com.cc.skillapp.service.MyForegroundService;
 import com.cc.skillapp.test.binder.BinderActivity;
 
 public class ServiceActivity extends BaseActivity {
@@ -60,7 +60,7 @@ public class ServiceActivity extends BaseActivity {
         });
 
         mBinding.tvServiceNotify.setOnClickListener(view -> {
-            startService(new Intent(this, MyService2.class));
+            startService(new Intent(this, MyForegroundService.class));
         });
 
         mBinding.tvServiceBinder.setOnClickListener(view -> {
