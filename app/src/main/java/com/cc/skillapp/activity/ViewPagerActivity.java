@@ -2,12 +2,14 @@ package com.cc.skillapp.activity;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.viewpager.widget.ViewPager;
 
+import com.cc.library.base.util.Utils;
 import com.cc.skillapp.BaseActivity;
 import com.cc.skillapp.R;
 import com.cc.skillapp.adapter.ViewPagerAdapter;
@@ -51,7 +53,7 @@ public class ViewPagerActivity extends BaseActivity {
         viewPagerAdapter = new ViewPagerAdapter(mContext,mList);
         vpBanner.setAdapter(viewPagerAdapter);
 
-        vpBanner.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        vpBanner.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -69,7 +71,7 @@ public class ViewPagerActivity extends BaseActivity {
         });
 
         if(mHandler==null){
-            mHandler = new Handler(){
+            mHandler = new Handler(Looper.myLooper()){ //尽量使用指定Looper的构造方法
                 @Override
                 public void handleMessage(Message msg) {
                     endTime = System.currentTimeMillis();
@@ -79,6 +81,7 @@ public class ViewPagerActivity extends BaseActivity {
                             mHandler.sendEmptyMessageDelayed(0,3000);
                         }
                     }
+                    Utils.log(getClass(),"handlemsg");
                 }
             };
 
@@ -87,6 +90,7 @@ public class ViewPagerActivity extends BaseActivity {
                 public void run() {
                     if(mHandler!=null){
                         mHandler.sendEmptyMessageDelayed(0,3000);
+                        Utils.log(getClass(),"threadrun");
                     }
                 }
             }.start();
@@ -100,11 +104,7 @@ public class ViewPagerActivity extends BaseActivity {
                                 mHandler.removeCallbacksAndMessages(null);
                             }
                             break;
-                        case MotionEvent.ACTION_CANCEL:
-                            if(mHandler!=null){
-                                mHandler.sendEmptyMessageDelayed(0,3000);
-                            }
-                            break;
+                        case MotionEvent.ACTION_CANCEL: //取消或抬起继续轮播
                         case MotionEvent.ACTION_UP:
                             if(mHandler!=null){
                                 mHandler.sendEmptyMessageDelayed(0,3000);
@@ -123,4 +123,9 @@ public class ViewPagerActivity extends BaseActivity {
     }
 
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mHandler.removeCallbacksAndMessages(null);
+    }
 }
