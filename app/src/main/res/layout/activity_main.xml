@@ -146,6 +146,13 @@
                 android:text="cha jia hua"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_mine"/>
+
+            <TextView
+                android:id="@+id/tv_socket"
+                style="@style/TextStyle"
+                android:text="socket"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_cha_jia"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 

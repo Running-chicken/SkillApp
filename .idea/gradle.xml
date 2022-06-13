@@ -4,7 +4,7 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
-        <option name="delegatedBuild" value="false"/>
+        <option name="delegatedBuild" value="false" />
         <option name="testRunner" value="GRADLE" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -17,7 +17,6 @@
             <option value="$PROJECT_DIR$/library_res" />
             <option value="$PROJECT_DIR$/module_mine" />
             <option value="$PROJECT_DIR$/module_test" />
-            <option value="$PROJECT_DIR$/plugin" />
             <option value="$PROJECT_DIR$/plugin_core" />
           </set>
         </option>

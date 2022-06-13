@@ -2,6 +2,9 @@ package com.cc.skillapp.service;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.os.IBinder;
+
+import androidx.annotation.Nullable;
 
 import com.cc.library.base.util.Utils;
 
@@ -29,6 +32,31 @@ public class MyIntentService extends IntentService {
     }
 
     @Override
+    public void onStart(@Nullable Intent intent, int startId) {
+        Utils.log(getClass(),"onStart");
+        super.onStart(intent, startId);
+    }
+
+    @Override
+    public int onStartCommand(@Nullable Intent intent, int flags, int startId) {
+        Utils.log(getClass(),"onStartCommand");
+        return super.onStartCommand(intent, flags, startId);
+    }
+
+    @Nullable
+    @Override
+    public IBinder onBind(Intent intent) {
+        Utils.log(getClass(),"onBind");
+        return super.onBind(intent);
+    }
+
+    @Override
+    public boolean onUnbind(Intent intent) {
+        Utils.log(getClass(),"onUnbind");
+        return super.onUnbind(intent);
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
         Utils.log(getClass(),"intentService onDestroy");
@@ -41,24 +69,13 @@ public class MyIntentService extends IntentService {
         Utils.log(getClass(),"intentService onHandleIntent");
         if (intent != null) {
             String params = intent.getStringExtra("params");
-            if(params.equals("wiiwafefeafefeaooji")){
-                for(String str : params.split("a")){
-                    try {
-                        Thread.sleep(3000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    Utils.log(getClass(),"执行:"+str);
+            for(String str : params.split("\\.")){
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-            }else if(params.equals("this.is.my.test.b")){
-                for(String str : params.split("\\.")){
-                    try {
-                        Thread.sleep(3000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    Utils.log(getClass(),"执行:"+str);
-                }
+                Utils.log(getClass(),"执行:"+str);
             }
 
         }

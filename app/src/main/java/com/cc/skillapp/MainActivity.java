@@ -23,6 +23,7 @@ import com.cc.skillapp.activity.RecyclerViewActivity;
 import com.cc.skillapp.activity.RvSuspensionActivity;
 import com.cc.skillapp.activity.SlideMenuActivity;
 import com.cc.skillapp.activity.SlidingConflictActivity;
+import com.cc.skillapp.activity.SocketActivity;
 import com.cc.skillapp.activity.ViewPagerActivity;
 import com.cc.skillapp.databinding.ActivityMainBinding;
 
@@ -99,6 +100,9 @@ public class MainActivity extends BaseActivity {
             startActivity(new Intent(this, MyPluginActivity.class));
         });
 
+        mBinding.tvSocket.setOnClickListener(view -> {
+            startActivity(new Intent(this, SocketActivity.class));
+        });
     }
 
     private void initView() {

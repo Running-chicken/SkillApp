@@ -15,37 +15,42 @@
         <TextView
             android:id="@+id/tv_start_service"
             style="@style/TextStyle"
-            android:text="startService"/>
+            android:text="调用startService"/>
 
         <TextView
             android:id="@+id/tv_close_service"
             style="@style/TextStyle"
-            android:text="closeService"/>
+            android:text="调用stopService"/>
 
         <TextView
             android:id="@+id/tv_bind_service"
             style="@style/TextStyle"
-            android:text="bindService"/>
+            android:text="调用bindService"/>
 
         <TextView
             android:id="@+id/tv_unbind_service"
             style="@style/TextStyle"
-            android:text="unbindService"/>
+            android:text="调用unbindService"/>
 
         <TextView
             android:id="@+id/tv_intent_service"
             style="@style/TextStyle"
-            android:text="intentService"/>
+            android:text="intentService start"/>
 
         <TextView
-            android:id="@+id/tv_do_something"
+            android:id="@+id/tv_intent_service_unbind"
             style="@style/TextStyle"
-            android:text="doSomething"/>
+            android:text="intentService unBind"/>
+
+        <TextView
+            android:id="@+id/tv_intent_service_bind"
+            style="@style/TextStyle"
+            android:text="intentService bind"/>
 
         <TextView
             android:id="@+id/tv_service_notify"
             style="@style/TextStyle"
-            android:text="service_notify"/>
+            android:text="startForeground"/>
 
         <TextView
             android:id="@+id/tv_service_binder"

@@ -47,12 +47,16 @@ public class ServiceActivity extends BaseActivity {
             }
         });
 
-        mBinding.tvDoSomething.setOnClickListener(view -> {
-            startService(new Intent(this, MyIntentService.class).putExtra("params","this.is.my.test.b"));
+        mBinding.tvIntentService.setOnClickListener(view -> {
+            startService(new Intent(this, MyIntentService.class).putExtra("params","this.is.my.test.a"));
         });
 
-        mBinding.tvIntentService.setOnClickListener(view -> {
-            startService(new Intent(this, MyIntentService.class).putExtra("params","wiiwafefeafefeaooji"));
+        mBinding.tvIntentServiceUnbind.setOnClickListener(view -> {
+            unbindService(conn1);
+        });
+
+        mBinding.tvIntentServiceBind.setOnClickListener(view -> {
+            bindService(new Intent(this, MyIntentService.class),conn1,BIND_AUTO_CREATE);
         });
 
         mBinding.tvServiceNotify.setOnClickListener(view -> {
@@ -76,6 +80,18 @@ public class ServiceActivity extends BaseActivity {
         @Override
         public void onServiceDisconnected(ComponentName componentName) {
 //            Utils.log("onServiceDisconnected");
+        }
+    };
+
+
+    private ServiceConnection conn1 = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
         }
     };
 

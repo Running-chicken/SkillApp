@@ -38,7 +38,8 @@ public class MyService2 extends Service {
         Utils.log(getClass(),"onCreate");
 
 //        Intent notificationIntent = new Intent(this, MainActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this,0,new Intent(),PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(
+                this,0,new Intent(),PendingIntent.FLAG_UPDATE_CURRENT);
 
         Notification.Builder builder = new Notification.Builder(this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

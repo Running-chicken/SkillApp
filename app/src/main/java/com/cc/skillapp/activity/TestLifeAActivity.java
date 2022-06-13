@@ -34,7 +34,6 @@ public class TestLifeAActivity extends RxAppCompatActivity {
                 {
                     Intent intent = new Intent();
                     intent.setClass(this, TestLifeAActivity.class);
-                    intent.putExtra("param","singleTop");
                     startActivity(intent);
                 }
 
@@ -132,7 +131,7 @@ public class TestLifeAActivity extends RxAppCompatActivity {
 
     @Override
     protected void onNewIntent(Intent intent) {
-        Utils.log(getClass(),"onNewIntent" + intent.getStringExtra("param"));
+        Utils.log(getClass(),"onNewIntent");
         super.onNewIntent(intent);
     }
 
