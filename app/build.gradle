@@ -42,9 +42,18 @@ android {
     }
 
     buildTypes {
+        // PS:这里的双引号和\千万不要改，否则编译取不到这个值
         release {
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_HOST", "\"https://api-beta.yjzf.com\""
+
+        }
+        debug{
+            signingConfig signingConfigs.debug
+            minifyEnabled false
+            buildConfigField "String", "BASE_HOST", "\"https://api-beta.yjzf.com\""
         }
     }
 

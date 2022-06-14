@@ -16,5 +16,38 @@
         <TextView
             style="@style/TextStyle"
             android:text="this is mine"/>
+
+        <EditText
+            android:id="@+id/et_input_name"
+            android:hint="请输入姓名"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"/>
+
+        <EditText
+            android:id="@+id/et_input_age"
+            android:hint="请输入年龄"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"/>
+
+        <TextView
+            android:id="@+id/tv_add"
+            style="@style/TextStyle"
+            android:text="LitePal 新增"/>
+
+        <TextView
+            android:id="@+id/tv_update"
+            style="@style/TextStyle"
+            android:text="LitePal 修改"/>
+
+        <TextView
+            android:id="@+id/tv_delete"
+            style="@style/TextStyle"
+            android:text="LitePal 删除"/>
+
+        <TextView
+            android:id="@+id/tv_query"
+            style="@style/TextStyle"
+            android:text="LitePal 查询"/>
+
     </LinearLayout>
 </layout>

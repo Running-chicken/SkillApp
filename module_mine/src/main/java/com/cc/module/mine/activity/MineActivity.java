@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.ContentValues;
 import android.os.Bundle;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -11,9 +12,13 @@ import com.cc.library.base.interfaces.ResponseListener;
 import com.cc.library.base.util.RouterPath;
 import com.cc.library.base.util.Utils;
 import com.cc.module.mine.entity.MenuIconBean;
+import com.cc.module.mine.entity.MineDB;
 import com.cc.module.mine.viewmodel.MineViewModel;
 import com.example.module_mine.R;
 import com.example.module_mine.databinding.MineActivityHostBinding;
+
+import org.litepal.LitePal;
+import org.litepal.LitePalApplication;
 
 import java.util.List;
 
@@ -48,5 +53,29 @@ public class MineActivity extends AppCompatActivity {
 
             }
         });
+
+        mBinding.tvAdd.setOnClickListener(view -> {
+            MineDB mineDB = new MineDB();
+            mineDB.setName(mBinding.etInputName.getText().toString());
+            mineDB.setAge(Integer.parseInt(mBinding.etInputAge.getText().toString()));
+            mineDB.save();
+        });
+
+        mBinding.tvQuery.setOnClickListener(view -> {
+            MineDB mineDB = LitePal.findFirst(MineDB.class);
+            Utils.log("输出mine:"+mineDB.getName());
+        });
+
+        mBinding.tvUpdate.setOnClickListener(view -> {
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("name",mBinding.etInputName.getText().toString());
+            LitePal.updateAll(MineDB.class,contentValues,"age=?","29");
+        });
+
+        mBinding.tvDelete.setOnClickListener(view -> {
+            LitePal.deleteAll(MineDB.class,"name=?",mBinding.etInputName.getText().toString());
+        });
     }
+
+
 }

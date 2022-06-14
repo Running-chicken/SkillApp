@@ -8,10 +8,12 @@ import com.cc.library.base.config.ModuleLifecycleConfig;
 import com.cc.library.base.netconfig.RetrofitManager;
 import com.squareup.leakcanary.LeakCanary;
 
+import org.litepal.LitePalApplication;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyApplication extends Application {
+public class MyApplication extends LitePalApplication {
 
     private static MyApplication mApp;
     private List<Activity> mActivities = new ArrayList<>();
@@ -25,7 +27,7 @@ public class MyApplication extends Application {
         ARouter.openLog();
         ARouter.init(this);
 
-        RetrofitManager.getInstance().init("https://api-beta.yjzf.com",false);
+        RetrofitManager.getInstance().init(BuildConfig.BASE_HOST,false);
 
         ModuleLifecycleConfig.getInstance().initModuleAhead(this);
         ModuleLifecycleConfig.getInstance().initModuleLow(this);
