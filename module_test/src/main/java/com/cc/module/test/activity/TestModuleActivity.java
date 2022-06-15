@@ -49,10 +49,16 @@ public class TestModuleActivity extends AppCompatActivity {
             startActivity(new Intent(this,EventBusActivity.class));
         });
 
+        mBinding.tvGlide.setOnClickListener(view -> {
+            startActivity(new Intent(this,TestLifecycleActivity.class));
+        });
+
+
+
         EventBus.getDefault().postSticky(new BaseEventBus("this is test home"));
 
-        LeakThread leakThread = new LeakThread();
-        leakThread.start();
+//        LeakThread leakThread = new LeakThread();
+//        leakThread.start();
     }
 
 

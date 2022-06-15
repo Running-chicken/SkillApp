@@ -38,5 +38,10 @@
             style="@style/TextStyle"
             android:text="sqlite" />
 
+        <TextView
+            android:id="@+id/tv_glide"
+            style="@style/TextStyle"
+            android:text="glide lifecycle" />
+
     </LinearLayout>
 </layout>
