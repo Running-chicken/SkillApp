@@ -53,6 +53,10 @@ public class TestModuleActivity extends AppCompatActivity {
             startActivity(new Intent(this,TestLifecycleActivity.class));
         });
 
+        mBinding.tvSave.setOnClickListener(view -> {
+            startActivity(new Intent(this,SaveActivity.class));
+        });
+
 
 
         EventBus.getDefault().postSticky(new BaseEventBus("this is test home"));
@@ -77,7 +81,7 @@ public class TestModuleActivity extends AppCompatActivity {
 
     @Subscribe(threadMode = ThreadMode.ASYNC)
     public void onEventBus(BaseEventBus baseEventBus){
-        Utils.log(getClass(),Thread.currentThread().getName());
+//        Utils.log(getClass(),Thread.currentThread().getName());
     }
 
 

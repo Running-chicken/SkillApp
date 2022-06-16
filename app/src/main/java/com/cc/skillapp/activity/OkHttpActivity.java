@@ -9,16 +9,26 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
-import com.cc.skillapp.R;
-import com.cc.skillapp.databinding.ActivityOkHttpBinding;
+import com.cc.library.base.netconfig.CacheInterceptor;
 import com.cc.library.base.netconfig.SSLFactory;
 import com.cc.library.base.netconfig.TokenInterceptor;
+import com.cc.library.base.util.Utils;
+import com.cc.skillapp.R;
+import com.cc.skillapp.databinding.ActivityOkHttpBinding;
 import com.google.gson.Gson;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
+import okhttp3.Cache;
+import okhttp3.CacheControl;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
@@ -48,23 +58,36 @@ public class OkHttpActivity extends AppCompatActivity {
     }
 
     private void registerListener() {
+        File file = new File(getExternalCacheDir(),"okhttpcache");
         mBinding.tvTestGet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        OkHttpClient okHttpClient = new OkHttpClient();
-                        Request request = new Request.Builder().url("http://www.baidu.com").build();
+                        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+                        builder.addNetworkInterceptor(new CacheInterceptor());
+                        builder.cache(new Cache(new File(getExternalCacheDir(),"okhttp"),10*1024*1024));
+                        OkHttpClient okHttpClient = builder.build();
+
+                        CacheControl cc = new CacheControl.Builder()
+                                .noCache() //不使用缓存,但是保存缓存数据
+                                .noStore()//不使用缓存，也不保存缓存数据
+                                .onlyIfCached()//只使用缓存
+                                .build();
+
+
+                        Request request = new Request.Builder().url("https://publicobject.com/helloworld.txt").build();
                         Response response = null;
                         try {
                             response = okHttpClient.newCall(request).execute();
                             if(response.isSuccessful()){
                                 StringBuilder stringBuilder = new StringBuilder();
-                                stringBuilder.append("code:")
-                                        .append(response.code())
-                                        .append(" body:")
-                                        .append(response.body());
+                                response.body().string();
+//                                stringBuilder.append("code:").append(response.code()).append(" body:").append(response.body().string())
+                                stringBuilder.append(" cache:"+response.cacheResponse())
+                                .append("\nnet:"+ response.networkResponse());
+                                Utils.log(stringBuilder.toString());
                                 Message message = new Message();
                                 message.obj = stringBuilder.toString();
                                 message.what = 1;
@@ -185,7 +208,7 @@ public class OkHttpActivity extends AppCompatActivity {
                         stringBuilder.append("code:")
                                 .append(response.code())
                                 .append(" body:")
-                                .append(response.body());
+                                .append(response.body().string());
                         Message message = new Message();
                         message.obj = stringBuilder.toString();
                         message.what = 1;
@@ -194,6 +217,46 @@ public class OkHttpActivity extends AppCompatActivity {
                 });
 
             }
+        });
+
+        String fileName = getExternalFilesDir(null).getAbsolutePath()+"/haha.png";
+
+        mBinding.tvDownload.setOnClickListener(view -> {
+            String url = "http://imgwcs3.soufunimg.com/news/2020_07/21/d15b3498-67d5-407c-ad2f-19885e007209.png";
+            Request request = new Request.Builder().url(url).build();
+            OkHttpClient.Builder builder = new OkHttpClient.Builder();
+            OkHttpClient client = new OkHttpClient();
+            client.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(@NotNull Call call, @NotNull IOException e) {
+
+                }
+
+                @Override
+                public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                    //请求body转为字节流
+                    InputStream inputStream = response.body().byteStream();
+                    FileOutputStream fileOutputStream = null;
+                    try {
+                        fileOutputStream = new FileOutputStream(new File(fileName));
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    byte[] bytes = new byte[1024];
+                    int len = 0;
+                    while ((len=inputStream.read(bytes)) !=- 1){
+                        fileOutputStream.write(bytes,0,len);
+                    }
+                    fileOutputStream.flush();
+
+                    Utils.log(getClass(),"下载成功");
+
+                }
+            });
+
+
+
+
         });
     }
 

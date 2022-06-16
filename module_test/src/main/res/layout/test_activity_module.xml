@@ -43,5 +43,10 @@
             style="@style/TextStyle"
             android:text="glide lifecycle" />
 
+        <TextView
+            android:id="@+id/tv_save"
+            style="@style/TextStyle"
+            android:text="保存文件" />
+
     </LinearLayout>
 </layout>

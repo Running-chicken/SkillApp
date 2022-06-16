@@ -41,7 +41,9 @@ public class SaveActivity extends AppCompatActivity {
             testFileInputStream();
         });
 
-        getSaveFile();
+        mBinding.tvShowFileByte.setOnClickListener(view -> {
+            getSaveFile();
+        });
 
     }
 

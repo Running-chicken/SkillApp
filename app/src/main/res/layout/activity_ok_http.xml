@@ -15,36 +15,38 @@
 
         <TextView
             android:id="@+id/tv_test_get"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/TextStyle"
             android:text="测试Get请求" />
 
         <TextView
             android:id="@+id/tv_test_get_async"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/TextStyle"
             android:text="测试Get请求异步"
             android:layout_marginTop="10dp"
             app:layout_constraintTop_toBottomOf="@+id/tv_test_get" />
 
         <TextView
             android:id="@+id/tv_test_post_async"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/TextStyle"
             android:text="测试Post请求异步"
             android:layout_marginTop="10dp"
             app:layout_constraintTop_toBottomOf="@+id/tv_test_get_async" />
 
         <TextView
             android:id="@+id/tv_test_post_json"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/TextStyle"
             android:text="测试Post请求异步json"
             android:layout_marginTop="10dp"
             app:layout_constraintTop_toBottomOf="@+id/tv_test_post_async" />
 
         <TextView
+            android:id="@+id/tv_download"
+            style="@style/TextStyle"
+            android:text="下载图片"/>
+
+        <TextView
             android:id="@+id/tv_okhttp_result"
             style="@style/TextStyle"/>
+
     </LinearLayout>
 </layout>

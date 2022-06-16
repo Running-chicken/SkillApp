@@ -13,7 +13,6 @@ public class TestModuleInit implements ModuleInitImpl {
 
     @Override
     public boolean onInitLow(Application application) {
-        Utils.log("this is test module low");
         return false;
     }
 }
