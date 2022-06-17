@@ -9,8 +9,10 @@ public class TwoDemo {
 //        System.out.println("输出：二进制转十进制"+twoToTen("01001110"));
 //        System.out.println("输出：十进制换二进制"+tenToTwo(78));
 
-        System.out.println(tenToTwo(18));//10010
-        System.out.println(tenToTwo(15));//01111   00010 - 2
+//        System.out.println(tenToTwo(18));//10010
+        System.out.println(tenToTwo(6));//01111   00010 - 2
+        System.out.println(tenToTwo(4));//01111   00010 - 2
+        test1();
     }
 
     public static int twoToTen(String str){
@@ -39,6 +41,12 @@ public class TwoDemo {
         }
         return stringBuilder.toString();
 
+    }
+
+    public static void test1(){
+        int a =6;
+        int b=4;
+        System.out.println("输出："+(a|=b));
     }
 
 }

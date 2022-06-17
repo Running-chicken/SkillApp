@@ -8,6 +8,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/can/.gradle/caches/transforms-3/5da5ad0c8e6bd59bc7e4a77b41792a8a/transformed/jetified-leakcanary-android-1.6.3/res/layout/leak_canary_display_leak.xml" value="0.225" />
+        <entry key="..\:/Users/can/.gradle/caches/transforms-3/5da5ad0c8e6bd59bc7e4a77b41792a8a/transformed/jetified-leakcanary-android-1.6.3/res/layout/leak_canary_heap_dump_toast.xml" value="0.225" />
+        <entry key="..\:/Users/can/.gradle/caches/transforms-3/5da5ad0c8e6bd59bc7e4a77b41792a8a/transformed/jetified-leakcanary-android-1.6.3/res/layout/leak_canary_leak_row.xml" value="0.225" />
+        <entry key="..\:/Users/can/.gradle/caches/transforms-3/5da5ad0c8e6bd59bc7e4a77b41792a8a/transformed/jetified-leakcanary-android-1.6.3/res/layout/leak_canary_ref_row.xml" value="0.225" />
+        <entry key="..\:/Users/can/.gradle/caches/transforms-3/5da5ad0c8e6bd59bc7e4a77b41792a8a/transformed/jetified-leakcanary-android-1.6.3/res/layout/leak_canary_ref_top_row.xml" value="0.225" />
         <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/app/src/main/res/layout/activity_all_application.xml" value="0.225" />
         <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/app/src/main/res/layout/activity_binder.xml" value="0.225" />
         <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/app/src/main/res/layout/activity_broad_cast.xml" value="0.225" />

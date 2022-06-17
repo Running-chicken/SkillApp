@@ -37,8 +37,8 @@ public class EventBusActivity extends AppCompatActivity {
     @Subscribe(sticky = true)
     public void getMsg(BaseEventBus baseEventBus){
         if(baseEventBus.getType().equals("this is test home")){
-
-            Utils.log("receive");
+            Utils.log("receive"+System.currentTimeMillis());
+            EventBus.getDefault().removeStickyEvent(baseEventBus);
         }
     }
 

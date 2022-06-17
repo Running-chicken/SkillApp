@@ -19,6 +19,11 @@
             android:text="eventBus" />
 
         <TextView
+            android:id="@+id/tv_event_bus_sticky"
+            style="@style/TextStyle"
+            android:text="eventBus sticky" />
+
+        <TextView
             android:id="@+id/tv_view"
             style="@style/TextStyle"
             android:text="自定义view" />
@@ -47,6 +52,8 @@
             android:id="@+id/tv_save"
             style="@style/TextStyle"
             android:text="保存文件" />
+
+
 
     </LinearLayout>
 </layout>
