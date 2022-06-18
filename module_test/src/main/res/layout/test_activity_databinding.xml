@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="TestDataBinding">
+        <variable
+            name="user"
+            type="com.cc.module.test.entity.TestUser" />
+        <variable
+            name="userNew"
+            type="com.cc.module.test.entity.TestUserNew" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_click"
+            style="@style/TextStyle"
+            app:textNew="@{`点击`}"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="@{user.name}"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="@{userNew.name}"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="@{userNew.alasName}"/>
+
+        <include
+            layout="@layout/test_layout_db_son"
+            bind:userSon="@{user}"/>
+
+
+    </LinearLayout>
+</layout>

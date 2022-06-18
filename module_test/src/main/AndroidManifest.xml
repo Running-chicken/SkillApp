@@ -4,6 +4,9 @@
 
     <application>
         <activity
+            android:name=".activity.DataBindingActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.TestLifecycleActivity"
             android:exported="false" />
         <activity

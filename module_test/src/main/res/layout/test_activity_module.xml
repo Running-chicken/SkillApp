@@ -53,6 +53,11 @@
             style="@style/TextStyle"
             android:text="保存文件" />
 
+        <TextView
+            android:id="@+id/tv_databinding"
+            style="@style/TextStyle"
+            android:text="调试databinding" />
+
 
 
     </LinearLayout>

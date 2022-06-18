@@ -61,6 +61,10 @@ public class TestModuleActivity extends AppCompatActivity {
             EventBus.getDefault().postSticky(new BaseEventBus("this is test home"));
         });
 
+        mBinding.tvDatabinding.setOnClickListener(view -> {
+            startActivity(new Intent(this,DataBindingActivity.class));
+        });
+
 //        LeakThread leakThread = new LeakThread();
 //        leakThread.start();
     }

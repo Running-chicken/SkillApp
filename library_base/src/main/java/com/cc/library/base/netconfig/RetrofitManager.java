@@ -21,6 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitManager {
 
 
+    private RetrofitManager(){}
     //单例
     private static RetrofitManager mInstance;
     //Retrofit实例
@@ -48,7 +49,7 @@ public class RetrofitManager {
         retrofit = new Retrofit.Builder()
                 .client(getOkHttpClient(canProxy)) //配置okHttp
                 .baseUrl(host) //域名  https://api-beta.yjzf.com
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create()) //
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -80,6 +81,8 @@ public class RetrofitManager {
 //        builder.proxy(Proxy.NO_PROXY);
 
         //配置ssl协议
+
+
         SSLFactory.SSLParams sslParams = SSLFactory.getSslSocketFactory();
         builder.sslSocketFactory(sslParams.sSLSocketFactory,sslParams.trustManager);
 
