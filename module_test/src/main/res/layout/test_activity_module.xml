@@ -13,6 +13,20 @@
         android:orientation="vertical"
         tools:context=".activity.TestModuleActivity">
 
+
+        <TextView
+            android:id="@+id/tv_text_vp2_frag"
+            style="@style/TextStyle"
+            android:text="vp2_fragment_适配器" />
+        <TextView
+            android:id="@+id/tv_text_vp2"
+            style="@style/TextStyle"
+            android:text="vp2_适配器" />
+        <TextView
+            android:id="@+id/tv_text_bp"
+            style="@style/TextStyle"
+            android:text="vp_适配器" />
+
         <TextView
             android:id="@+id/tv_event_bus"
             style="@style/TextStyle"

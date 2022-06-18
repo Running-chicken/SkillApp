@@ -4,6 +4,15 @@
 
     <application>
         <activity
+            android:name=".activity.ViewPagerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ViewPager2FragmentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ViewPager2Activity"
+            android:exported="false" />
+        <activity
             android:name=".activity.DataBindingActivity"
             android:exported="false" />
         <activity

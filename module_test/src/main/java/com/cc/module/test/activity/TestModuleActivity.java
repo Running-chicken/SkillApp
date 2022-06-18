@@ -65,6 +65,18 @@ public class TestModuleActivity extends AppCompatActivity {
             startActivity(new Intent(this,DataBindingActivity.class));
         });
 
+        mBinding.tvTextBp.setOnClickListener(view -> {
+            startActivity(new Intent(this,ViewPagerActivity.class));
+        });
+
+        mBinding.tvTextVp2.setOnClickListener(view -> {
+            startActivity(new Intent(this,ViewPager2Activity.class));
+        });
+
+        mBinding.tvTextVp2Frag.setOnClickListener(view -> {
+            startActivity(new Intent(this,ViewPager2FragmentActivity.class));
+        });
+
 //        LeakThread leakThread = new LeakThread();
 //        leakThread.start();
     }
