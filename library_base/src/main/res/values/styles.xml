@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MyTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabBackground">@color/white</item>
+        <item name="tabIndicatorColor">@color/black</item>
+        <item name="tabIndicatorHeight">3dp</item>
+        <item name="tabSelectedTextColor">@color/purple_500</item>
+        <item name="text_size">20sp</item>
+        <item name="android:textColor">@color/gray_a4a7a9</item>
+    </style>
+</resources>

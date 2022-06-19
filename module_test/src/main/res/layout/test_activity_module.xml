@@ -13,7 +13,10 @@
         android:orientation="vertical"
         tools:context=".activity.TestModuleActivity">
 
-
+        <TextView
+            android:id="@+id/tv_test_lv"
+            style="@style/TextStyle"
+            android:text="lv_test" />
         <TextView
             android:id="@+id/tv_text_vp2_frag"
             style="@style/TextStyle"

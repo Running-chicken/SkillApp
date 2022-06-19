@@ -4,6 +4,9 @@
 
     <application>
         <activity
+            android:name=".activity.MyRvActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.ViewPagerActivity"
             android:exported="false" />
         <activity

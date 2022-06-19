@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.cc.library.base.entity.BaseEventBus;
 import com.cc.library.base.util.RouterPath;
-import com.cc.library.base.util.Utils;
 import com.cc.module.test.databinding.TestActivityModuleBinding;
 
 import org.greenrobot.eventbus.EventBus;
@@ -75,6 +74,10 @@ public class TestModuleActivity extends AppCompatActivity {
 
         mBinding.tvTextVp2Frag.setOnClickListener(view -> {
             startActivity(new Intent(this,ViewPager2FragmentActivity.class));
+        });
+
+        mBinding.tvTestLv.setOnClickListener(view -> {
+            startActivity(new Intent(this, MyRvActivity.class));
         });
 
 //        LeakThread leakThread = new LeakThread();

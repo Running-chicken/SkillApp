@@ -17,12 +17,13 @@ import com.cc.module.test.entity.Pic;
 
 import java.util.List;
 
-public class MyVp2Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class RvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Context context;
     private List<Pic> mList;
+    private MyRvInterface mInterface;
 
-    public MyVp2Adapter(Context context, List<Pic> mList){
+    public RvAdapter(Context context, List<Pic> mList){
         this.context = context;
         this.mList = mList;
     }
@@ -31,10 +32,10 @@ public class MyVp2Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        if(viewType == 1){
-            return new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.test_layout_vp2_item,parent,false));
+        if(viewType == 0){
+            return new MyHolder(LayoutInflater.from(context).inflate(R.layout.test_item_rv_type_one,parent,false));
         }else{
-            return new MyHolder(LayoutInflater.from(context).inflate(R.layout.test_layout_fg1,parent,false));
+            return new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.test_item_rv_type_two,parent,false));
         }
     }
 
@@ -53,6 +54,12 @@ public class MyVp2Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             ((MyHolder) holder).tvItem.setText(mList.get(position).name);
         }else if(holder instanceof MyViewHolder){
             Glide.with(context).load(mList.get(position).url).into(((MyViewHolder) holder).ivItem);
+            ((MyViewHolder) holder).ivItem.setOnClickListener(view -> {
+                if(mInterface!=null){
+                    mInterface.onClick(view,position);
+                }
+            });
+
         }
     }
 
@@ -83,6 +90,14 @@ public class MyVp2Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             super(itemView);
             ivItem = itemView.findViewById(R.id.iv_image_item);
         }
+    }
+
+    public interface MyRvInterface{
+        void onClick(View view, int position);
+    }
+
+    public void setInterface(MyRvInterface mInterface){
+        this.mInterface = mInterface;
     }
 
 }
