@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <declare-styleable name="myImageList">
         <attr name="max_size" format="integer"/>
         <attr name="text_size" format="dimension"/>
         <attr name="text" format="string"/>
     </declare-styleable>
 
-
+    <declare-styleable name="myTestView">
+        <attr name="cc_height" format="dimension"/>
+        <attr name="cc_width" format="dimension"/>
+        <attr name="cc_content" format="string"/>
+    </declare-styleable>
 </resources>

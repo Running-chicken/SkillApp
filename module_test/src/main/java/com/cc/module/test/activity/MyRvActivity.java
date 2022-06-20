@@ -29,7 +29,7 @@ public class MyRvActivity extends AppCompatActivity {
         mBinding = DataBindingUtil.setContentView(this,R.layout.test_activity_my_lv);
         List<Pic> list = new ArrayList<>();
 
-        for(int i=0;i<100;i++){
+        for(int i=0;i<3;i++){
             list.add(new Pic("http://imgwcs3.soufunimg.com/news/2020_07/21/d15b3498-67d5-407c-ad2f-19885e007209.png",""));
         }
 
@@ -38,7 +38,8 @@ public class MyRvActivity extends AppCompatActivity {
         adapter.setInterface(new RvAdapter.MyRvInterface() {
             @Override
             public void onClick(View view, int position) {
-                Utils.toast(MyRvActivity.this,list.get(position).url);
+                list.remove(position);
+                adapter.notifyItemRemoved(position);
             }
         });
 
@@ -62,6 +63,7 @@ public class MyRvActivity extends AppCompatActivity {
                 super.onScrolled(recyclerView, dx, dy);
             }
         });
+
 
     }
 }
