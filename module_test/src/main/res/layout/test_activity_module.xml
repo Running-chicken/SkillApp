@@ -14,6 +14,16 @@
         tools:context=".activity.TestModuleActivity">
 
         <TextView
+            android:id="@+id/tv_webview_process"
+            style="@style/TextStyle"
+            android:text="webViewSuccess" />
+
+        <TextView
+            android:id="@+id/tv_mesure"
+            style="@style/TextStyle"
+            android:text="measureSpec" />
+
+        <TextView
             android:id="@+id/tv_test_lv"
             style="@style/TextStyle"
             android:text="lv_test" />

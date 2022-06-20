@@ -15,5 +15,8 @@ dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     api project(':library_base')
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
 }

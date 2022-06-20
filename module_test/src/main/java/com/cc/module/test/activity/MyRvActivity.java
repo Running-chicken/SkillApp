@@ -3,10 +3,13 @@ package com.cc.module.test.activity;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.cc.library.base.util.Utils;
 import com.cc.module.test.R;
 import com.cc.module.test.adapter.RvAdapter;
@@ -26,12 +29,9 @@ public class MyRvActivity extends AppCompatActivity {
         mBinding = DataBindingUtil.setContentView(this,R.layout.test_activity_my_lv);
         List<Pic> list = new ArrayList<>();
 
-        list.add(new Pic("http://imgwcs3.soufunimg.com/news/2020_07/21/d15b3498-67d5-407c-ad2f-19885e007209.png","ccccc"));
-        list.add(new Pic("","ccccc"));
-        list.add(new Pic("http://imgwcs3.soufunimg.com/news/2020_07/21/d15b3498-67d5-407c-ad2f-19885e007209.png",""));
-        list.add(new Pic("http://imgwcs3.soufunimg.com/news/2020_07/21/d15b3498-67d5-407c-ad2f-19885e007209.png",""));
-        list.add(new Pic("","ccccc"));
-        list.add(new Pic("","ccccc"));
+        for(int i=0;i<100;i++){
+            list.add(new Pic("http://imgwcs3.soufunimg.com/news/2020_07/21/d15b3498-67d5-407c-ad2f-19885e007209.png",""));
+        }
 
 
         RvAdapter adapter = new RvAdapter(this,list);
@@ -46,6 +46,22 @@ public class MyRvActivity extends AppCompatActivity {
         mBinding.rvTest.addItemDecoration(new MyItemDecoView(this));
         mBinding.rvTest.setAdapter(adapter);
 
+        mBinding.rvTest.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView,newState);
+                if(newState == RecyclerView.SCROLL_STATE_IDLE){
+                    Glide.with(MyRvActivity.this).resumeRequests();
+                }else{
+                    Glide.with(MyRvActivity.this).pauseRequests();
+                }
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        });
 
     }
 }

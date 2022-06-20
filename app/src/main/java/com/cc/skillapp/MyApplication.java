@@ -1,11 +1,11 @@
 package com.cc.skillapp;
 
 import android.app.Activity;
-import android.app.Application;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.cc.library.base.config.ModuleLifecycleConfig;
 import com.cc.library.base.netconfig.RetrofitManager;
+import com.cc.library.base.util.AppContext;
 import com.squareup.leakcanary.LeakCanary;
 
 import org.litepal.LitePalApplication;
@@ -32,10 +32,12 @@ public class MyApplication extends LitePalApplication {
         ModuleLifecycleConfig.getInstance().initModuleAhead(this);
         ModuleLifecycleConfig.getInstance().initModuleLow(this);
 
-//        if(LeakCanary.isInAnalyzerProcess(this)){
-//            return;
-//        }
-//        LeakCanary.install(this);
+        AppContext.getInstance().setContext(this);
+
+        if(LeakCanary.isInAnalyzerProcess(this)){
+            return;
+        }
+        LeakCanary.install(this);
 
 
     }

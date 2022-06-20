@@ -3,11 +3,13 @@ package com.cc.module.test.activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.cc.library.base.entity.BaseEventBus;
 import com.cc.library.base.util.RouterPath;
+import com.cc.library.base.util.WebViewUtils;
 import com.cc.module.test.databinding.TestActivityModuleBinding;
 
 import org.greenrobot.eventbus.EventBus;
@@ -80,11 +82,31 @@ public class TestModuleActivity extends AppCompatActivity {
             startActivity(new Intent(this, MyRvActivity.class));
         });
 
+        mBinding.tvMesure.setOnClickListener(view -> {
+
+            startActivity(new Intent(this, ViewStubActivity.class));
+        });
+
+        mBinding.tvWebviewProcess.setOnClickListener(view -> {
+            Intent intent = new Intent(this,WebViewProcessActivity.class);
+            intent.putExtra("url","https://www.baidu.com");
+            startActivityForResult(intent,111);
+
+        });
+
+
+
 //        LeakThread leakThread = new LeakThread();
 //        leakThread.start();
     }
 
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        WebViewUtils.getInstance().init();
+    }
 
     class LeakThread extends Thread{
         @Override

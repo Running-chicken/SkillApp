@@ -4,6 +4,9 @@
 
     <application>
         <activity
+            android:name=".activity.ViewStubActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.MyRvActivity"
             android:exported="false" />
         <activity
@@ -42,6 +45,8 @@
         <activity
             android:name=".activity.EventBusActivity"
             android:exported="false" />
+        <activity android:name=".activity.WebViewProcessActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

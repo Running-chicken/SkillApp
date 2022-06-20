@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.cc.library.base.util.RouterPath;
+import com.cc.library.base.util.WebViewUtils;
 import com.cc.skillapp.activity.AllApplicationActivity;
 import com.cc.skillapp.activity.CalendarActivity;
 import com.cc.skillapp.activity.ChangeIconActivity;
@@ -103,6 +104,8 @@ public class MainActivity extends BaseActivity {
         mBinding.tvSocket.setOnClickListener(view -> {
             startActivity(new Intent(this, SocketActivity.class));
         });
+
+        WebViewUtils.getInstance().init();
     }
 
     private void initView() {
