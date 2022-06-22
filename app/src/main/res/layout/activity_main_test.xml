@@ -38,6 +38,11 @@
             android:text="test sqlite" />
 
         <TextView
+            android:id="@+id/tv_content_observer"
+            style="@style/TextStyle"
+            android:text="observer 监听" />
+
+        <TextView
             android:id="@+id/tv_handler"
             style="@style/TextStyle"
             android:text="test handler" />
@@ -61,6 +66,11 @@
             android:id="@+id/tv_surface"
             style="@style/TextStyle"
             android:text="test surfaceView" />
+
+        <TextView
+            android:id="@+id/tv_event2"
+            style="@style/TextStyle"
+            android:text="事件分发测试2" />
 
     </LinearLayout>
 </layout>

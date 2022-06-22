@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.cc.skillapp.R;
+import com.cc.skillapp.contentprovider.ContentObserverActivity;
 import com.cc.skillapp.contentprovider.ContentProviderActivity;
 import com.cc.skillapp.databinding.ActivityMainTestBinding;
 import com.cc.skillapp.test.HandlerActivity;
@@ -52,6 +53,11 @@ public class MainTestActivity extends AppCompatActivity {
         mBinding.tvSqlite.setOnClickListener(view -> {
             startActivity(new Intent(this, ContentProviderActivity.class));
         });
+
+        mBinding.tvContentObserver.setOnClickListener(view -> {
+            startActivity(new Intent(this, ContentObserverActivity.class));
+        });
+
 
         mBinding.tvHandler.setOnClickListener(view -> {
             startActivity(new Intent(this, HandlerActivity.class));
