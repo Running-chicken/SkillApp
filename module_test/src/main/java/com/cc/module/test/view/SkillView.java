@@ -43,7 +43,7 @@ public class SkillView extends View {
     }
 
     Paint mPaint;
-    Path path = new Path();
+    Path path;
     Canvas mCanvas;
 
     float[] points = {0,0,50,50,100,100,200,200};
@@ -64,11 +64,11 @@ public class SkillView extends View {
 
 //        testXfermode(canvas);
 
-//        testLine(canvas);
+        testLine(canvas);
 //        testDither(canvas);
 //        testPathEffect();
 //        setShadowLayer();
-        setMaskFilter();
+//        setMaskFilter();
     }
 
     private void initPaint(){
@@ -77,20 +77,25 @@ public class SkillView extends View {
 //        mPaint.setAntiAlias(true); 同上句
         mPaint.setColor(Color.BLACK);
         mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+
+        path = new Path();
     }
 
 
     //测试线条
     private void testLine(Canvas canvas){
         mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setStrokeWidth(50);
-        mPaint.setStrokeCap(Paint.Cap.BUTT); //线头
-        mPaint.setStrokeJoin(Paint.Join.MITER); //拐角形状
+        mPaint.setStrokeWidth(10);
+//        mPaint.setStrokeCap(Paint.Cap.BUTT); //线头
+//        mPaint.setStrokeJoin(Paint.Join.MITER); //拐角形状
 //        canvas.drawLine(0,0,200,200,mPaint);
-        path = new Path();
-        path.moveTo(100,100);
-        path.rLineTo(200,0);
-        path.rLineTo(-100,200);
+
+//        path.moveTo(100,100);
+//        path.rLineTo(200,0);
+//        path.rLineTo(-100,200);
+
+        path.moveTo(50,300);
+        path.quadTo(100,100,500,500);
         canvas.drawPath(path,mPaint);
 
     }
