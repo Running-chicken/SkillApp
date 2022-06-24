@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.cc.library.base.util.Utils;
 import com.cc.module.test.R;
 import com.cc.module.test.databinding.TestMeasureBinding;
+import com.cc.module.test.entity.TestParcel;
 
 public class ViewStubActivity extends AppCompatActivity {
 
@@ -28,6 +29,8 @@ public class ViewStubActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test_activity_mesure_spec);
+        TestParcel parcel = getIntent().getParcelableExtra("data");
+        Utils.log(parcel.getName());
 
         TestMeasureBinding mBinding = DataBindingUtil.setContentView(this,R.layout.test_activity_mesure_spec);
 

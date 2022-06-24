@@ -6,7 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
-public class testReflect {
+public class TestReflect {
 
 
 
@@ -15,7 +15,7 @@ public class testReflect {
 //        getClassFromName();
 //        getClassField();
 //        getMethods();
-//        getConsstructor();
+//        getConstructor();
         getSuperClass();
     }
 
@@ -23,10 +23,9 @@ public class testReflect {
         try {
             //forName方法会导致类加载 执行静态代码块
             Class classSon = Class.forName("com.cc.module.test.entity.testfather.Son");
-
+            System.out.println("name:"+classSon.getSimpleName());
             //无参构造方法
             Object son = classSon.newInstance();
-
             System.out.println(son.getClass().getSimpleName());
 
         } catch (ClassNotFoundException e) {
@@ -48,11 +47,15 @@ public class testReflect {
             Field[] fields = sonClass.getDeclaredFields();
             StringBuilder stringBuilder = new StringBuilder();
             //重要方法 Modifier.toString(class.getModifiers) 获取修饰符
-            System.out.println(Modifier.toString(sonClass.getModifiers())
-            +" class "+ sonClass.getSimpleName()+"\n");
+            System.out.println(Modifier.toString(sonClass.getModifiers()) +" class "+ sonClass.getSimpleName()+"\n");
             for(int i=0;i<fields.length;i++){
+                //属性修饰符
                 stringBuilder.append(Modifier.toString(fields[i].getModifiers()));
                 stringBuilder.append(" ");
+                //属性类型
+                stringBuilder.append(fields[i].getType().getSimpleName());
+                stringBuilder.append(" ");
+                //属性名
                 stringBuilder.append(fields[i].getName());
                 stringBuilder.append("\n");
             }
@@ -60,10 +63,12 @@ public class testReflect {
 
 
 
+            //根据属性名获取属性
             Field fieldName = sonClass.getDeclaredField("name");
             fieldName.set(object,"zhenzhen");
             System.out.println("输出属性："+fieldName.get(object));
 
+            //根据属性名获取属性
             Field fieldAddress = sonClass.getDeclaredField("address");
             //重要方法 私有变量打破封装
             fieldAddress.setAccessible(true);
@@ -93,29 +98,43 @@ public class testReflect {
             Object son = classSon.newInstance();
 
             StringBuilder stringBuilder = new StringBuilder();
+            //获取方法集合
             Method[] methods = classSon.getDeclaredMethods();
             for(int i=0;i<methods.length;i++){
+                //方法修饰符
                 stringBuilder.append(Modifier.toString(methods[i].getModifiers()));
                 stringBuilder.append(" ");
+                //方法返回类型type
+                stringBuilder.append(methods[i].getReturnType().getSimpleName());
+                stringBuilder.append(" ");
+                //方法名
                 stringBuilder.append(methods[i].getName());
-                stringBuilder.append(" params:");
+                stringBuilder.append("(");
+                //方法所有参数
                 Class[] params = methods[i].getParameterTypes();
                 for(int j=0;j<params.length;j++){
+                    //方法参数类型
                     stringBuilder.append(params[j].getSimpleName());
-                    stringBuilder.append(" ");
+                    if(j!=params.length-1){
+                        stringBuilder.append(", ");
+                    }
                 }
-                stringBuilder.append(" returnType:");
-                stringBuilder.append(methods[i].getReturnType().getSimpleName());
+                stringBuilder.append(")");
                 stringBuilder.append("\n");
             }
 
             System.out.println(stringBuilder.toString());
 
+            //根据方法名和参数类型，获取方法
             Method method = classSon.getDeclaredMethod("getName",boolean.class);
             Object result = method.invoke(son,true);
             System.out.println("结果是："+result);
 
-
+            Method method1 = classSon.getDeclaredMethod("isSonPrivate",int.class,String.class);
+            //私有方法必须打破封装
+            method1.setAccessible(true);
+            //invoke方法必须是实例化对象
+            method1.invoke(son,100,"你好");
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -137,19 +156,24 @@ public class testReflect {
             Class classSon = Class.forName("com.cc.module.test.entity.testfather.Son");
 
 
-
             Constructor[] constructors = classSon.getDeclaredConstructors();
             StringBuilder stringBuilder = new StringBuilder();
             for(int i=0;i<constructors.length;i++){
+                //构造方法修饰符
                 stringBuilder.append(Modifier.toString(constructors[i].getModifiers()));
                 stringBuilder.append(" ");
+                //类名
                stringBuilder.append(classSon.getSimpleName());
-               stringBuilder.append(" ");
+                stringBuilder.append("(");
+               //参数类型
                Class[] params = constructors[i].getParameterTypes();
                for(int j=0;j<params.length;j++){
                    stringBuilder.append(params[j].getSimpleName());
-                   stringBuilder.append(" ");
+                   if(j!=params.length-1){
+                       stringBuilder.append(", ");
+                   }
                }
+                stringBuilder.append(")");
                stringBuilder.append("\n");
             }
 
@@ -157,7 +181,6 @@ public class testReflect {
 
 
             Constructor constructor = classSon.getConstructor(String.class);
-
             Object object = constructor.newInstance("cuican");
             System.out.println(object);
 
@@ -180,9 +203,10 @@ public class testReflect {
         try {
             //forName方法会导致类加载 执行静态代码块
             Class classSon = Class.forName("com.cc.module.test.entity.testfather.Son");
+            //继承父类
             Class superClass = classSon.getSuperclass();
             System.out.println(superClass.getSimpleName());
-
+            //实现方法
             Class[] interfaces = classSon.getInterfaces();
             for(int i=0;i<interfaces.length;i++){
                 System.out.println(interfaces[i].getSimpleName());

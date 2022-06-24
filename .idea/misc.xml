@@ -16,6 +16,7 @@
         <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/app/src/main/res/layout/activity_all_application.xml" value="0.225" />
         <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/app/src/main/res/layout/activity_binder.xml" value="0.225" />
         <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/app/src/main/res/layout/activity_broad_cast.xml" value="0.225" />
+        <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/app/src/main/res/layout/activity_calendar.xml" value="0.225" />
         <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/app/src/main/res/layout/activity_change_icon.xml" value="0.2984375" />
         <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/app/src/main/res/layout/activity_content_observer.xml" value="0.2994791666666667" />
         <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/app/src/main/res/layout/activity_content_provider.xml" value="0.1" />
@@ -65,6 +66,7 @@
         <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/module_test/src/main/res/layout/activity_sqlite.xml" value="0.225" />
         <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/module_test/src/main/res/layout/activity_test_module.xml" value="0.1" />
         <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/module_test/src/main/res/layout/test_activity_databinding.xml" value="0.1" />
+        <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/module_test/src/main/res/layout/test_activity_fragment_add.xml" value="0.225" />
         <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/module_test/src/main/res/layout/test_activity_lifecycle.xml" value="0.225" />
         <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/module_test/src/main/res/layout/test_activity_mesure_spec.xml" value="0.1" />
         <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/module_test/src/main/res/layout/test_activity_module.xml" value="0.15637860082304528" />
@@ -84,6 +86,7 @@
         <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/module_test/src/main/res/layout/test_layout_db_son.xml" value="0.18518518518518517" />
         <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/module_test/src/main/res/layout/test_layout_fg1.xml" value="0.1" />
         <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/module_test/src/main/res/layout/test_layout_vp2_item.xml" value="0.1" />
+        <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/module_test/src/main/res/layout/test_lazy_fragment.xml" value="0.225" />
         <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/module_test/src/main/res/layout/test_person_list_item.xml" value="0.225" />
         <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/module_test/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="..\:/Users/can/AndroidStudioProjects/skillapp/plugin/src/main/res/layout/activity_plugin.xml" value="0.1" />

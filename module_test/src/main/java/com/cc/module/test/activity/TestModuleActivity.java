@@ -11,6 +11,7 @@ import com.cc.library.base.entity.BaseEventBus;
 import com.cc.library.base.util.RouterPath;
 import com.cc.library.base.util.WebViewUtils;
 import com.cc.module.test.databinding.TestActivityModuleBinding;
+import com.cc.module.test.entity.TestParcel;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -84,7 +85,7 @@ public class TestModuleActivity extends AppCompatActivity {
 
         mBinding.tvMesure.setOnClickListener(view -> {
 
-            startActivity(new Intent(this, ViewStubActivity.class));
+            startActivity(new Intent(this, ViewStubActivity.class).putExtra("data",new TestParcel(1,"cuican")));
         });
 
         mBinding.tvWebviewProcess.setOnClickListener(view -> {
