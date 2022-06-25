@@ -16,8 +16,28 @@ public class TestReflect {
 //        getClassField();
 //        getMethods();
 //        getConstructor();
-        getSuperClass();
+//        getSuperClass();
+        loadFarther();
     }
+
+    //测试加载父类子类是否被加载
+    public static void loadFarther(){
+        try {
+            Class fatherClass = Class.forName("com.cc.module.test.entity.testfather.Father");
+            ClassLoader classLoader = ClassLoader.getSystemClassLoader();
+            Class father = classLoader.loadClass("com.cc.module.test.entity.testfather.Father");
+            Object obj = father.newInstance();
+            Method[] methods = father.getDeclaredMethods();
+            System.out.println("方法名："+methods[0].getName());
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public static void getClassFromName(){
         try {

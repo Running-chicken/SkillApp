@@ -38,5 +38,15 @@
             style="@style/TextStyle"
             android:text="test data"
             android:id="@+id/tv_start_data"/>
+
+        <TextView
+            android:id="@+id/tv_life_lifecycle"
+            style="@style/TextStyle"
+            android:text="继承RxAcTivity"/>
+
+        <TextView
+            android:id="@+id/tv_life_lifecycle2"
+            style="@style/TextStyle"
+            android:text="使用lifecycleProvider"/>
     </LinearLayout>
 </layout>

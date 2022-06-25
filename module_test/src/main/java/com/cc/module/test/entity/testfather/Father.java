@@ -13,6 +13,12 @@ public class Father {
 
 
     static{
-//        System.out.println("father static");
+        System.out.println("father static");
+    }
+
+    public static class InSon extends Father{
+        static{
+            System.out.println("father inson");
+        }
     }
 }

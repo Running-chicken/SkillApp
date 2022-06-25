@@ -7,16 +7,20 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Lifecycle;
 
 import com.cc.library.base.util.Utils;
 import com.cc.skillapp.R;
 import com.cc.skillapp.databinding.ActivityTest2Binding;
+import com.trello.lifecycle2.android.lifecycle.AndroidLifecycle;
 import com.trello.rxlifecycle3.android.ActivityEvent;
 import com.trello.rxlifecycle3.components.support.RxAppCompatActivity;
 
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
+import io.reactivex.ObservableTransformer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
@@ -50,7 +54,7 @@ public class TestLifeAActivity extends RxAppCompatActivity {
             Utils.log(getClass(),"onCreate");
         }
 
-//        testRxJavaTime();
+
 
 
         mBinding.tvStartData.setOnClickListener(view -> {
@@ -59,7 +63,34 @@ public class TestLifeAActivity extends RxAppCompatActivity {
             startActivity(intent);
         });
 
+        mBinding.tvLifeLifecycle.setOnClickListener(view -> {
+            testRxJavaTime();
+        });
+
+        mBinding.tvLifeLifecycle2.setOnClickListener(view -> {
+            Observable.interval(0,2,TimeUnit.SECONDS).doOnDispose(new Action() {
+                @Override
+                public void run() throws Exception {
+                    Utils.log("截断");
+                }
+            }).compose(new ObservableTransformer<Long, Long>() {
+
+                @io.reactivex.annotations.NonNull
+                @Override
+                public ObservableSource<Long> apply(@io.reactivex.annotations.NonNull Observable<Long> upstream) {
+                    return upstream.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+                }
+            }).compose(AndroidLifecycle.createLifecycleProvider(this).bindUntilEvent(Lifecycle.Event.ON_STOP))
+                    .subscribe(new Consumer<Long>() {
+                        @Override
+                        public void accept(Long aLong) throws Exception {
+                            Utils.log("输出："+aLong);
+                        }
+                    });
+        });
     }
+
+
 
 
     private void testRxJavaTime(){
@@ -68,8 +99,14 @@ public class TestLifeAActivity extends RxAppCompatActivity {
             public void run() throws Exception {
                 Utils.log("this is dispose");
             }
-        }).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+        }).compose(new ObservableTransformer<Long, Long>() {
+
+            @io.reactivex.annotations.NonNull
+            @Override
+            public ObservableSource<Long> apply(@io.reactivex.annotations.NonNull Observable<Long> upstream) {
+                return upstream.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+            }
+        })
                 .compose(bindUntilEvent(ActivityEvent.STOP))
                 .subscribe(new Consumer<Long>() {
                     @Override

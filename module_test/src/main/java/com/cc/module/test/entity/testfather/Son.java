@@ -39,7 +39,7 @@ public class Son extends Father implements ShowInterface {
     }
 
     static{
-//        System.out.println("son static");
+        System.out.println("son static");
     }
 
     @Override
