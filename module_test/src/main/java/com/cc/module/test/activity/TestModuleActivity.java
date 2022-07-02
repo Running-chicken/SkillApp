@@ -95,6 +95,17 @@ public class TestModuleActivity extends AppCompatActivity {
 
         });
 
+        mBinding.tvThreadPool.setOnClickListener(view -> {
+            Intent intent = new Intent(this,ThreadPoolActivity.class);
+            startActivity(intent);
+
+        });
+
+        mBinding.tvThreadCreate.setOnClickListener(view -> {
+            Intent intent = new Intent(this,ThreadCreateActivity.class);
+            startActivity(intent);
+
+        });
 
 
 //        LeakThread leakThread = new LeakThread();

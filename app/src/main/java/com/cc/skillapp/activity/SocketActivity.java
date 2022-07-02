@@ -45,7 +45,7 @@ public class SocketActivity extends AppCompatActivity {
                 @Override
                 public void run() {
                     result = new SocketUtil(
-                            "192.168.1.4").sentMsg(mBinding.etInput.getText().toString());
+                            "192.168.1.6").sentMsg(mBinding.etInput.getText().toString());
                     handler.sendEmptyMessage(100);
                 }
             }).start();

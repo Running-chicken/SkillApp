@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Lifecycle;
 
+import com.cc.library.base.util.MyLifecycleObserver;
 import com.cc.library.base.util.Utils;
 import com.cc.skillapp.R;
 import com.cc.skillapp.databinding.ActivityTest2Binding;
@@ -88,6 +89,10 @@ public class TestLifeAActivity extends RxAppCompatActivity {
                         }
                     });
         });
+
+
+        Lifecycle lifecycle = getLifecycle();
+        lifecycle.addObserver(new MyLifecycleObserver());
     }
 
 

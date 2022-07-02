@@ -3,63 +3,54 @@
     package="com.cc.module.test">
 
     <application>
-        <!-- 懒加载布局 -->
+        <activity
+            android:name=".activity.ThreadCreateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ThreadPoolActivity"
+            android:exported="false" /> <!-- 懒加载布局 -->
         <activity
             android:name=".activity.ViewStubActivity"
-            android:exported="false" />
-        <!-- 标准Rv -->
+            android:exported="false" /> <!-- 标准Rv -->
         <activity
             android:name=".activity.MyRvActivity"
-            android:exported="false" />
-        <!-- vp+FragmentStatePagerAdapter -->
+            android:exported="false" /> <!-- vp+FragmentStatePagerAdapter -->
         <activity
             android:name=".activity.ViewPagerActivity"
-            android:exported="false" />
-        <!-- vp2+FragmentStateAdapter -->
+            android:exported="false" /> <!-- vp2+FragmentStateAdapter -->
         <activity
             android:name=".activity.ViewPager2FragmentActivity"
-            android:exported="false" />
-        <!-- vp2+rvAdapter -->
+            android:exported="false" /> <!-- vp2+rvAdapter -->
         <activity
             android:name=".activity.ViewPager2Activity"
-            android:exported="false" />
-        <!-- dataBinding 赋值方式 -->
+            android:exported="false" /> <!-- dataBinding 赋值方式 -->
         <activity
             android:name=".activity.DataBindingActivity"
-            android:exported="false" />
-        <!-- 手写Glide -->
+            android:exported="false" /> <!-- 手写Glide -->
         <activity
             android:name=".activity.TestLifecycleActivity"
-            android:exported="false" />
-        <!-- 自定义View -->
+            android:exported="false" /> <!-- 自定义View -->
         <activity
             android:name=".activity.SkillViewActivity"
-            android:exported="false" />
-        <!-- RxJava -->
+            android:exported="false" /> <!-- RxJava -->
         <activity
             android:name=".activity.RxJava2Activity"
-            android:exported="false" />
-        <!-- sql -->
+            android:exported="false" /> <!-- sql -->
         <activity
             android:name=".activity.SQLiteActivity"
-            android:exported="false" />
-        <!-- RxJava -->
+            android:exported="false" /> <!-- RxJava -->
         <activity
             android:name=".activity.RxJavaActivity"
-            android:exported="false" />
-        <!-- Test 首页 -->
+            android:exported="false" /> <!-- Test 首页 -->
         <activity
             android:name=".activity.TestModuleActivity"
-            android:exported="true" />
-        <!-- 保存文件 -->
+            android:exported="true" /> <!-- 保存文件 -->
         <activity
             android:name=".activity.SaveActivity"
-            android:exported="false" />
-        <!-- eventBus -->
+            android:exported="false" /> <!-- eventBus -->
         <activity
             android:name=".activity.EventBusActivity"
-            android:exported="false" />
-        <!-- WebView优化 -->
+            android:exported="false" /> <!-- WebView优化 -->
         <activity
             android:name=".activity.WebViewProcessActivity"
             android:exported="true" />

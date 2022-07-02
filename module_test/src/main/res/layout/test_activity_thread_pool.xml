@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="ThreadPoolBinding">
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.ThreadPoolActivity"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_fix"
+            style="@style/TextStyle"
+            android:text="Fix Pool"/>
+
+        <TextView
+            android:id="@+id/tv_single"
+            style="@style/TextStyle"
+            android:text="single Pool"/>
+
+        <TextView
+            android:id="@+id/tv_cacehd"
+            style="@style/TextStyle"
+            android:text="cached pool"/>
+
+        <TextView
+            android:id="@+id/tv_schedule_one"
+            style="@style/TextStyle"
+            android:text="执行一次 延迟"/>
+        <TextView
+            android:id="@+id/tv_schedule"
+            style="@style/TextStyle"
+            android:text="循环 延迟"/>
+        <TextView
+            android:id="@+id/tv_schedule_close"
+            style="@style/TextStyle"
+            android:text="停止schedule"/>
+    </LinearLayout>
+</layout>
